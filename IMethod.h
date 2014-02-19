@@ -7,7 +7,7 @@ class IMethod
     public:
         
         /* TODO: Decidir o tipo de retorno e parâmetros, de acordo com as necessidades */
-        virtual float converge() =0;
+        virtual double run() = 0;
     
     protected:
     private:
