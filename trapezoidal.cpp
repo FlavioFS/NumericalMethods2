@@ -1,5 +1,7 @@
 #include "Trapezoidal.h"
 
+#include <cstdio>
+
 /* ==========================================================
                          Constructors
 ========================================================== */
@@ -51,15 +53,22 @@ bool Trapezoidal::run()
         // SUM_{1,n-1} f(x_k)
         std::vector<function>::iterator i = first;
         i++;
-        for (; i != last; i++)
-        {
+        for (; i != last; i++) {
             Sn += i->y;
         }
 
-        Sn *= 2;                  // 2*SUM_{1,n-1} f(x_k)
+        // 2*SUM_{1,n-1} f(x_k)
+        Sn *= 2;
     }
-    Sn += (first->y + last->y);   // ( f(x_0) + f(x_n) + 2*SUM_{1,n-1} f(x_k) )
-    Sn *= (last->x - first->x)/2; // (1/2)*(x_n - x_0)*( f(x_0) + f(x_n) + 2*SUM_{1,n-1} f(x_k) )
+
+    // ( f(x_0) + f(x_n) + 2*SUM_{1,n-1} f(x_k) )
+    Sn += (first->y + last->y);
+
+    // h = (x_n - x_0)/2n
+    double h = (last->x - first->x)/(2*(f.size() - 1));
+
+    // (1/2n)*(x_n - x_0)*( f(x_0) + f(x_n) + 2*SUM_{1,n-1} f(x_k) )
+    Sn *= h;
 
     setArea(Sn);
 

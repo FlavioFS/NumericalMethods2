@@ -51,8 +51,8 @@ bool testMethod()
         sample >> in.x >> in.y;
         i++;
         f.push_back(in);
-        cout << setprecision(3) << i << "| "
-             << setprecision(8) << "(" << in.x << "," << in.y << ")" << endl;
+        cout << setw(3) << i << "| "
+             << "("<< in.x << "," << in.y << ")" << endl;
     }
 
     if (i > 0)
