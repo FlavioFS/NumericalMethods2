@@ -7,24 +7,33 @@
 class Trapezoidal : public IMethod
 {
 public:
-    Trapezoidal(double left, double right, int resolution);
 
-    void setLeft(double);
-    void setRight(double);
-    bool setResolution(unsigned int);
+    /* ==========================================================
+                             Constructors
+    ========================================================== */
+    Trapezoidal(std::vector<function> f);
 
-    void correctAttributes();
+    /* ==========================================================
+                                 Sets
+    ========================================================== */
+    void setFunction(std::vector<function> f);
 
-    double run();
+    /* ==========================================================
+                                 Gets
+    ========================================================== */
+    double getArea();
+
+    /* ==========================================================
+                                 Run
+    ========================================================== */
+    bool run();
 
 private:
-    double
-        left,
-        right,
-        area;
+    // Private set
+    void setArea(double area);
 
-    unsigned int
-        resolution;
+    std::vector<function> f;   // Function (Discrete sample)
+    double area;               // Calculated integral
 };
 
 #endif // TRAPEZOIDAL_H

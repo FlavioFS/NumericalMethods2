@@ -1,34 +1,67 @@
-#include "trapezoidal.h"
+#include "Trapezoidal.h"
 
-Trapezoidal::Trapezoidal()
-    : Trapezoidal (0,0,1)
+/* ==========================================================
+                         Constructors
+========================================================== */
+Trapezoidal::Trapezoidal(std::vector<function> f)
+    : f(f)
 {}
 
-Trapezoidal::Trapezoidal(double left, double right, int resolution)
-    : left(left), right(right), resolution(resolution)
+/* ==========================================================
+                             Sets
+========================================================== */
+void Trapezoidal::setFunction(std::vector<function> f)
 {
-    correctAttributes();
+    (this->f).clear();
+    this->f = f;
 }
 
-void Trapezoidal::setLeft(double left)
-    { this->left = left; }
-
-void Trapezoidal::setRight(double right)
-    { this->right = right; }
-
-void Trapezoidal::setResolution(unsigned int resolution)
-    { this->resolution = resolution; }
-
-void Trapezoidal::correctAttributes()
+// Private
+void Trapezoidal::setArea(double area)
 {
-    if (right < left)
+    if (area >= 0)
+        this->area = area;
+}
+
+/* ==========================================================
+                             Gets
+========================================================== */
+double Trapezoidal::getArea() { return area; }
+
+/* ==========================================================
+                             Run
+========================================================== */
+bool Trapezoidal::run()
+{
+    if (f.empty())
+        return false;
+
+    /* Sn = (1/2)*(x_n - x_0)*( f(x_0) + f(x_n) + 2*SUM_{1,n-1} f(x_k) )
+     *   The sequence of steps below reduce the number of mathematical
+     * operations and, therefore, reduces the numerical error.
+    */
+    double Sn = 0;
+
+    std::vector<function>::iterator first = f.begin();
+    std::vector<function>::iterator last = f.end();
+    last--;
+
+    if (f.size() > 2)
     {
-        double aux = right;
-        right = left;
-        left = aux;
-    }
-}
+        // SUM_{1,n-1} f(x_k)
+        std::vector<function>::iterator i = first;
+        i++;
+        for (; i != last; i++)
+        {
+            Sn += i->y;
+        }
 
-double Trapezoidal::run()
-{
+        Sn *= 2;                  // 2*SUM_{1,n-1} f(x_k)
+    }
+    Sn += (first->y + last->y);   // ( f(x_0) + f(x_n) + 2*SUM_{1,n-1} f(x_k) )
+    Sn *= (last->x - first->x)/2; // (1/2)*(x_n - x_0)*( f(x_0) + f(x_n) + 2*SUM_{1,n-1} f(x_k) )
+
+    setArea(Sn);
+
+    return true;
 }

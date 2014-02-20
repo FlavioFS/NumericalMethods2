@@ -11,3 +11,11 @@
 *.lai
 *.la
 *.a
+
+# Qt user files
+*.pro
+*.pro.user
+*.user
+
+# Executable files
+*.exe
