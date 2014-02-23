@@ -6,6 +6,7 @@
 #include <fstream>
 
 #include "IMethod.h"
+#include "Sample.h"
 #include "Trapezoidal.h"
 
 using namespace std;
@@ -15,56 +16,18 @@ bool testMethod();
 int main()
 {
 
-    testMethod();
+    // Read samples from file and store them
+    Sample *sample = new Sample();
+    sample->readSamplesFromFile();
 
-    /*
-
-    Ex: Chamar todas as funções de convergência.
-    method = new Bisseccao();
-    method->run();
-
-    */
-
+    // In the future, call shoud be like this:
+    // IMethod *method =  new Trapezoidal(sample->getSamples());
+    
+    Trapezoidal method (sample->getSamples());
+    method.run();
+    // TOO put this on the view logic
+    cout << endl << "Area: " << method.getArea();
+    
     return 0;
 }
 
-/*   Just testing if it works while waiting for
- * the proper class to get ready.
- */
-bool testMethod()
-{
-	std::vector<function> f;
-	ifstream sample ("function.txt");
-
-	unsigned int
-        n = 0,
-        i = 0;
-
-	if (sample.good())
-    {
-        sample >> n;
-    }
-
-	while (sample.good())
-    {
-        function in;
-        sample >> in.x >> in.y;
-        i++;
-        f.push_back(in);
-        cout << setw(3) << i << "| "
-             << "("<< in.x << "," << in.y << ")" << endl;
-    }
-
-    if (i > 0)
-    {
-        Trapezoidal t (f);
-        t.run();
-        cout << endl << "Area: " << t.getArea();
-        return true;
-    }
-    else
-    {
-        cout << "Invalid file!" << endl;
-        return false;
-    }
-}
