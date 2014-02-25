@@ -8,6 +8,7 @@
 #include "IMethod.h"
 #include "Sample.h"
 #include "Trapezoidal.h"
+#include "Simpsons38.h"
 
 using namespace std;
 
@@ -22,12 +23,13 @@ int main()
 
     // In the future, call shoud be like this:
     // IMethod *method =  new Trapezoidal(sample->getSamples());
-    
-    Trapezoidal method (sample->getSamples());
+
+    //Trapezoidal method (sample->getSamples());
+    Simpsons38 method (sample->getSamples());
     method.run();
     // TOO put this on the view logic
     cout << endl << "Area: " << method.getArea();
-    
+
     return 0;
 }
 

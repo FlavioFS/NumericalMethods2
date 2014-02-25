@@ -12,7 +12,7 @@ Simpsons38::Simpsons38(std::vector<function> f)
 /* ==========================================================
                              Sets
 ========================================================== */
-void Simpsons38::Simpsons38(std::vector<function> f)
+void Simpsons38::setFunction(std::vector<function> f)
 {
     (this->f).clear();
     this->f = f;
@@ -59,9 +59,9 @@ bool Simpsons38::run()
         for (; i != last; i++) {
 
             /*Somewhere around here this will use the trapezoidal method to solve
-            * intervals with the wrong number os points.
+            * intervals with the wrong number of points.
             */
-            if(i%3!=0) {
+            if((i%3)!=0) {
                 Sn += 3*(i->y);
             }
             else {
