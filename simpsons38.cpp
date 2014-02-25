@@ -56,17 +56,19 @@ bool Simpsons38::run()
     {
         std::vector<function>::iterator i = first;
         i++;
+        int j = 1;
         for (; i != last; i++) {
 
             /*Somewhere around here this will use the trapezoidal method to solve
             * intervals with the wrong number of points.
             */
-            if((i%3)!=0) {
+            if((j%3)!=0) {
                 Sn += 3*(i->y);
             }
             else {
                 Sn += 2*(i->y);
             }
+            j++;
         }
     }
     Sn += (first->y + last->y);
