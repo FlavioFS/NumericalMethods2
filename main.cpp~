@@ -6,10 +6,10 @@
 #include <fstream>
 
 #include "IMethod.h"
-#include "sample.h"
-#include "trapezoidal.h"
-#include "simpsons38.h"
-#include "simpsons13.h"
+#include "Sample.h"
+#include "Trapezoidal.h"
+#include "Simpsons38.h"
+#include "Simpsons13.h"
 
 using namespace std;
 

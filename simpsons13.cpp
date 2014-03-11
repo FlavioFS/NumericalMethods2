@@ -1,4 +1,4 @@
-#include "Simpsons13.h"
+#include "simpsons13.h"
 
 #include <cstdio>
 

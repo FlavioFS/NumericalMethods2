@@ -1,4 +1,4 @@
-#include "trapezoidal.h"
+#include "Trapezoidal.h"
 
 #include <cstdio>
 
