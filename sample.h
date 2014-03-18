@@ -23,10 +23,10 @@ public:
     /* ==========================================================
                                  Logic
     ========================================================== */
-    bool readSamplesFromFile();
+    bool readSamplesFromFile(char* filePath);
 
 private:
-    
+
     std::vector<function> samples;   // Function (Discrete sample)
 
 };
