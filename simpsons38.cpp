@@ -36,9 +36,10 @@ double Simpsons38::getArea() { return area; }
                              Run
 ========================================================== */
 
-/*Alpha version, please do not use a sample with the
-* wrong number of points.
-*/
+/* +----------------------------------------------------+ *
+ * | Alpha version, please do not use a sample with the | *
+ * |  wrong number of points.                           | *
+ * +----------------------------------------------------+ */
 
 bool Simpsons38::run()
 {
@@ -59,9 +60,10 @@ bool Simpsons38::run()
         int j = 1;
         for (; i != last; i++) {
 
-            /*Somewhere around here this will use the trapezoidal method to solve
-            * intervals with the wrong number of points.
-            */
+            /* +---------------------------------------------------------------------+ *
+             * | Somewhere around here this will use the trapezoidal method to solve | *
+             * |  intervals with the wrong number of points.                         | *
+             * +---------------------------------------------------------------------+ */
             if((j%3)!=0) {
                 Sn += 3*(i->y);
             }

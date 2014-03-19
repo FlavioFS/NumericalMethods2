@@ -33,7 +33,7 @@ private:
     void setArea(double area);
 
     std::vector<point> f;   // Function (Discrete sample)
-    double area;               // Calculated integral
+    double area;            // Calculated integral
 };
 
 #endif // TRAPEZOIDAL_H

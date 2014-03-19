@@ -22,23 +22,30 @@ std::vector<point> Sample::getSamples()
 /* ==========================================================
                              Logic
 ========================================================== */
-bool Sample::readSamplesFromFile(char* filePath)
+bool Sample::readSamplesFromFile(const char* filePath, unsigned const int headerSize)
 {
     ifstream sampleFile (filePath);
 
     unsigned int
-        intervals = 0,
+        head,
         i = 0;
 
-    // File ok?
-    // Yes
 
+    /* +------------------------+ *
+     * | Is the sample file ok? | *
+     * +------------------------+ */
+
+    // Yes
     if (sampleFile.good())
     {
-        // Point amount
-        sampleFile >> intervals;
+        // Reads the header
+        for (int i = 0; i < headerSize; i++)
+        {
+            sampleFile >> head;
+            this->header.push_back(head);
+        }
 
-        // Load points
+        // Reads the body (points)
         while (sampleFile.good())
         {
             point in;
@@ -50,6 +57,7 @@ bool Sample::readSamplesFromFile(char* filePath)
                  << "("<< in.x << "," << in.y << ")" << endl;
         }
     }
+
     // No
     else if (samples.empty())
     {

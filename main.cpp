@@ -20,10 +20,12 @@ int main(int argc, char *argv[])
 
     // Read samples from file and store them
     Sample *sample = new Sample();
-    sample->readSamplesFromFile("points.txt");
+    sample->readSamplesFromFile("points.txt", 1);
 
-    // In the future, call shoud be like this:
-    // IMethod *method =  new Trapezoidal(sample->getSamples());
+    /* +----------------------------------------------------------+ *
+     * |In the future, call shoud be like this:                   | *
+     * | IMethod *method =  new Trapezoidal(sample->getSamples());| *
+     * +----------------------------------------------------------+ */
 
     Trapezoidal trapezoidal (sample->getSamples());
     trapezoidal.run();
@@ -35,9 +37,12 @@ int main(int argc, char *argv[])
     simpson38.run();
 
     // TODO put this on the view logic
-    cout << endl << "Area| Trapezio: "    << trapezoidal.getArea()
-         << endl << "Area| 1/3 Simpsom: " << simpsom13.getArea()
-         << endl << "Area| 3/8 Simpsom: " << simpson38.getArea() << endl;
+    cout << endl << "Areas"
+         << endl << "____________________________"
+         << endl << "  Trapezio    | " << setw(10) << trapezoidal.getArea()
+         << endl << "  1/3 Simpsom | " << setw(10) << simpsom13.getArea()
+         << endl << "  3/8 Simpsom | " << setw(10) << simpson38.getArea()
+         << endl << "____________________________" << endl;
 
     return 0;
 }

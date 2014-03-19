@@ -38,10 +38,11 @@ bool Trapezoidal::run()
     if (f.empty())
         return false;
 
-    /* Sn = (1/2)*(x_n - x_0)*( f(x_0) + f(x_n) + 2*SUM_{1,n-1} f(x_k) )
-     *   The sequence of steps below reduce the number of mathematical
-     * operations and, therefore, reduces the numerical error.
-    */
+    /* +-------------------------------------------------------------------+ *
+     * | Sn = (1/2)*(x_n - x_0)*( f(x_0) + f(x_n) + 2*SUM_{1,n-1} f(x_k) ) | *
+     * |   The sequence of steps below reduce the number of mathematical   | *
+     * | operations and, therefore, reduces the numerical error.           | *
+     * +-------------------------------------------------------------------+ */
     double Sn = 0;
 
     std::vector<point>::iterator first = f.begin();
