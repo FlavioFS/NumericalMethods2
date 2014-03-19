@@ -11,12 +11,12 @@ public:
     /* ==========================================================
                              Constructors
     ========================================================== */
-    Trapezoidal(std::vector<function> f);
+    Trapezoidal(std::vector<point> f);
 
     /* ==========================================================
                                  Sets
     ========================================================== */
-    void setFunction(std::vector<function> f);
+    void setFunction(std::vector<point> f);
 
     /* ==========================================================
                                  Gets
@@ -32,7 +32,7 @@ private:
     // Private set
     void setArea(double area);
 
-    std::vector<function> f;   // Function (Discrete sample)
+    std::vector<point> f;   // Function (Discrete sample)
     double area;               // Calculated integral
 };
 

@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 
     // Read samples from file and store them
     Sample *sample = new Sample();
-    sample->readSamplesFromFile(argv[1]);
+    sample->readSamplesFromFile("points.txt");
 
     // In the future, call shoud be like this:
     // IMethod *method =  new Trapezoidal(sample->getSamples());

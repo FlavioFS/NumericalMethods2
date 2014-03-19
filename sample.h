@@ -1,7 +1,7 @@
 #ifndef SAMPLE_H
 #define SAMPLE_H
 
-#include "function.h"
+#include "point.h"
 
 #include <vector>
 
@@ -18,7 +18,7 @@ public:
     /* ==========================================================
                                  Gets
     ========================================================== */
-    std::vector<function> getSamples();
+    std::vector<point> getSamples();
 
     /* ==========================================================
                                  Logic
@@ -27,7 +27,7 @@ public:
 
 private:
 
-    std::vector<function> samples;   // Function (Discrete sample)
+    std::vector<point> samples;   // Function (Discrete sample)
 
 };
 

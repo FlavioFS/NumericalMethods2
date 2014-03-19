@@ -16,7 +16,7 @@ Sample::Sample()
 /* ==========================================================
                              Gets
 ========================================================== */
-std::vector<function> Sample::getSamples()
+std::vector<point> Sample::getSamples()
 { return this->samples; }
 
 /* ==========================================================
@@ -41,7 +41,7 @@ bool Sample::readSamplesFromFile(char* filePath)
         // Load points
         while (sampleFile.good())
         {
-            function in;
+            point in;
             sampleFile >> in.x >> in.y;
             i++;
             samples.push_back(in);

@@ -5,14 +5,14 @@
 /* ==========================================================
                          Constructors
 ========================================================== */
-Simpsons13::Simpsons13(std::vector<function> f)
+Simpsons13::Simpsons13(std::vector<point> f)
     : f(f)
 {}
 
 /* ==========================================================
                              Sets
 ========================================================== */
-void Simpsons13::setFunction(std::vector<function> f)
+void Simpsons13::setFunction(std::vector<point> f)
 {
     (this->f).clear();
     this->f = f;
@@ -48,13 +48,13 @@ bool Simpsons13::run()
 
     double Sn = 0;
 
-    std::vector<function>::iterator first = f.begin();
-    std::vector<function>::iterator last = f.end();
+    std::vector<point>::iterator first = f.begin();
+    std::vector<point>::iterator last = f.end();
     last--;
 
     if (f.size() > 2)
     {
-        std::vector<function>::iterator i = first;
+        std::vector<point>::iterator i = first;
         i++;
         int j = 1;
         for (; i != last; i++) {

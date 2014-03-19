@@ -5,14 +5,14 @@
 /* ==========================================================
                          Constructors
 ========================================================== */
-Trapezoidal::Trapezoidal(std::vector<function> f)
+Trapezoidal::Trapezoidal(std::vector<point> f)
     : f(f)
 {}
 
 /* ==========================================================
                              Sets
 ========================================================== */
-void Trapezoidal::setFunction(std::vector<function> f)
+void Trapezoidal::setFunction(std::vector<point> f)
 {
     (this->f).clear();
     this->f = f;
@@ -44,14 +44,14 @@ bool Trapezoidal::run()
     */
     double Sn = 0;
 
-    std::vector<function>::iterator first = f.begin();
-    std::vector<function>::iterator last = f.end();
+    std::vector<point>::iterator first = f.begin();
+    std::vector<point>::iterator last = f.end();
     last--;
 
     if (f.size() > 2)
     {
         // SUM_{1,n-1} f(x_k)
-        std::vector<function>::iterator i = first;
+        std::vector<point>::iterator i = first;
         i++;
         for (; i != last; i++) {
             Sn += i->y;
