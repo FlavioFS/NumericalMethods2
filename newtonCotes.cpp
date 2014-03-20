@@ -1,25 +1,60 @@
-#include "trapezoidal.h"
-
+#include "newtonCotes.h"
+#include <cmath>
 #include <cstdio>
 
 /* ==========================================================
                          Constructors
 ========================================================== */
-Trapezoidal::Trapezoidal(std::vector<point> P)
+NewtonCotes::NewtonCotes(std::vector<point> P, std::vector<unsigned int> header)
     : P(P)
-{}
+{
+    switch (header[2])
+    {
+        case 1:
+            double f1 (double x) { return (1/sqrt(x)); };
+            f.setFunction(f1);
+        break;
+
+        case 2:
+            double f2 (double x) { return (1/sqrt(1-x*x)); };
+            f.setFunction(f2);
+        break;
+
+        case 3:
+            double f3 (double x) { return (2*x*x*x + 3*x*x +6*x + 1); };
+            f.setFunction(f3);
+        break;
+
+        case 4:
+            double f4 (double x) { return (1 - x - 4*x*x*x +2*fpow(x,5)); };
+            f.setFunction(f4);
+        break;
+
+        case 5:
+            double f5 (double x) { return (4/(1 + x*x)); };
+            f.setFunction(f5);
+        break;
+    }
+
+
+}
 
 /* ==========================================================
                              Sets
 ========================================================== */
-void Trapezoidal::setPoints(std::vector<point> P)
+void NewtonCotes::setPoints(std::vector<point> P)
 {
     (this->P).clear();
     this->P = P;
 }
 
+void NewtonCotes::setFunction(Function f)
+{
+    this->f.setFunction(f);
+}
+
 // Private
-void Trapezoidal::setArea(double area)
+void NewtonCotes::setArea(double area)
 {
     if (area >= 0)
         this->area = area;
@@ -28,12 +63,12 @@ void Trapezoidal::setArea(double area)
 /* ==========================================================
                              Gets
 ========================================================== */
-double Trapezoidal::getArea() { return area; }
+double NewtonCotes::getArea() { return area; }
 
 /* ==========================================================
                              Run
 ========================================================== */
-bool Trapezoidal::run()
+bool NewtonCotes::run()
 {
     if (P.empty())
         return false;
@@ -44,6 +79,7 @@ bool Trapezoidal::run()
      * | operations and, therefore, reduces the numerical error.           | *
      * +-------------------------------------------------------------------+ */
     double Sn = 0;
+    const int n = P.size() + 1;
 
     std::vector<point>::iterator first = P.begin();
     std::vector<point>::iterator last = P.end();
@@ -74,4 +110,13 @@ bool Trapezoidal::run()
     setArea(Sn);
 
     return true;
+}
+
+/* ==========================================================
+                        Coeficients Map
+========================================================== */
+// Coeficients in Newton-Cotes formula
+int NewtonCotes::coeficientsMap(int n, int position)
+{
+    return coeficients[n][position];
 }

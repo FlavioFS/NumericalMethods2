@@ -19,6 +19,9 @@ Sample::Sample()
 std::vector<point> Sample::getSamples()
 { return this->samples; }
 
+std::vector<unsigned int> Sample::getHeader()
+{ return this->header; }
+
 /* ==========================================================
                              Logic
 ========================================================== */

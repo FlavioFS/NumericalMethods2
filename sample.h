@@ -18,6 +18,7 @@ public:
                                  Gets
     ========================================================== */
     std::vector<point> getSamples();
+    std::vector<unsigned int> getHeader();
 
     /* ==========================================================
                                  Logic
@@ -26,7 +27,7 @@ public:
 
 private:
 
-    std::vector<point> samples;             // Discrete sample of points
+    std::vector<point> samples;       // Discrete sample of points
     std::vector<unsigned int> header; // Header of sample
 
 };

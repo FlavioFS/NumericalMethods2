@@ -5,17 +5,17 @@
 /* ==========================================================
                          Constructors
 ========================================================== */
-Simpsons38::Simpsons38(std::vector<point> f)
-    : f(f)
+Simpsons38::Simpsons38(std::vector<point> P)
+    : P(P)
 {}
 
 /* ==========================================================
                              Sets
 ========================================================== */
-void Simpsons38::setFunction(std::vector<point> f)
+void Simpsons38::setPoints(std::vector<point> P)
 {
-    (this->f).clear();
-    this->f = f;
+    (this->P).clear();
+    this->P = P;
 }
 
 // Private
@@ -43,17 +43,17 @@ double Simpsons38::getArea() { return area; }
 
 bool Simpsons38::run()
 {
-    if (f.empty())
+    if (P.empty())
         return false;
 
 
     double Sn = 0;
 
-    std::vector<point>::iterator first = f.begin();
-    std::vector<point>::iterator last = f.end();
+    std::vector<point>::iterator first = P.begin();
+    std::vector<point>::iterator last = P.end();
     last--;
 
-    if (f.size() > 2)
+    if (P.size() > 2)
     {
         std::vector<point>::iterator i = first;
         i++;
@@ -75,7 +75,7 @@ bool Simpsons38::run()
     }
     Sn += (first->y + last->y);
 
-    double h = (last->x - first->x)/(f.size() - 1);
+    double h = (last->x - first->x)/(P.size() - 1);
 
     Sn = Sn*h*3/8;
 
