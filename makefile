@@ -8,6 +8,8 @@ main : $(objects)
      
 main.o : main.cpp sample.h simpsons13.h simpsons38.h trapezoidal.h
 	g++ -c main.cpp
+quadraturagaussiana.o : quadraturagaussiana.cpp
+	g++ -c quadraturagaussiana.cpp
 sampleClosed.o : sampleClosed.cpp sampleClosed.h function.h
 	g++ -c sampleClosed.cpp
 sampleOpen.o : sampleOpen.cpp sampleOpen.h function.h
