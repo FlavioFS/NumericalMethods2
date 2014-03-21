@@ -18,13 +18,13 @@ public:
     /* ==========================================================
                              Constructors
     ========================================================== */
-    NewtonCotes(std::vector<point> P, std::vector<unsigned int> header);
+    NewtonCotes(Function f, int n, double left, double right);
 
     /* ==========================================================
                                  Sets
     ========================================================== */
-    void setPoints(std::vector<point> P);
     void setFunction(Function f);
+    void setN(const unsigned int n);
 
     /* ==========================================================
                                  Gets
@@ -43,14 +43,14 @@ private:
      * | The first index stands for the n value (point qnt. + 1). | *
      * | The second index stands for the coefficient position.    | *
      * +----------------------------------------------------------+ */
-    const static short int
+    const short int
         coeficients[4][7] = { { 0,  1,   1,  0,  0,  0,  0},
                               { 0,  2,  -1,  2,  0,  0,  0},
                               { 0, 11,   1,  1,  11, 0,  0},
                               { 0, 11, -14, 26, -14, 11, 0} };
 
     // Alpha values. The index stands for the n value.
-    const static double alpha[4] = {3/2, 4/3, 5/24, 6/20};
+    const double alpha[4] = {3/2, 4/3, 5/24, 6/20};
 
     // Index map
     int coeficientsMap(int n, int index);
@@ -58,9 +58,10 @@ private:
     // Private set
     void setArea(double area);
 
-    Function f;             // Continuous function
-    std::vector<point> P;   // Sample points (discrete function)
-    double area;            // Calculated integral
+    Function f;         // Continuous function
+    unsigned int n;     // Interval subdivision amount
+    double left, right; // Interval of integration
+    double area;        // Calculated integral
 };
 
 #endif // NEWTONCOTES_H

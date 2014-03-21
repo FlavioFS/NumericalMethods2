@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iomanip>
 
-#include "sample.h"
+#include "sampleClosed.h"
 
 using namespace std;
 
@@ -10,29 +10,21 @@ using namespace std;
 /* ==========================================================
                          Constructors
 ========================================================== */
-Sample::Sample()
+SampleClosed::SampleClosed()
 {}
 
 /* ==========================================================
                              Gets
 ========================================================== */
-std::vector<point> Sample::getSamples()
+std::vector<point> SampleClosed::getSamples()
 { return this->samples; }
-
-std::vector<unsigned int> Sample::getHeader()
-{ return this->header; }
 
 /* ==========================================================
                              Logic
 ========================================================== */
-bool Sample::readSamplesFromFile(const char* filePath, unsigned const int headerSize)
+bool SampleClosed::readSamplesFromFile(const char* filePath)
 {
     ifstream sampleFile (filePath);
-
-    unsigned int
-        head,
-        i = 0;
-
 
     /* +------------------------+ *
      * | Is the sample file ok? | *
@@ -41,12 +33,19 @@ bool Sample::readSamplesFromFile(const char* filePath, unsigned const int header
     // Yes
     if (sampleFile.good())
     {
+        unsigned int
+            head,
+            i = 0;
+
         // Reads the header
-        for (int i = 0; i < headerSize; i++)
-        {
-            sampleFile >> head;
-            this->header.push_back(head);
-        }
+        sampleFile >> head;
+
+        // Feedback
+        cout << endl
+             << "===============================================" << endl
+             << "Input path ...... '" << filePath << "'" << endl
+             << "Point amount .... " << head << endl;
+
 
         // Reads the body (points)
         while (sampleFile.good())
@@ -59,6 +58,8 @@ bool Sample::readSamplesFromFile(const char* filePath, unsigned const int header
             cout << setw(3) << i << "| "
                  << "("<< in.x << "," << in.y << ")" << endl;
         }
+
+        cout << "===============================================" << endl;
     }
 
     // No
