@@ -1,10 +1,11 @@
-#ifndef SAMPLE_H
-#define SAMPLE_H
+#ifndef SAMPLE_CLOSED_H
+#define SAMPLE_CLOSED_H
 
+#include "ISample.h"
 #include "point.h"
 #include <vector>
 
-class Sample
+class SampleClosed : public ISample
 {
 
 public:
@@ -12,24 +13,21 @@ public:
     /* ==========================================================
                              Constructors
     ========================================================== */
-    Sample();
+    SampleClosed();
 
     /* ==========================================================
                                  Gets
     ========================================================== */
     std::vector<point> getSamples();
-    std::vector<unsigned int> getHeader();
 
     /* ==========================================================
                                  Logic
     ========================================================== */
-    bool readSamplesFromFile(const char* filePath, unsigned const int headerSize);
+    bool readSamplesFromFile(const char* filePath);
 
 private:
 
-    std::vector<point> samples;       // Discrete sample of points
-    std::vector<unsigned int> header; // Header of sample
-
+    std::vector<point> samples; // Discrete sample of points
 };
 
-#endif // SAMPLE_H
+#endif // SAMPLE_CLOSED_H

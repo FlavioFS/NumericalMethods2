@@ -1,7 +1,7 @@
 #ifndef FUNCTION_H
 #define FUNCTION_H
 
-#import "IFunction.h"
+#include "IFunction.h"
 
 class Function : public IFunction
 {
@@ -11,11 +11,13 @@ class Function : public IFunction
                                  Constructors
         ========================================================== */
     	Function();
+    	Function(const int n);
     	Function(double (*function)(double));
 
         /* ==========================================================
                                      Set
         ========================================================== */
+        void setFunction(unsigned int option);
         void setFunction(double (*function)(double));
 
 
@@ -30,6 +32,13 @@ class Function : public IFunction
 
     	// Pointer that stores the function
     	double (*function)(double);
+
+        // Default Functions
+        static double f1 (double x);
+        static double f2 (double x);
+        static double f3 (double x);
+        static double f4 (double x);
+        static double f5 (double x);
 };
 
 #endif // FUNCTION_H
