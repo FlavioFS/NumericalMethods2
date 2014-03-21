@@ -19,13 +19,12 @@ bool testMethod();
 
 int main(int argc, char *argv[])
 {
-
     // Read samples from file and store them
     SampleClosed *sampleCL = new SampleClosed();
-    sampleCL->readSamplesFromFile("closed.txt");
+    sampleCL->readSamplesFromFile("sample_closed.txt");
 
     SampleOpen *sampleOP = new SampleOpen();
-    sampleOP->readSamplesFromFile("open.txt");
+    sampleOP->readSamplesFromFile("sample_open.txt");
 
     /* +----------------------------------------------------------+ *
      * |In the future, call shoud be like this:                   | *
@@ -43,6 +42,7 @@ int main(int argc, char *argv[])
 
     NewtonCotes newtonCotes ( sampleOP->getFunction(), sampleOP->getN(),
                              sampleOP->getLeft(), sampleOP->getRight());
+    newtonCotes.run();
 
     // TODO put this on the view logic
     cout << endl << "Areas"

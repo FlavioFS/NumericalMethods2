@@ -44,6 +44,10 @@ bool SampleOpen::readSamplesFromFile(const char* filePath)
 
         // Interval division
         sampleFile >> n;
+        if (n > 4)
+            { n = 4; }
+        else if (n < 1)
+            { n = 1; }
 
         // Function selection
         sampleFile >> functionNumber;
@@ -65,6 +69,7 @@ bool SampleOpen::readSamplesFromFile(const char* filePath)
         cout << endl
              << "===============================================" << endl
              << "Input path ...... '" << filePath << "'" << endl
+             << "Function ID ..... " << functionNumber << endl
              << "Interval count .. " << n << endl
              << "Interval ........ [" << left << "," << right << "]" << endl
              << "===============================================" << endl;

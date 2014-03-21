@@ -21,8 +21,7 @@ void Simpsons38::setPoints(std::vector<point> P)
 // Private
 void Simpsons38::setArea(double area)
 {
-    if (area >= 0)
-        this->area = area;
+    this->area = area;
 }
 
 /* ==========================================================

@@ -21,8 +21,7 @@ void Trapezoidal::setPoints(std::vector<point> P)
 // Private
 void Trapezoidal::setArea(double area)
 {
-    if (area >= 0)
-        this->area = area;
+    this->area = area;
 }
 
 /* ==========================================================

@@ -50,7 +50,7 @@ private:
                               { 0, 11, -14, 26, -14, 11, 0} };
 
     // Alpha values. The index stands for the n value.
-    const double alpha[4] = {3/2, 4/3, 5/24, 6/20};
+    const double alpha[5] = {0, 3/2.0, 4/3.0, 5/24.0, 6/20.0};
 
     // Index map
     int coeficientsMap(int n, int index);
