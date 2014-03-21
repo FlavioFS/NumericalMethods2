@@ -1,6 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-
+#include <cstdio>
+#include <cstdlib>
+#include <cmath>
 
 using namespace std;
 
@@ -61,14 +61,14 @@ int main(int argc, char *argv[]) {
     }
 
     //setando os Xi's
-    for(i = 0; i < n ; i++ ) {
+    for(int i = 0; i < n ; i++ ) {
         x[i] = t[i]*(b - a)/2 + (a + b)/2;
     }
 
 
     if(f == 1) {
         //Somatório Ai*F(xi)
-        for(i = 0; i < n; i++) {
+        for(int i = 0; i < n; i++) {
             soma = soma + A[i]*(1/sqrt(x[i]));
         }
         return (b - a)*soma/2;
@@ -76,7 +76,7 @@ int main(int argc, char *argv[]) {
 
     if(f == 2) {
         //Somatório Ai*F(xi)
-        for(i = 0; i < n; i++) {
+        for(int i = 0; i < n; i++) {
             soma = soma + A[i]*(1/sqrt(1 - x[i]*x[i]));
         }
         return (b - a)*soma/2;
@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
 
     if(f == 3) {
         //Somatório Ai*F(xi)
-        for(i = 0; i < n; i++) {
+        for(int i = 0; i < n; i++) {
             soma = soma + A[i]*(2*x[i]*x[i]*x[i] + 3*x[i]*x[i] + 6*x[i] + 1);
         }
         return (b - a)*soma/2;
@@ -92,7 +92,7 @@ int main(int argc, char *argv[]) {
 
     if(f == 4) {
         //Somatório Ai*F(xi)
-        for(i = 0; i < n; i++) {
+        for(int i = 0; i < n; i++) {
             soma = soma + A[i]*(1 - x[i] - 4*x[i]*x[i]*x[i] + 2*x[i]*x[i]*x[i]*x[i]*x[i]);
         }
         return (b - a)*soma/2;
@@ -100,11 +100,9 @@ int main(int argc, char *argv[]) {
 
     if(f == 5) {
         //Somatório Ai*F(xi)
-        for(i = 0; i < n; i++) {
+        for(int i = 0; i < n; i++) {
             soma = soma + A[i]*(4/(1 + x[i]*x[i]));
         }
         return (b - a)*soma/2;
     }
-
-
 }

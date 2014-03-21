@@ -50,9 +50,9 @@ bool NewtonCotes::run()
     double h = (right - left)/(n+2);
 
     // Sn = SUM_{0,n+2} (c_i*f(a + i*h))
-    for (int i = 1; i < n+2; i++)
+    for (unsigned int i = 1; i < n+2; i++)
     {
-        Sn += coeficientsMap(n, i)*f.run(left+i*h);
+        Sn += coefficientsMap(n, i)*f.run(left+i*h);
     }
 
     Sn *= h;    // Sn = h*SUM_{0,n+2} (c_i*f(a + i*h))
@@ -67,7 +67,7 @@ bool NewtonCotes::run()
                         Coeficients Map
 ========================================================== */
 // Coeficients in Newton-Cotes formula
-int NewtonCotes::coeficientsMap(int n, int position)
+int NewtonCotes::coefficientsMap(int n, int position)
 {
-    return coeficients[n-1][position];
+    return coefficients[n-1][position];
 }
