@@ -27,3 +27,10 @@ or to pass your customized function as argument.
 Any method needs at least an ISample and a Function argument.
 Closed Newton-Cotes formulae use SampleClosed class, and Open Newton-Cotes formulae
 use SampleOpen class as argument to read from file.
+
+## Method executable names
+Trapezoidal:         trapz
+1/3 Simpson:         simp13
+3/8 Simpson:         simp38
+Open Newton-Cotes:   opnewton
+Gaussian quadrature: gaussquad
