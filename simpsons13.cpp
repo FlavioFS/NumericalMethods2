@@ -7,7 +7,12 @@
 ========================================================== */
 Simpsons13::Simpsons13(std::vector<point> P)
     : P(P)
-{}
+{
+    // Calculating H
+    std::vector<point>::iterator first = P.begin();
+    std::vector<point>::iterator last = P.end();
+    setH((last->x - first->x)/(P.size() - 1));
+}
 
 /* ==========================================================
                              Sets
@@ -20,16 +25,17 @@ void Simpsons13::setPoints(std::vector<point> P)
 
 // Private
 void Simpsons13::setArea(double area)
-{
-    this->area = area;
-}
+{   this->area = area; }
+
+void Simpsons13::setH(double h)
+{   this->h = h; }
 
 /* ==========================================================
                              Gets
 ========================================================== */
 double Simpsons13::getArea() { return area; }
 
-
+double Simpsons13::getH() { return h; }
 
 /* ==========================================================
                              Run
@@ -74,9 +80,9 @@ bool Simpsons13::run()
     }
     Sn += (first->y + last->y);
 
-    double h = (last->x - first->x)/(P.size() - 1);
+    //double h = (last->x - first->x)/(P.size() - 1);
 
-    Sn = Sn*h*1/3;
+    Sn = Sn*getH()*1/3;
 
     setArea(Sn);
 

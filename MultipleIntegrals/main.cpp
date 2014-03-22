@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include <iostream>
 
 #include <iomanip>
@@ -19,7 +19,11 @@ int main(int argc, char *argv[])
     sampleMI->readSamplesFromFile("entrada5.txt");
 
 
-    MultipleIntegral *mIntegral = new MultipleIntegral(sampleMI->getSamples(), sampleMI->getHx(), sampleMI->getHy());
+    MultipleIntegral *mIntegral = new MultipleIntegral(sampleMI->getSamples(),
+                                                       sampleMI->getHx(), 
+                                                       sampleMI->getHy(),
+                                                       sampleMI->getMx(),
+                                                       sampleMI->getMy());
     mIntegral->run();
 
    

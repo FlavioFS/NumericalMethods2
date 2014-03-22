@@ -1,18 +1,22 @@
-#include "../IMethod.h"
+#ifndef MULTIPLE_INTEGRAL_H
+#define MULTIPLE_INTEGRAL_H
+
 #include <vector>
+
+#include "../IMethod.h"
+
 #include "sampleMultipleIntegral.h"
 
 class MultipleIntegral : public IMethod
 {
 public:
 
-    
     /* ==========================================================
                              Constructors
     ========================================================== */
     MultipleIntegral(double **M);
 
-    MultipleIntegral(double **M, double hx, double hy);
+    MultipleIntegral(double **M, double hx, double hy, unsigned int mx, unsigned int my);
     /* ==========================================================
                                  Sets
     ========================================================== */
@@ -22,6 +26,9 @@ public:
 
     void setHy(double hy);
 
+    void setMx(unsigned int mx);
+
+    void setMy(unsigned int my);
     /* ==========================================================
                                  Gets
     ========================================================== */
@@ -31,6 +38,9 @@ public:
 
     double getHy();
 
+    unsigned int getMx();
+
+    unsigned int getMy();
     /* ==========================================================
                                  Run
     ========================================================== */
@@ -40,9 +50,13 @@ private:
     // Private set
     void setArea(double area);
 
-    double **M;   // Function (Discrete sample)
+    double **M;          // Discrete sample
 
-    double area;            // Calculated integral
+    double area;         // Calculated integral
 
-    double hx, hy;
+    double hx, hy;       // Used to calculate h
+
+    unsigned int mx, my; // x and y dimensions
 };
+
+#endif // MULTIPLE_INTEGRAL_H

@@ -27,6 +27,10 @@ public:
 
     double getHy();
 
+    unsigned int getMx();
+
+    unsigned int getMy();
+
     /* ==========================================================
                                  Sets
     ========================================================== */
@@ -34,6 +38,10 @@ public:
     void setHx(double hx);
 
     void setHy(double hy);
+
+    void setMx(unsigned int mx);
+
+    void setMy(unsigned int my);
 
     /* ==========================================================
                                  Logic
@@ -44,6 +52,7 @@ private:
 
     double** samples; // Discrete sample of points
     double hx, hy; // Used to calculate h
+    unsigned int mx, my; // x and y dimensions
 
 };
 

@@ -25,6 +25,12 @@ double SampleMultipleIntegral::getHx()
 double SampleMultipleIntegral::getHy()
 { return this->hy; }
 
+ unsigned int SampleMultipleIntegral::getMx()
+ { return this->mx; }
+
+ unsigned int SampleMultipleIntegral::getMy()
+ { return this->my; }
+
 /* ==========================================================
                              Sets
 ========================================================== */
@@ -33,6 +39,12 @@ void SampleMultipleIntegral::setHx(double hx)
 
 void SampleMultipleIntegral::setHy(double hy)
 { this->hy = hy; }
+
+void SampleMultipleIntegral::setMx(unsigned int mx)
+{ this->mx = mx; }
+
+void SampleMultipleIntegral::setMy(unsigned int my)
+{ this->mx = mx; }
 
 /* ==========================================================
                              Logic
