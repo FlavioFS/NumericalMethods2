@@ -1,4 +1,3 @@
-
 sources = main.cpp sampleClosed.cpp sampleOpen.cpp simpsons13.cpp simpsons38.cpp trapezoidal.cpp Function.cpp
 
 objects = trapezoidal.o simpsons13.o simpsons38.o newtonCotes.o quadraturagaussiana.o sampleClosed.o sampleOpen.o Function.o
