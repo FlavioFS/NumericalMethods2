@@ -28,9 +28,49 @@ Any method needs at least an ISample and a Function argument.
 Closed Newton-Cotes formulae use SampleClosed class, and Open Newton-Cotes formulae
 use SampleOpen class as argument to read from file.
 
-## Method executable names
-Trapezoidal:         trapz
-1/3 Simpson:         simp13
-3/8 Simpson:         simp38
-Open Newton-Cotes:   opnewton
-Gaussian quadrature: gaussquad
+## How to run
+
+We use **MAKE** to build our executables.
+
+All you have to do is dive into the **NumericalMethods2/** directory and run
+
+```
+$> make
+```
+
+After that, the executables are all created on this folder (our root). 
+You choose one of the executables and a text file to run:
+
+Trapezoidal:
+
+```
+$> ./trapz samples.txt
+```
+
+1/3 Simpson:
+
+```
+$> ./simp13 samples.txt
+```
+
+3/8 Simpson:
+
+```
+$> ./simp13 samples.txt
+```
+
+Open Newton-Cotes:
+
+```
+$> ./opnewton samples.txt
+```
+
+Gaussian quadrature:
+
+```
+$> ./gaussquad samples.txt
+```
+
+
+
+ 
