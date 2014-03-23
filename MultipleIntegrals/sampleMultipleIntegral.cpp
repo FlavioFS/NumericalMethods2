@@ -44,7 +44,7 @@ void SampleMultipleIntegral::setMx(unsigned int mx)
 { this->mx = mx; }
 
 void SampleMultipleIntegral::setMy(unsigned int my)
-{ this->mx = mx; }
+{ this->my = my; }
 
 /* ==========================================================
                              Logic
@@ -83,6 +83,8 @@ bool SampleMultipleIntegral::readSamplesFromFile(const char* filePath)
         // Reads x and y dimensions
         sampleFile >> mx;
         sampleFile >> my;
+        setMx(mx);
+        setMy(my);
 
         // Resize matrix
         samples = new double*[mx+1];
@@ -129,8 +131,8 @@ bool SampleMultipleIntegral::readSamplesFromFile(const char* filePath)
         cout << endl
              << "===============================================" << endl
              << "Input path ...... '" << filePath << "'" << endl
-             << "X dimension ..... " << mx << endl
-             << "Y dimension ..... " << my << endl
+             << "X dimension ..... " << getMx() << endl
+             << "Y dimension ..... " << getMy() << endl
              << "hx .............. " << getHx() << endl
              << "hy .............. " << getHy() << endl;
 

@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
     SampleMultipleIntegral *sampleMI = new SampleMultipleIntegral();
     sampleMI->readSamplesFromFile("entrada5.txt");
 
-
-    MultipleIntegral *mIntegral = new MultipleIntegral(sampleMI->getSamples(),
+    double **M =  sampleMI->getSamples();
+    MultipleIntegral *mIntegral = new MultipleIntegral(M,
                                                        sampleMI->getHx(), 
                                                        sampleMI->getHy(),
                                                        sampleMI->getMx(),

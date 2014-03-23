@@ -42,7 +42,7 @@ void MultipleIntegral::setMx(unsigned int mx)
 { this->mx = mx; }
 
 void MultipleIntegral::setMy(unsigned int my)
-{ this->mx = mx; }
+{ this->my = my; }
 
 /* ==========================================================
                              Gets
@@ -70,34 +70,40 @@ bool MultipleIntegral::run()
    
     std::vector<point> xAxisValues;
     std::vector<point> yAxisValues;
+    Simpsons13 *simpsonX = new Simpsons13();
 
-    for(int i = getMy()+1; i <= 0; i--)
+    for(int i = getMy(); i >= 0; i--)
     {
+
         xAxisValues.clear();
         
         // constructs the vector of points
-        for (int j = 0; j < getMx()+1; ++j)
+        for (int j = 0; j <= getMx(); ++j)
         {   
             point x;
-
             x.y = M[i][j];
             xAxisValues.push_back(x);
         }
 
-        Simpsons13 simpsonX (xAxisValues);
-        simpsonX.setH(getHx());
-        simpsonX.run();
+        simpsonX->setPoints(xAxisValues);
+        simpsonX->setH(getHx());
+        simpsonX->run();
 
         point y;
-        y.y = simpsonX.getArea();
+        y.y = simpsonX->getArea();
+
+        cout << simpsonX->getArea() << endl;
+
         yAxisValues.push_back(y);
     }
     
-    Simpsons13 simpsonY(yAxisValues);
-    simpsonY.setH(getHy());
-    simpsonY.run();  
+    Simpsons13 *simpsonY = new Simpsons13();
+    simpsonY->setPoints(yAxisValues);
+    simpsonY->setH(getHy());
+    simpsonY->run();  
 
-    cout << simpsonY.getArea();
+    cout << "Area using 1/3 Simpsons13....." << simpsonY->getArea() / (getHy()*getMy()*getHx()*getMx()) << endl;
+    //cout << "Area using Trapezoidal........" << simpsonY->getArea() << endl;
 
     return true;
 }
