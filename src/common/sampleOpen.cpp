@@ -68,10 +68,10 @@ bool SampleOpen::readSamplesFromFile(const char* filePath)
         // Feedback
         cout << endl
              << "===============================================" << endl
-             << "Input path ...... '" << filePath << "'" << endl
-             << "Function ID ..... " << functionNumber << endl
-             << "Interval count .. " << n << endl
-             << "Interval ........ [" << left << "," << right << "]" << endl
+             << "Input path ................. '" << filePath << "'" << endl
+             << "Function ID................. " << functionNumber << endl
+             << "Degree of the Polynomial ... " << n << endl
+             << "Interval ................... [" << left << "," << right << "]" << endl
              << "===============================================" << endl;
     }
 
