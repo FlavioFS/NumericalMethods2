@@ -83,7 +83,7 @@ bool Simpsons13::run()
         }
     }
     Sn += (first->y + last->y);
-
+    
     //double h = (last->x - first->x)/(P.size() - 1);
 
     Sn = Sn*getH()*1/3;

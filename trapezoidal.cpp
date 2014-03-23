@@ -7,8 +7,17 @@
 ========================================================== */
 Trapezoidal::Trapezoidal(std::vector<point> P)
     : P(P)
-{}
+{
+    // Calculating H
+    std::vector<point>::iterator first = P.begin();
+    std::vector<point>::iterator last = P.end();
+    setH((last->x - first->x)/(P.size() - 1));
+}
 
+Trapezoidal::Trapezoidal()
+{
+
+}
 /* ==========================================================
                              Sets
 ========================================================== */
@@ -24,11 +33,17 @@ void Trapezoidal::setArea(double area)
     this->area = area;
 }
 
+void Trapezoidal::setH(double h)
+{
+    this->h = h;
+}
+
 /* ==========================================================
                              Gets
 ========================================================== */
 double Trapezoidal::getArea() { return area; }
 
+double Trapezoidal::getH() { return h; }
 /* ==========================================================
                              Run
 ========================================================== */
@@ -56,7 +71,7 @@ bool Trapezoidal::run()
         for (; i != last; i++) {
             Sn += i->y;
         }
-
+        
         // 2*SUM_{1,n-1} f(x_k)
         Sn *= 2;
     }
@@ -64,13 +79,8 @@ bool Trapezoidal::run()
     // ( f(x_0) + f(x_n) + 2*SUM_{1,n-1} f(x_k) )
     Sn += (first->y + last->y);
 
-    // h = (x_n - x_0)/2n
-    double h = (last->x - first->x)/(2*(P.size() - 1));
-
     // (1/2n)*(x_n - x_0)*( f(x_0) + f(x_n) + 2*SUM_{1,n-1} f(x_k) )
-    Sn *= h;
-
-    setArea(Sn);
+    setArea((Sn * getH()) / 2);
 
     return true;
 }

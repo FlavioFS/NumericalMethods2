@@ -13,15 +13,20 @@ public:
     ========================================================== */
     Trapezoidal(std::vector<point> P);
 
+    Trapezoidal();
     /* ==========================================================
                                  Sets
     ========================================================== */
     void setPoints(std::vector<point> P);
 
+    void setH(double H);
+
     /* ==========================================================
                                  Gets
     ========================================================== */
     double getArea();
+
+    double getH();
 
     /* ==========================================================
                                  Run
@@ -34,6 +39,7 @@ private:
 
     std::vector<point> P;   // Function (Discrete sample)
     double area;            // Calculated integral
+    double h;
 };
 
 #endif // TRAPEZOIDAL_H

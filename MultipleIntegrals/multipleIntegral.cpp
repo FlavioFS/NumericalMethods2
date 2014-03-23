@@ -69,15 +69,16 @@ bool MultipleIntegral::run()
 {
    
     std::vector<point> xAxisValues;
-    std::vector<point> yAxisValues;
+    std::vector<point> yAxisValuesSimpson;
+    std::vector<point> yAxisValuesTrapz;
     Simpsons13 *simpsonX = new Simpsons13();
+    Trapezoidal *trapezoidalX = new Trapezoidal();
 
     for(int i = getMy(); i >= 0; i--)
     {
-
         xAxisValues.clear();
         
-        // constructs the vector of points
+        // constructs the vector of points used by Simpsons and Trapezio
         for (int j = 0; j <= getMx(); ++j)
         {   
             point x;
@@ -85,25 +86,40 @@ bool MultipleIntegral::run()
             xAxisValues.push_back(x);
         }
 
+        point y;
+
+        // Calculating x dimension with Simpsons
         simpsonX->setPoints(xAxisValues);
         simpsonX->setH(getHx());
         simpsonX->run();
-
-        point y;
         y.y = simpsonX->getArea();
+        yAxisValuesSimpson.push_back(y);
 
-        cout << simpsonX->getArea() << endl;
-
-        yAxisValues.push_back(y);
+        // Calculating x dimension with Trapezoidal
+        trapezoidalX->setPoints(xAxisValues);
+        trapezoidalX->setH(getHx());
+        trapezoidalX->run();
+        y.y = trapezoidalX->getArea();
+        yAxisValuesTrapz.push_back(y);
     }
     
+    // Calculating y dimension with Simpsons
     Simpsons13 *simpsonY = new Simpsons13();
-    simpsonY->setPoints(yAxisValues);
+    simpsonY->setPoints(yAxisValuesSimpson);
     simpsonY->setH(getHy());
     simpsonY->run();  
 
-    cout << "Area using 1/3 Simpsons13....." << simpsonY->getArea() / (getHy()*getMy()*getHx()*getMx()) << endl;
-    //cout << "Area using Trapezoidal........" << simpsonY->getArea() << endl;
+    // Calculating y dimension with Trapezoidal
+    Trapezoidal *trapezoidalY = new Trapezoidal();
+    trapezoidalY->setPoints(yAxisValuesTrapz);
+    trapezoidalY->setH(getHy());
+    trapezoidalY->run();
+
+    cout << endl
+         << "Area using 1/3 Simpsons13....." << simpsonY->getArea() / (getHy()*getMy()*getHx()*getMx()) << endl
+         << "Area using Trapezoidal........" << trapezoidalY->getArea() / (getHy()*getMy()*getHx()*getMx()) << endl
+         << endl
+         << "===============================================" << endl;
 
     return true;
 }

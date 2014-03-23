@@ -130,6 +130,8 @@ bool SampleMultipleIntegral::readSamplesFromFile(const char* filePath)
         // Feedback
         cout << endl
              << "===============================================" << endl
+             << "============= Multiple Integrals ==============" << endl
+             << "===============================================" << endl << endl
              << "Input path ...... '" << filePath << "'" << endl
              << "X dimension ..... " << getMx() << endl
              << "Y dimension ..... " << getMy() << endl
@@ -146,7 +148,7 @@ bool SampleMultipleIntegral::readSamplesFromFile(const char* filePath)
             cout << endl;
         }
 
-        cout << "===============================================" << endl;
+        cout << endl << "===============================================" << endl;
     }
     else
     {
