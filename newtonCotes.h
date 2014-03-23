@@ -2,7 +2,7 @@
 #define NEWTONCOTES_H
 
 #include "IMethod.h"
-#include "function.h"
+#include "Function.h"
 #include <vector>
 
 /* +----------------------------------------------------------+ *
