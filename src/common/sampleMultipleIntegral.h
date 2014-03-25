@@ -1,7 +1,7 @@
 #ifndef SAMPLE_MULTIPLE_INTEGRAL_H
 #define SAMPLE_MULTIPLE_INTEGRAL_H
 
-#include "../../includes/ISample.h"
+#include "../includes/ISample.h"
 #include <vector>
 
 using namespace std;

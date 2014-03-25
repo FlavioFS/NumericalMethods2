@@ -4,8 +4,8 @@
 #include <vector>
 
 #include "../../includes/IMethod.h"
-
-#include "sampleMultipleIntegral.h"
+#include "../closed-newton-cotes/simpson13/simpsons13.h"
+#include "../closed-newton-cotes/trapz/trapezoidal.h"
 
 class MultipleIntegral : public IMethod
 {

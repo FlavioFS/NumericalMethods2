@@ -11,5 +11,5 @@ $(EXE) : trapezoidalMain.o trapezoidal.o $(COMMON)/sampleClosed.o
 trapezoidal.o : trapezoidal.cpp trapezoidal.h $(INCLUDES)/IMethod.h
 	$(CC) $(CFLAGS) -c trapezoidal.cpp
 
-sampleOpen.o : $(COMMON)/sampleOpen.cpp $(COMMON)/sampleOpen.h $(INCLUDES)/ISample.h $(INCLUDES)/point.h
-	$(CC) $(CFLAGS) -c $(COMMON)/sampleOpen.cpp
+sampleClosed.o : $(COMMON)/sampleClosed.cpp $(COMMON)/sampleClosed.h $(INCLUDES)/ISample.h $(INCLUDES)/point.h
+	$(CC) $(CFLAGS) -c $(COMMON)/sampleClosed.cpp

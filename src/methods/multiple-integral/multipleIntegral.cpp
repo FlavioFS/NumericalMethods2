@@ -2,9 +2,6 @@
 
 #include "multipleIntegral.h"
 
-#include "../closed-newton-cotes/simpson13/simpsons13.h"
-#include "../closed-newton-cotes/trapz/trapezoidal.h"
-
 using namespace std;
 /* ==========================================================
                          Constructors

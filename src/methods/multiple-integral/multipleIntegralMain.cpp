@@ -5,8 +5,7 @@
 #include <iomanip>
 #include <fstream>
 
-#include "../../includes/IMethod.h"
-#include "sampleMultipleIntegral.h"
+#include "../../common/sampleMultipleIntegral.h"
 #include "multipleIntegral.h"
 
 using namespace std;
