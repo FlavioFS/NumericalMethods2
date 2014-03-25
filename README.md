@@ -19,6 +19,8 @@ Course from Federal University of Ceara
 * 3/8 Simpson
 * Newton-Cotes
 * Gaussian Quadrature
+* Romberg
+* Multiple Integrals
 
 ## How does it work?
 ISample interface describes what the read-from-file classes need to implement.
