@@ -11,7 +11,7 @@ $(EXE) : multipleIntegralMain.o multipleIntegral.o $(COMMON)/sampleMultipleInteg
 	$(CC) $(FLAGS) -o $(EXE) multipleIntegralMain.o multipleIntegral.o $(COMMON)/sampleMultipleIntegral.o $(CLOSED_NEWTON_COTES)/simpson13/simpsons13.o $(CLOSED_NEWTON_COTES)/trapz/trapezoidal.o
 
 multipleIntegral.o : multipleIntegral.cpp multipleIntegral.h $(INCLUDES)/IMethod.h $(CLOSED_NEWTON_COTES)/simpson13/simpsons13.cpp $(CLOSED_NEWTON_COTES)/simpson13/simpsons13.h $(CLOSED_NEWTON_COTES)/trapz/trapezoidal.cpp $(CLOSED_NEWTON_COTES)/trapz/trapezoidal.h 
-	$(CC) $(CFLAGS) -c newtonCotes.cpp $(COMMON)/Function.cpp
+	$(CC) $(CFLAGS) -c multipleIntegral.cpp $(COMMON)/Function.cpp
 
 sampleMultipleIntegral.o : $(COMMON)/sampleMultipleIntegral.cpp $(COMMON)/sampleMultipleIntegral.h $(INCLUDES)/ISample.h 
 	$(CC) $(CFLAGS) -c $(COMMON)/sampleMultipleIntegral.cpp
