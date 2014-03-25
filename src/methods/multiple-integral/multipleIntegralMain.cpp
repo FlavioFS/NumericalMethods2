@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 
     // Read samples from file and store them
     SampleMultipleIntegral *sampleMI = new SampleMultipleIntegral();
-    sampleMI->readSamplesFromFile("entrada5.txt");
+    sampleMI->readSamplesFromFile(argv[1]);
 
     double **M =  sampleMI->getSamples();
     MultipleIntegral *mIntegral = new MultipleIntegral(M,

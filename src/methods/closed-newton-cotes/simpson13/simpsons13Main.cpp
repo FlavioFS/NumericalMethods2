@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 {
     // Read samples from file and store them
     SampleClosed *sampleCL = new SampleClosed();
-    sampleCL->readSamplesFromFile("sample_closed.txt");
+    sampleCL->readSamplesFromFile(argv[1]);
 
     Simpsons13 simpsom13 (sampleCL->getSamples());
     simpsom13.run();
