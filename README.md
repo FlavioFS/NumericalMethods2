@@ -19,6 +19,8 @@ Course from Federal University of Ceara
 * 3/8 Simpson
 * Newton-Cotes
 * Gaussian Quadrature
+* Romberg
+* Multiple Integrals
 
 ## How does it work?
 ISample interface describes what the read-from-file classes need to implement.
@@ -56,21 +58,32 @@ $> ./simp13 samples.txt
 3/8 Simpson:
 
 ```
-$> ./simp13 samples.txt
+$> ./simp38 samples.txt
 ```
 
 Open Newton-Cotes:
 
 ```
-$> ./opnewton samples.txt
+$> ./open_nc samples.txt
 ```
 
 Gaussian quadrature:
 
 ```
-$> ./gaussquad samples.txt
+$> ./quad_gauss samples.txt
+```
+
+Romberg:
+
+```
+$> ./romberg samples.txt
+```
+
+Multiple Integrals:
+
+```
+$> ./int_dup samples.txt
 ```
 
 
 
- 
