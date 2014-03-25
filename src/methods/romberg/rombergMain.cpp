@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 {
     // Read samples from file and store them
     SampleOpen *sampleOP = new SampleOpen();
-    sampleOP->readSamplesFromFile("sample_open.txt");
+    sampleOP->readSamplesFromFile(argv[1]);
 
     Romberg romberg ( sampleOP->getFunction(), sampleOP->getN(),
                              sampleOP->getLeft(), sampleOP->getRight());
