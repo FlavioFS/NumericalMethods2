@@ -113,7 +113,7 @@ bool MultipleIntegral::run()
     trapezoidalY->run();
 
     cout << endl
-         << "Area using 1/3 Simpsons13....." << simpsonY->getArea() / (getHy()*getMy()*getHx()*getMx()) << endl
+         << "Area using 1/3 Simpsons......." << simpsonY->getArea() / (getHy()*getMy()*getHx()*getMx()) << endl
          << "Area using Trapezoidal........" << trapezoidalY->getArea() / (getHy()*getMy()*getHx()*getMx()) << endl
          << endl
          << "===============================================" << endl;

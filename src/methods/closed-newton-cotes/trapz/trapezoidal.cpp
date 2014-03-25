@@ -11,6 +11,7 @@ Trapezoidal::Trapezoidal(std::vector<point> P)
     // Calculating H
     std::vector<point>::iterator first = P.begin();
     std::vector<point>::iterator last = P.end();
+    last--;
     setH((last->x - first->x)/(P.size() - 1));
 }
 
