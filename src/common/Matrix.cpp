@@ -8,25 +8,17 @@
 ========================================================== */
 // [1.1] - Constructor
 Matrix::Matrix(unsigned int line_count, unsigned int row_count)
-:_lines(line_count), _rows(row_count), _line_cursor(1), _row_cursor(1)
+:_line_cursor(1), _row_cursor(1)
 {
-    // Allocating external dynamic array of internal dynamic arrays (lines)
-    _M = new double*[line_count];
-
-    for (unsigned int i = 0; i < line_count; i++)
-    {
-        // Allocating each internal dynamic array (rows)
-        _M[i] = new double[row_count];
-
-        // Default: Zero matrix
-        for (unsigned int j = 0; j < row_count; j++)
-        {
-            _M[i][j] = 0;
-        }
-    }
+    resize(line_count, row_count);
 }
 
-// [1.2] - Destructor
+// [1.2] - Default Constructor
+Matrix::Matrix()
+:_line_cursor(1), _row_cursor(1)
+{}
+
+// [1.3] - Destructor
 Matrix::~Matrix()
 {
     // Deleting each internal dynamic array
@@ -94,7 +86,7 @@ double Matrix::get(unsigned int i, unsigned int j)  // [3.3] - Element at positi
 }
 
 /* ==========================================================
-                        4. Operations
+                    4. Overloaded Operations
 ========================================================== */
 // [4.1] - Attribution
 void Matrix::operator=(Matrix A)
@@ -123,10 +115,10 @@ void Matrix::operator=(Matrix A)
 
 // [4.2] - Sum
 Matrix Matrix::operator+(Matrix A)
-{
+{  
     // In order to sum, the lines and rows must match each other
-    if (_lines == A.lines() &&
-        _rows  == A.rows())
+    if (_lines != A.lines() ||
+        _rows  != A.rows())
     {
         std::cout << "Matrix sum failure. Matrix unchanged. Closing." << std::endl;
         std::cout << EXCEPTION_ORDER << std::endl;
@@ -147,20 +139,52 @@ Matrix Matrix::operator+(Matrix A)
                 sum.put(aux, i+1, j+1);
             }
         }
-
         return sum;
     }
 }
 
+
+
 /*+--------------------------------------------+*
  *|   Inaciane, implemente estas três funções, |*
  *| já que você quer aprender. :v              |*
- *+--------------------------------------------+*
+ *+--------------------------------------------+*/
 
 // [4.3] - Difference
-Matrix Matrix::operator-(Matrix A){}
+Matrix Matrix::operator-(Matrix A){
+    // In order to sum, the lines and rows must match each other
+    if (_lines != A.lines() &&
+        _rows  != A.rows())
+    {
+        std::cout << "Matrix difference failure. Matrix unchanged. Closing." << std::endl;
+        std::cout << EXCEPTION_ORDER << std::endl;
+        pause();
+        throw EXCEPTION_ORDER;   
+    }
+    else
+    {
+        // The result
+        Matrix dif (_lines, _rows);
 
-// [4.4] - Product by Matrix
+        // Calculating the result values
+        for (unsigned int i = 0; i < _lines; i++)
+        {
+
+            for (unsigned int j = 0; j < _rows; j++)
+            {
+                double aux = get(i+1,j+1) - A.get(i+1,j+1);
+                dif.put(aux, i+1, j+1);
+            }
+        }
+
+        return dif;
+    }
+
+}
+
+
+
+/* [4.4] - Product by Matrix
 Matrix Matrix::operator*(Matrix A){}
 
 // [4.5] - Product by number
@@ -169,7 +193,6 @@ Matrix Matrix::operator*(Matrix A){}
 -------------------------------------------- */
 
 // [4.6] - Stream input
-
 void Matrix::operator >> (const double& value)
 {
     read_next(value);
@@ -190,6 +213,34 @@ std::ostream& operator << (std::ostream& out, Matrix& M)
     }
 
     return out;
+}
+
+
+/* ==========================================================
+                    5. Other Operations
+========================================================== */
+
+// [5.1] Resizing
+void Matrix::resize(unsigned int line_count, unsigned int row_count) {
+    
+    // Sets the new line and row
+    this->_lines = line_count;
+    this->_rows = row_count;
+
+    // Allocating external dynamic array of internal dynamic arrays (lines)
+    _M = new double*[line_count];
+
+    for (unsigned int i = 0; i < line_count; i++)
+    {
+        // Allocating each internal dynamic array (rows)
+        _M[i] = new double[row_count];
+
+        // Default: Zero matrix
+        for (unsigned int j = 0; j < row_count; j++)
+        {
+            _M[i][j] = 0;
+        }
+    }
 }
 
 /* ==========================================================

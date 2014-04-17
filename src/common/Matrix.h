@@ -11,7 +11,8 @@ class Matrix
                          Constructors & Destructors
         ========================================================== */
     	Matrix(unsigned int line_count, unsigned int row_count);        // [1.1] - Constructor
-    	~Matrix();                                                      // [1.2] - Destructor
+    	Matrix();                                                       // [1.2] - Default Constructor
+        ~Matrix();                                                      // [1.3] - Destructor
 
         /* ==========================================================
                                      Set
@@ -27,7 +28,7 @@ class Matrix
         double get(unsigned int i, unsigned int j);                     // [3.3] - Element at position (i,j)
 
         /* ==========================================================
-                                  Operations
+                            Overloaded Operations
         ========================================================== */
         void   operator = (Matrix);                                     // [4.1] - Attribution
         Matrix operator + (Matrix);                                     // [4.2] - Sum
@@ -38,6 +39,10 @@ class Matrix
         friend std::ostream&                                            // [4.7] - Stream output
             operator << (std::ostream&, Matrix&);
 
+        /* ==========================================================
+                              Other Operations
+        ========================================================== */
+        void resize(unsigned int line_count, unsigned int row_count);   // [5.1] - Resizing
 
 
     private:
