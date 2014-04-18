@@ -8,27 +8,22 @@
 ========================================================== */
 // [1.1] - Constructor
 Matrix::Matrix(unsigned int line_count, unsigned int row_count)
-:_line_cursor(1), _row_cursor(1)
+:_line_cursor(1), _row_cursor(1), _M(NULL)
 {
-    resize(line_count, row_count);
+    this->resize(line_count, row_count);
 }
 
 // [1.2] - Default Constructor
 Matrix::Matrix()
-:_line_cursor(1), _row_cursor(1)
-{}
+:_line_cursor(1), _row_cursor(1), _M(NULL)
+{
+    this->resize(1,1);
+}
 
 // [1.3] - Destructor
 Matrix::~Matrix()
 {
-    // Deleting each internal dynamic array
-    for (unsigned int i = 0; i < lines(); i++)
-    {
-        delete _M[i];
-    }
-
-    // Deleting external dynamic array
-    delete _M;
+    this->clear();
 }
 
 /* ==========================================================
@@ -91,23 +86,18 @@ double Matrix::get(unsigned int i, unsigned int j)  // [3.3] - Element at positi
 // [4.1] - Attribution
 void Matrix::operator=(Matrix A)
 {
-    // In order to attribute, the lines and rows must match each other
-    if (_lines != A.lines() ||
-        _rows  != A.rows())
+    // Protection against self-assignment
+    if (this != &A)
     {
-        std::cout << "Matrix attribution failure. Matrix unchanged." << std::endl;
-        std::cout << EXCEPTION_ORDER << std::endl;
-        pause();
-    }
-    else
-    {
-        // Calculating the result values
-        for (unsigned int i = 0; i < _lines; i++)
+        this->resize(A.lines(), A.rows());
+
+        // Assignment of values
+        for (unsigned int i = 0; i < this->lines(); i++)
         {
-            for (unsigned int j = 0; j < _rows; j++)
+            for (unsigned int j = 0; j < this->rows(); j++)
             {
-                double aux = _M[i][j] + A.get(i+1,j+1);
-                this->put(aux, i+1, j+1);
+                std::cout << "A(" << A.lines() << "x" << A.rows() << ") -> " << A.get(i+1,j+1) << std::endl;
+                this->put(A.get(i+1,j+1), i+1, j+1);
             }
         }
     }
@@ -115,7 +105,7 @@ void Matrix::operator=(Matrix A)
 
 // [4.2] - Sum
 Matrix Matrix::operator+(Matrix A)
-{  
+{
     // In order to sum, the lines and rows must match each other
     if (_lines != A.lines() ||
         _rows  != A.rows())
@@ -135,7 +125,13 @@ Matrix Matrix::operator+(Matrix A)
         {
             for (unsigned int j = 0; j < _rows; j++)
             {
-                double aux = _M[i][j] + A.get(i+1,j+1);
+                std::cout << "--------------- (i,j) = (" << i << "," << j << ") ---------------\n"
+                          << "aux = M[" << i << "][" << j << "] + A.get(" << i+1 << "," << j+1 << ")\n";
+                std::cout << "aux = " << _M[i][j] << " + " << A.get(i+1,j+1) << "\n";
+
+                double aux = this->_M[i][j] + A.get(i+1,j+1);
+
+                std::cout << "aux = " << aux << "\n\n";
                 sum.put(aux, i+1, j+1);
             }
         }
@@ -159,7 +155,7 @@ Matrix Matrix::operator-(Matrix A){
         std::cout << "Matrix difference failure. Matrix unchanged. Closing." << std::endl;
         std::cout << EXCEPTION_ORDER << std::endl;
         pause();
-        throw EXCEPTION_ORDER;   
+        throw EXCEPTION_ORDER;
     }
     else
     {
@@ -222,7 +218,9 @@ std::ostream& operator << (std::ostream& out, Matrix& M)
 
 // [5.1] Resizing
 void Matrix::resize(unsigned int line_count, unsigned int row_count) {
-    
+
+    this->clear();
+
     // Sets the new line and row
     this->_lines = line_count;
     this->_rows = row_count;
@@ -261,4 +259,28 @@ void Matrix::pause()
 {
     std::cout << "\nSystem paused. Press Enter to proceed..." << std::endl;
     std::cin.get();
+}
+
+// Clears _M
+void Matrix::clear()
+{
+    // If _M is not null
+    if (_M) {
+
+        // Deleting each internal dynamic array
+        for (unsigned int i = 0; i < lines(); i++)
+        {
+            delete[] _M[i];
+        }
+
+        // Deleting external dynamic array
+        delete[] _M;
+
+        // Resize
+        _lines = 0;
+        _rows = 0;
+        _line_cursor = 1;
+        _row_cursor = 1;
+        _M = NULL;
+    }
 }

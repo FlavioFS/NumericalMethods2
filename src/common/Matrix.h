@@ -30,11 +30,11 @@ class Matrix
         /* ==========================================================
                             Overloaded Operations
         ========================================================== */
-        void   operator = (Matrix);                                     // [4.1] - Attribution
-        Matrix operator + (Matrix);                                     // [4.2] - Sum
-        Matrix operator - (Matrix);                                     // [4.3] - Difference
-        Matrix operator * (Matrix);                                     // [4.4] - Product by Matrix
-        Matrix operator * (const double alpha);                         // [4.5] - Product by number
+        void    operator = (Matrix);                                    // [4.1] - Attribution
+        Matrix  operator + (Matrix);                                    // [4.2] - Sum
+        Matrix  operator - (Matrix);                                    // [4.3] - Difference
+        Matrix  operator * (Matrix);                                    // [4.4] - Product by Matrix
+        Matrix  operator * (const double alpha);                        // [4.5] - Product by number
         void operator >> (const double& value);                         // [4.6] - Input
         friend std::ostream&                                            // [4.7] - Stream output
             operator << (std::ostream&, Matrix&);
@@ -48,6 +48,7 @@ class Matrix
     private:
         bool valid_bounds(unsigned int i, unsigned int j);              // Check bounds
         void pause();                                                   // Pauses console
+        void clear();                                                   // Clears _M
 
         // Matrix order
         unsigned int
