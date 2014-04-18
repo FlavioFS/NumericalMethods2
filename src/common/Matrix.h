@@ -2,6 +2,7 @@
 #define MATRIX_H
 
 #include <iostream>
+#include <vector>
 
 class Matrix
 {
@@ -30,14 +31,14 @@ class Matrix
         /* ==========================================================
                             Overloaded Operations
         ========================================================== */
-        Matrix& operator = (const Matrix&);                             // [4.1] - Attribution
-        const Matrix  operator + (const Matrix&) const;                 // [4.2] - Sum
-        Matrix  operator - (Matrix);                                    // [4.3] - Difference
-        Matrix  operator * (Matrix);                                    // [4.4] - Product by Matrix
-        Matrix  operator * (const double alpha);                        // [4.5] - Product by number
+              Matrix& operator = (const Matrix);                        // [4.1] - Attribution
+        const Matrix  operator + (const Matrix) const;                  // [4.2] - Sum
+        const Matrix  operator - (const Matrix) const;                  // [4.3] - Difference
+        const Matrix  operator * (const Matrix) const;                  // [4.4] - Product by Matrix
+        const Matrix  operator * (const double alpha) const;            // [4.5] - Product by number
         void operator >> (const double& value);                         // [4.6] - Input
         friend std::ostream&                                            // [4.7] - Stream output
-            operator << (std::ostream&, Matrix&);
+            operator << (std::ostream&, const Matrix&);
 
         /* ==========================================================
                               Other Operations
@@ -50,18 +51,13 @@ class Matrix
         void pause() const;                                             // Pauses console
         void clear();                                                   // Clears _M
 
-        // Matrix order
-        unsigned int
-            _lines,         // Line Amount
-            _rows;          // Row Amount
-
         // Input stream reading this position
         unsigned int
             _line_cursor,
             _row_cursor;
 
-        // Low level dynamic matrix
-        double **_M;
+        // Matrix storage
+        std::vector< std::vector<double> > _M;
 };
 
 #endif // MATRIX_H

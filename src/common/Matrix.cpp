@@ -8,14 +8,14 @@
 ========================================================== */
 // [1.1] - Constructor
 Matrix::Matrix(unsigned int line_count, unsigned int row_count)
-:_line_cursor(1), _row_cursor(1), _M(NULL)
+:_line_cursor(1), _row_cursor(1)
 {
     this->resize(line_count, row_count);
 }
 
 // [1.2] - Default Constructor
 Matrix::Matrix()
-:_line_cursor(1), _row_cursor(1), _M(NULL)
+:_line_cursor(1), _row_cursor(1)
 {
     this->resize(1,1);
 }
@@ -52,11 +52,24 @@ void Matrix::read_next(double value)
         this->put(value, _line_cursor, _row_cursor);
 
         // Moves the cursor to the next position
-        _line_cursor++;
-        if (_line_cursor > _lines)
+        _row_cursor++;
+
+        // Row over
+        if (_row_cursor > rows())
         {
-            _line_cursor = 1;
-            _row_cursor++;
+            // Matrix over -> Back to the first position
+            if (_line_cursor == lines())
+            {
+                _line_cursor = 1;
+                _row_cursor = 1;
+            }
+
+            // Line over -> Go to next line
+            else
+            {
+                _row_cursor = 1;
+                _line_cursor++;
+            }
         }
     }
 }
@@ -64,9 +77,9 @@ void Matrix::read_next(double value)
 /* ==========================================================
                             3. Get
 ========================================================== */
-unsigned int Matrix::lines() const { return _lines; }     // [3.1] - Line Amount
-unsigned int Matrix::rows() const { return _rows;  }      // [3.2] - Row Amount
-double Matrix::get(unsigned int i, unsigned int j) const  // [3.3] - Element at position (i,j)
+unsigned int Matrix::lines() const { return _M.size(); }        // [3.1] - Line Amount
+unsigned int Matrix::rows() const { return _M.at(0).size(); }   // [3.2] - Row Amount
+double Matrix::get(unsigned int i, unsigned int j) const        // [3.3] - Element at position (i,j)
 {
     if (!valid_bounds(i, j))
     {
@@ -84,30 +97,20 @@ double Matrix::get(unsigned int i, unsigned int j) const  // [3.3] - Element at 
                     4. Overloaded Operations
 ========================================================== */
 // [4.1] - Attribution
-Matrix& Matrix::operator=(const Matrix &A)
+Matrix& Matrix::operator=(const Matrix A)
 {
     // Protection against self-assignment
     if (this != &A)
     {
         this->resize(A.lines(), A.rows());
-
-        if (A._M != NULL)
-            std::cout << A._M << std::endl;
-
-        if (A._M[0] != NULL) {
-            std::cout << A._M[0][0] << ", ";
-            std::cout << A._M[0][1] << std::endl;
-        }
+        this->_line_cursor = A._line_cursor;
+        this->_row_cursor = A._row_cursor;
 
         // Assignment of values
         for (unsigned int i = 0; i < this->lines(); i++)
         {
             for (unsigned int j = 0; j < this->rows(); j++)
             {
-                /*std::cout << "A(" << A.lines() << "x" << A.rows() << ") -> A["
-                          << i << "][" << j << "] = ";
-                std::cout << A.get(i+1,j+1) << std::endl;*/
-
                 this->put(A.get(i+1,j+1), i+1, j+1);
             }
         }
@@ -116,11 +119,11 @@ Matrix& Matrix::operator=(const Matrix &A)
 }
 
 // [4.2] - Sum
-const Matrix Matrix::operator+(const Matrix& A) const
+const Matrix Matrix::operator+(const Matrix A) const
 {
     // In order to sum, the lines and rows must match each other
-    if (_lines != A.lines() ||
-        _rows  != A.rows())
+    if (lines() != A.lines() ||
+        rows()  != A.rows())
     {
         std::cout << "Matrix sum failure. Matrix unchanged. Closing." << std::endl;
         std::cout << EXCEPTION_ORDER << std::endl;
@@ -130,20 +133,16 @@ const Matrix Matrix::operator+(const Matrix& A) const
     else
     {
         // The result
-        Matrix sum (_lines, _rows);
+        Matrix sum (lines(), rows());
 
-        // Calculating the result values
-        for (unsigned int i = 0; i < _lines; i++)
+        for (unsigned int i = 0; i < lines(); i++)
         {
-            for (unsigned int j = 0; j < _rows; j++)
+            for (unsigned int j = 0; j < rows(); j++)
             {
-                std::cout << "--------------- (i,j) = (" << i << "," << j << ") ---------------\n"
-                          << "aux = M[" << i << "][" << j << "] + A.get(" << i+1 << "," << j+1 << ")\n";
-                std::cout << "aux = " << _M[i][j] << " + " << A.get(i+1,j+1) << "\n";
+                // Calculating the result values
+                double aux = this->get(i+1, j+1) + A.get(i+1,j+1);
 
-                double aux = this->_M[i][j] + A.get(i+1,j+1);
-
-                std::cout << "aux = " << aux << "\n\n";
+                // Assigning to respective positions
                 sum.put(aux, i+1, j+1);
             }
         }
@@ -159,10 +158,10 @@ const Matrix Matrix::operator+(const Matrix& A) const
  *+--------------------------------------------+*/
 
 // [4.3] - Difference
-Matrix Matrix::operator-(Matrix A){
+const Matrix Matrix::operator-(const Matrix A) const{
     // In order to sum, the lines and rows must match each other
-    if (_lines != A.lines() &&
-        _rows  != A.rows())
+    if (lines() != A.lines() &&
+        rows()  != A.rows())
     {
         std::cout << "Matrix difference failure. Matrix unchanged. Closing." << std::endl;
         std::cout << EXCEPTION_ORDER << std::endl;
@@ -172,22 +171,24 @@ Matrix Matrix::operator-(Matrix A){
     else
     {
         // The result
-        Matrix dif (_lines, _rows);
+        Matrix dif (lines(), rows());
 
         // Calculating the result values
-        for (unsigned int i = 0; i < _lines; i++)
+        for (unsigned int i = 0; i < lines(); i++)
         {
 
-            for (unsigned int j = 0; j < _rows; j++)
+            for (unsigned int j = 0; j < rows(); j++)
             {
+                // Calculating the result values
                 double aux = get(i+1,j+1) - A.get(i+1,j+1);
+
+                // Assigning to respective positions
                 dif.put(aux, i+1, j+1);
             }
         }
 
         return dif;
     }
-
 }
 
 
@@ -208,7 +209,7 @@ void Matrix::operator >> (const double& value)
 
 
 // [4.7] - Stream output
-std::ostream& operator << (std::ostream& out, Matrix& M)
+std::ostream& operator << (std::ostream& out, const Matrix& M)
 {
     for (unsigned int i = 0; i < M.lines(); i++)
     {
@@ -232,18 +233,11 @@ std::ostream& operator << (std::ostream& out, Matrix& M)
 void Matrix::resize(unsigned int line_count, unsigned int row_count) {
 
     this->clear();
-
-    // Sets the new line and row
-    this->_lines = line_count;
-    this->_rows = row_count;
-
-    // Allocating external dynamic array of internal dynamic arrays (lines)
-    _M = new double*[line_count];
+    _M.resize(line_count);
 
     for (unsigned int i = 0; i < line_count; i++)
     {
-        // Allocating each internal dynamic array (rows)
-        _M[i] = new double[row_count];
+        _M[i].resize(row_count);
 
         // Default: Zero matrix
         for (unsigned int j = 0; j < row_count; j++)
@@ -259,8 +253,8 @@ void Matrix::resize(unsigned int line_count, unsigned int row_count) {
 // Verifies if the given bounds are valid
 bool Matrix::valid_bounds(unsigned int i, unsigned int j) const
 {
-    if (i == 0 || i > _lines ||
-        j == 0 || j > _rows)
+    if (i == 0 || i > lines() ||
+        j == 0 || j > rows())
         return false;
 
     return true;
@@ -276,23 +270,7 @@ void Matrix::pause() const
 // Clears _M
 void Matrix::clear()
 {
-    // If _M is not null
-    if (_M) {
-
-        // Deleting each internal dynamic array
-        for (unsigned int i = 0; i < lines(); i++)
-        {
-            delete[] _M[i];
-        }
-
-        // Deleting external dynamic array
-        delete[] _M;
-
-        // Resize
-        _lines = 0;
-        _rows = 0;
-        _line_cursor = 1;
-        _row_cursor = 1;
-        _M = NULL;
-    }
+    _M.clear();
+    _line_cursor = 1;
+    _row_cursor = 1;
 }
