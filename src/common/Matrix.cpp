@@ -64,9 +64,9 @@ void Matrix::read_next(double value)
 /* ==========================================================
                             3. Get
 ========================================================== */
-unsigned int Matrix::lines() { return _lines; }     // [3.1] - Line Amount
-unsigned int Matrix::rows()  { return _rows;  }     // [3.2] - Row Amount
-double Matrix::get(unsigned int i, unsigned int j)  // [3.3] - Element at position (i,j)
+unsigned int Matrix::lines() const { return _lines; }     // [3.1] - Line Amount
+unsigned int Matrix::rows() const { return _rows;  }      // [3.2] - Row Amount
+double Matrix::get(unsigned int i, unsigned int j) const  // [3.3] - Element at position (i,j)
 {
     if (!valid_bounds(i, j))
     {
@@ -84,27 +84,39 @@ double Matrix::get(unsigned int i, unsigned int j)  // [3.3] - Element at positi
                     4. Overloaded Operations
 ========================================================== */
 // [4.1] - Attribution
-void Matrix::operator=(Matrix A)
+Matrix& Matrix::operator=(const Matrix &A)
 {
     // Protection against self-assignment
     if (this != &A)
     {
         this->resize(A.lines(), A.rows());
 
+        if (A._M != NULL)
+            std::cout << A._M << std::endl;
+
+        if (A._M[0] != NULL) {
+            std::cout << A._M[0][0] << ", ";
+            std::cout << A._M[0][1] << std::endl;
+        }
+
         // Assignment of values
         for (unsigned int i = 0; i < this->lines(); i++)
         {
             for (unsigned int j = 0; j < this->rows(); j++)
             {
-                std::cout << "A(" << A.lines() << "x" << A.rows() << ") -> " << A.get(i+1,j+1) << std::endl;
+                /*std::cout << "A(" << A.lines() << "x" << A.rows() << ") -> A["
+                          << i << "][" << j << "] = ";
+                std::cout << A.get(i+1,j+1) << std::endl;*/
+
                 this->put(A.get(i+1,j+1), i+1, j+1);
             }
         }
     }
+    return *this;
 }
 
 // [4.2] - Sum
-Matrix Matrix::operator+(Matrix A)
+const Matrix Matrix::operator+(const Matrix& A) const
 {
     // In order to sum, the lines and rows must match each other
     if (_lines != A.lines() ||
@@ -245,7 +257,7 @@ void Matrix::resize(unsigned int line_count, unsigned int row_count) {
                            Private
 ========================================================== */
 // Verifies if the given bounds are valid
-bool Matrix::valid_bounds(unsigned int i, unsigned int j)
+bool Matrix::valid_bounds(unsigned int i, unsigned int j) const
 {
     if (i == 0 || i > _lines ||
         j == 0 || j > _rows)
@@ -255,7 +267,7 @@ bool Matrix::valid_bounds(unsigned int i, unsigned int j)
 }
 
 // Pauses console
-void Matrix::pause()
+void Matrix::pause() const
 {
     std::cout << "\nSystem paused. Press Enter to proceed..." << std::endl;
     std::cin.get();

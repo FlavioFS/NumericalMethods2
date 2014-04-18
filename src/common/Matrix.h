@@ -23,15 +23,15 @@ class Matrix
          /* ==========================================================
                                      Get
         ========================================================== */
-        unsigned int lines();                                           // [3.1] - Line Amount
-        unsigned int rows();                                            // [3.2] - Row Amount
-        double get(unsigned int i, unsigned int j);                     // [3.3] - Element at position (i,j)
+        unsigned int lines() const;                                     // [3.1] - Line Amount
+        unsigned int rows() const;                                      // [3.2] - Row Amount
+        double get(unsigned int i, unsigned int j) const;               // [3.3] - Element at position (i,j)
 
         /* ==========================================================
                             Overloaded Operations
         ========================================================== */
-        void    operator = (Matrix);                                    // [4.1] - Attribution
-        Matrix  operator + (Matrix);                                    // [4.2] - Sum
+        Matrix& operator = (const Matrix&);                             // [4.1] - Attribution
+        const Matrix  operator + (const Matrix&) const;                 // [4.2] - Sum
         Matrix  operator - (Matrix);                                    // [4.3] - Difference
         Matrix  operator * (Matrix);                                    // [4.4] - Product by Matrix
         Matrix  operator * (const double alpha);                        // [4.5] - Product by number
@@ -46,8 +46,8 @@ class Matrix
 
 
     private:
-        bool valid_bounds(unsigned int i, unsigned int j);              // Check bounds
-        void pause();                                                   // Pauses console
+        bool valid_bounds(unsigned int i, unsigned int j) const;        // Check bounds
+        void pause() const;                                             // Pauses console
         void clear();                                                   // Clears _M
 
         // Matrix order
