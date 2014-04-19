@@ -239,24 +239,33 @@ Matrix& Matrix::operator=(const Matrix A)
 // If i and j are invalid, warns and throws exception.
 /*+-------------------------------------------------------+*
  *|   Matrix m1(1,2);                                     |*
- *|   m1 >> 11;                                           |*
- *|   m1 >> 12;                                           |*
+ *|   m1 >> 1;    m1 >> 2;                                |*
  *|                                                       |*
  *|   Matrix m2(1,2);                                     |*
- *|   m2 >> 21;                                           |*
- *|   m2 >> 22;                                           |*
+ *|   m2 >> 3;    m2 >> 5;                                |*
  *|                                                       |*
  *|   Matrix sum = m1 + m2;                               |*
  *|   Matrix *sump = new Matrix;                          |*
  *|   *sump = sum;                                        |*
  *|                                                       |*
- *|   std::cout << m1 + m2 << std::endl;                  |*
- *|   std::cout << sum     << std::endl;                  |*
- *|   std::cout << *sump   << std::endl;                  |*
+ *|   std::cout << std::setw(3) << m1 + m2 << std::endl;  |*
+ *|   std::cout << std::setw(3) << sum     << std::endl;  |*
+ *|   std::cout << std::setw(3) << *sump   << std::endl;  |*
  *|   // Result:                                          |*
- *|   //  32 34                                           |*
- *|   //  32 34                                           |*
- *|   //  32 34                                           |*
+ *|        1   2                                          |*
+ *|     +---+---+                                         |*
+ *|   1 |  4|  7|                                         |*
+ *|     +---+---+                                         |*
+ *|                                                       |*
+ *|        1   2                                          |*
+ *|     +---+---+                                         |*
+ *|   1 |  4|  7|                                         |*
+ *|     +---+---+                                         |*
+ *|                                                       |*
+ *|        1   2                                          |*
+ *|     +---+---+                                         |*
+ *|   1 |  4|  7|                                         |*
+ *|     +---+---+                                         |*
  *+-------------------------------------------------------+*/
 const Matrix Matrix::operator+(const Matrix A) const
 {
@@ -551,7 +560,7 @@ void Matrix::resize(unsigned int line_count, unsigned int row_count)
 }
 
 
-// [5.2] - Gives transpose of this matrix
+// [5.2] - Returns transpose of this matrix
 /*+-------------------------------------------------------+*
  *|   Matrix mtx (3,3);                                   |*
  *|   m1 >>  11;   m1 >>  12;   m1 >>  13;                |*
