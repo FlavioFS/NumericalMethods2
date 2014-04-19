@@ -19,7 +19,8 @@ class Matrix
                                      Set
         ========================================================== */
         void put(double value, unsigned int i, unsigned int j);         // [2.1] - Put (set element)
-        void read_next(double value);                                   // [2.2] - Reads next element
+        void put_next(double value);                                    // [2.2] - Puts value at cursor
+        void move_cursor(unsigned int i, unsigned int j);               // [2.3] - Moves cursor to element (i,j)
 
          /* ==========================================================
                                      Get
