@@ -374,11 +374,42 @@ const Matrix Matrix::operator*(const Matrix A) const
 
 
 
-/*
-// [4.5] - Product by number
-Matrix Matrix::operator*(Matrix A){}
 
--------------------------------------------- */
+// [4.5] - Product by number (double)
+/*+-------------------------------------------------------+*
+ *|   Matrix m1(2,2);                                     |*
+ *|   m1 >> 1;    m1 >> 0;                                |*
+ *|   m1 >> 0;    m1 >> 1;                                |*
+ *|                                                       |*
+ *|   std::cout << setw(3) << m1 * 4 << std::endl;        |*
+ *|   // Result:                                          |*
+ *|        1   2                                          |*
+ *|     +---+---+                                         |*
+ *|   1 |  4|  0|                                         |*
+ *|     +---+---+                                         |*
+ *|   2 |  0|  4|                                         |*
+ *|     +---+---+                                         |*
+ *|                                                       |*
+ *|   IT IS FORBIDDEN TO WRITE THE NUMBER AT LEFT!        |*
+ *|   Do not do this:  4 * m1;                            |*
+ *|   Only this is allowed: m1 * 4;                       |*
+ *+-------------------------------------------------------+*/
+const Matrix Matrix::operator*(const double alpha) const
+{
+    Matrix product (lines(), rows());
+
+    for (unsigned int i = 0; i < lines(); i++)
+    {
+        for (unsigned int j = 0; j < rows(); j++)
+        {
+            double aux = this->get(i+1, j+1) * alpha;
+            product.put(aux, i+1, j+1);
+        }
+    }
+
+    return product;
+}
+
 
 
 // [4.6] - Stream input
@@ -403,8 +434,8 @@ void Matrix::operator >> (const double& value)
 // Editable with setw(width)
 /*+-------------------------------------------------------+*
  *|   Matrix mtx (2,2);                                   |*
- *|   cout << setw(2) << mtx << endl;                     |*
- *|   cout << setw(6) << mtx << endl;                     |*
+ *|   std::cout << std::setw(2) << mtx << std::endl;      |*
+ *|   std::cout << std::setw(6) << mtx << std::endl;      |*
  *|                                                       |*
  *|   // Result:                                          |*
  *|        1  2                                           |*
@@ -423,13 +454,12 @@ void Matrix::operator >> (const double& value)
  *+-------------------------------------------------------+*/
 std::ostream& operator << (std::ostream& out, const Matrix& M)
 {
+    // Retrieving size through std::setw;
     unsigned int width = std::cout.width();
     std::cout << std::setw(0);
 
-    if (width < 1)
-    {
-        width = 6;
-    }
+    // Size cannot be 0. Default size is 6.
+    if (width < 1) { width = 6; }
 
     // Row Index
     out << "      ";
