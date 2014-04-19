@@ -1,5 +1,7 @@
 #include "Matrix.h"
 
+#include <iomanip>
+
 #define EXCEPTION_BOUNDS "Matrix: Out of bounds"
 #define EXCEPTION_ORDER  "Matrix: Incompatible orders"
 
@@ -9,9 +11,9 @@
 // [1.1] - Constructor
 /*+-------------------------------------------------------+*
  *|   Matrix mtx (3,5);                                   |*
- *|   // mtx has 3 lines and 4 rows                       |*
- *|   // First element: 1,1 (not 0,0)                     |*
- *|   // Last element:  5,5                               |*
+ *|                                                       |*
+ *|   // mtx has 3 lines and 4 rows.                      |*
+ *|   // Index starts at 1, not 0.                        |*
  *+-------------------------------------------------------+*/
 Matrix::Matrix(unsigned int line_count, unsigned int row_count)
 :_line_cursor(1), _row_cursor(1)
@@ -49,6 +51,7 @@ Matrix::~Matrix()
 // If i and j are invalid, nothing happens.
 /*+-------------------------------------------------------+*
  *|   Matrix mtx (2,3);                                   |*
+ *|                                                       |*
  *|   // mtx's element at (1,1) receives 8000             |*
  *|   mtx.put(8000, 1, 1);                                |*
  *+-------------------------------------------------------+*/
@@ -71,8 +74,19 @@ void Matrix::put(double value, unsigned int i, unsigned int j)
 // the first element: (1,1);
 /*+-------------------------------------------------------+*
  *|   Matrix mtx (2,2);                                   |*
- *|   mtx.put_next(7); // mtx(1,1) contains 7             |*
- *|   mtx.put_next(3); // mtx(1,2) contains 3             |*
+ *|   // mtx:                                             |*
+ *|   //  0 0                                             |*
+ *|   //  0 0                                             |*
+ *|                                                       |*
+ *|   mtx.put_next(7);                                    |*
+ *|   // mtx:                                             |*
+ *|   //  7 0                                             |*
+ *|   //  0 0                                             |*
+ *|                                                       |*
+ *|   mtx.put_next(3);                                    |*
+ *|   // mtx:                                             |*
+ *|   //  7 3                                             |*
+ *|   //  0 0                                             |*
  *+-------------------------------------------------------+*/
 void Matrix::put_next(double value)
 {
@@ -112,8 +126,17 @@ void Matrix::put_next(double value)
  *|   Matrix mtx (3,3);                                   |*
  *|   mtx << 7; // mtx(1,1) contains 7                    |*
  *|   mtx << 3; // mtx(1,2) contains 3                    |*
+ *|   // mtx:                                             |*
+ *|   //  7 3 0                                           |*
+ *|   //  0 0 0                                           |*
+ *|   //  0 0 0                                           |*
+ *|                                                       |*
  *|   mtx.move_cursor(3,3);                               |*
  *|   mtx << 5; // mtx(3,3) contains 5                    |*
+ *|   // mtx:                                             |*
+ *|   //  7 3 0                                           |*
+ *|   //  0 0 0                                           |*
+ *|   //  0 0 5                                           |*
  *+-------------------------------------------------------+*/
 void Matrix::move_cursor(unsigned int i, unsigned int j)
 {
@@ -180,13 +203,14 @@ double Matrix::get(unsigned int i, unsigned int j) const
  *|   //  11 12                                           |*
  *|   //  21 22                                           |*
  *|                                                       |*
- *|  // Copy by value:                                    |*
- *|  Matrix copy;                                         |*
- *|  copy = mtx;                                          |*
- *|  // copied: elements, cursor, size                    |*
- *|   // copy:                                            |*
- *|   //  11 12                                           |*
- *|   //  21 22                                           |*
+ *|   // Copy by value:                                   |*
+ *|   Matrix copy;                                        |*
+ *|   copy = mtx;                                         |*
+ *|                                                       |*
+ *|   // copied: elements, cursor, size                   |*
+ *|   //  copy:                                           |*
+ *|   //   11 12                                          |*
+ *|   //   21 22                                          |*
  *+-------------------------------------------------------+*/
 Matrix& Matrix::operator=(const Matrix A)
 {
@@ -228,9 +252,9 @@ Matrix& Matrix::operator=(const Matrix A)
  *|   std::cout << sum     << std::endl;                  |*
  *|   std::cout << *sump   << std::endl;                  |*
  *|   // Result:                                          |*
- *|     32 34                                             |*
- *|     32 34                                             |*
- *|     32 34                                             |*
+ *|   //  32 34                                             |*
+ *|   //  32 34                                             |*
+ *|   //  32 34                                             |*
  *+-------------------------------------------------------+*/
 const Matrix Matrix::operator+(const Matrix A) const
 {
@@ -322,6 +346,7 @@ Matrix Matrix::operator*(Matrix A){}
  *|   mtx >> 12;                                          |*
  *|   mtx >> 21;                                          |*
  *|   mtx >> 22;                                          |*
+ *|                                                       |*
  *|   // mtx:                                             |*
  *|   //  11 12                                           |*
  *|   //  21 22                                           |*
@@ -345,14 +370,40 @@ void Matrix::operator >> (const double& value)
  *+-------------------------------------------------------+*/
 std::ostream& operator << (std::ostream& out, const Matrix& M)
 {
+    // Row Index
+    out << "     ";
+    for (unsigned int j = 0; j < M.rows(); j++)
+    {
+        out << std::setw(8) << j << "      ";
+    }
+
+    // Upper part
+    // +------+------+------+
+    out << std::endl << "     +";
+    for (unsigned int j = 0; j < M.rows(); j++)
+    {
+        out << "-------------+";
+    }
+    out << std::endl;
+
+    // Middle part
     for (unsigned int i = 0; i < M.lines(); i++)
     {
+        // Number part
+        // |....11|....12|....13|
+        out << std::setw(4) << i << " |";
         for (unsigned int j = 0; j < M.rows(); j++)
         {
-            out << M.get(i+1,j+1) << " ";
+            out << std::setw(13) << M.get(i+1,j+1) << "|";
         }
 
-        out << "\n";
+        // Lower part (same as upper part)
+        out << std::endl << "     +";
+        for (unsigned int j = 0; j < M.rows(); j++)
+        {
+            out << "-------------+";
+        }
+        out << std::endl;
     }
 
     return out;
@@ -403,14 +454,14 @@ void Matrix::resize(unsigned int line_count, unsigned int row_count)
 /* ==========================================================
                            Private
 ========================================================== */
-// Verifies if the given low level bounds (0 to n-1) are valid
+// Verifies if the given bounds are valid
 /*+-------------------------------------------------------+*
  *|   Matrix mtx (2,3);                                   |*
  *|                                                       |*
- *|   mtx.valid_bounds(2,2);  // Returns false            |*
- *|   mtx.valid_bounds(0,2);  // Returns true             |*
+ *|   mtx.valid_bounds(3,2);  // Returns false            |*
+ *|   mtx.valid_bounds(0,2);  // Returns false            |*
  *|   mtx.valid_bounds(1,1);  // Returns true             |*
- *|                                                       |*
+ *|   mtx.valid_bounds(2,3);  // Returns true             |*
  *+-------------------------------------------------------+*/
 bool Matrix::valid_bounds(unsigned int i, unsigned int j) const
 {
