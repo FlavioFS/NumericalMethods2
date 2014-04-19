@@ -60,6 +60,7 @@ void Matrix::put(double value, unsigned int i, unsigned int j)
     if (!valid_bounds(i, j))
     {
         std::cout << "Put(" << value << ", " << i << ", " << j << ") failure. Element unchanged." << std::endl;
+        std::cout << *this << std::endl;
         std::cout << EXCEPTION_BOUNDS << std::endl;
         pause();
     }
@@ -180,6 +181,7 @@ double Matrix::get(unsigned int i, unsigned int j) const
     if (!valid_bounds(i, j))
     {
         std::cout << "Get(" << i << ", " << j << ") failure. Returning 0." << std::endl;
+        std::cout << *this << std::endl;
         std::cout << EXCEPTION_BOUNDS << std::endl;
         pause();
 
@@ -252,9 +254,9 @@ Matrix& Matrix::operator=(const Matrix A)
  *|   std::cout << sum     << std::endl;                  |*
  *|   std::cout << *sump   << std::endl;                  |*
  *|   // Result:                                          |*
- *|   //  32 34                                             |*
- *|   //  32 34                                             |*
- *|   //  32 34                                             |*
+ *|   //  32 34                                           |*
+ *|   //  32 34                                           |*
+ *|   //  32 34                                           |*
  *+-------------------------------------------------------+*/
 const Matrix Matrix::operator+(const Matrix A) const
 {
@@ -263,6 +265,8 @@ const Matrix Matrix::operator+(const Matrix A) const
         rows()  != A.rows())
     {
         std::cout << "Matrix sum failure. Matrix unchanged. Closing." << std::endl;
+        std::cout << *this << std::endl;
+        std::cout << A << std::endl;
         std::cout << EXCEPTION_ORDER << std::endl;
         pause();
         throw EXCEPTION_ORDER;
@@ -272,9 +276,9 @@ const Matrix Matrix::operator+(const Matrix A) const
         // The result
         Matrix sum (lines(), rows());
 
-        for (unsigned int i = 0; i < lines(); i++)
+        for (unsigned int i = 0; i < sum.lines(); i++)
         {
-            for (unsigned int j = 0; j < rows(); j++)
+            for (unsigned int j = 0; j < sum.rows(); j++)
             {
                 // Calculating the result values
                 double aux = this->get(i+1, j+1) + A.get(i+1,j+1);
@@ -288,12 +292,6 @@ const Matrix Matrix::operator+(const Matrix A) const
 }
 
 
-
-/*+--------------------------------------------+*
- *|   Inaciane, implemente estas três funções, |*
- *| já que você quer aprender. :v              |*
- *+--------------------------------------------+*/
-
 // [4.3] - Difference
 // Details: works the same way as "[4.2] operator+". 
 const Matrix Matrix::operator-(const Matrix A) const{
@@ -302,6 +300,8 @@ const Matrix Matrix::operator-(const Matrix A) const{
         rows()  != A.rows())
     {
         std::cout << "Matrix difference failure. Matrix unchanged. Closing." << std::endl;
+        std::cout << *this << std::endl;
+        std::cout << A << std::endl;
         std::cout << EXCEPTION_ORDER << std::endl;
         pause();
         throw EXCEPTION_ORDER;
@@ -312,10 +312,10 @@ const Matrix Matrix::operator-(const Matrix A) const{
         Matrix dif (lines(), rows());
 
         // Calculating the result values
-        for (unsigned int i = 0; i < lines(); i++)
+        for (unsigned int i = 0; i < dif.lines(); i++)
         {
 
-            for (unsigned int j = 0; j < rows(); j++)
+            for (unsigned int j = 0; j < dif.rows(); j++)
             {
                 // Calculating the result values
                 double aux = get(i+1,j+1) - A.get(i+1,j+1);
@@ -330,14 +330,56 @@ const Matrix Matrix::operator-(const Matrix A) const{
 }
 
 
+// [4.4] - Product by Matrix
+const Matrix Matrix::operator*(const Matrix A) const
+{
+    // In order to multiply, first matrix row count must match second matrix line count
+    if (rows() != A.lines())
+    {
+        std::cout << "Matrix product failure. Matrix unchanged. Closing." << std::endl;
+        std::cout << *this << std::endl;
+        std::cout << A << std::endl;
+        std::cout << EXCEPTION_ORDER << std::endl;
+        pause();
+        throw EXCEPTION_ORDER;
+    }
+    else
+    {
+        // The result
+        Matrix product (lines(), A.rows());
 
-/* [4.4] - Product by Matrix
-Matrix Matrix::operator*(Matrix A){}
+        // Calculating the result values
+        for (unsigned int i = 0; i < product.lines(); i++)
+        {
 
+            for (unsigned int j = 0; j < product.rows(); j++)
+            {
+                // Calculating the result values
+                // P = B*A => P[i][j] = Somatory ( B[i][k] * A[k][j] ), k in [0,  A.lines()]
+                double aux = 0;
+                for (unsigned int k = 0; k < A.lines(); k++)
+                {
+                    aux += this->get(i+1, k+1) * A.get(k+1, j+1);
+                }
+
+                // Assigning to respective positions
+                product.put(aux, i+1, j+1);
+            }
+        }
+
+        return product;
+    }
+}
+
+
+
+
+/*
 // [4.5] - Product by number
 Matrix Matrix::operator*(Matrix A){}
 
 -------------------------------------------- */
+
 
 // [4.6] - Stream input
 /*+-------------------------------------------------------+*
@@ -358,23 +400,42 @@ void Matrix::operator >> (const double& value)
 
 
 // [4.7] - Stream output
+// Editable with setw(width)
 /*+-------------------------------------------------------+*
- *|   // mtx contains:                                    |*
- *|   //  11 12                                           |*
- *|   //  21 22                                           |*
+ *|   Matrix mtx (2,2);                                   |*
+ *|   cout << setw(2) << mtx << endl;                     |*
+ *|   cout << setw(6) << mtx << endl;                     |*
  *|                                                       |*
- *|   std::cout << mtx << std::endl;                      |*
  *|   // Result:                                          |*
- *|   //  11 12                                           |*
- *|   //  21 22                                           |*
+ *|        1  2                                           |*
+ *|     +--+--+                                           |*
+ *|   1 | 0| 0|                                           |*
+ *|     +--+--+                                           |*
+ *|   2 | 0| 0|                                           |*
+ *|     +--+--+                                           |*
+ *|                                                       |*
+ *|           1      2                                    |*
+ *|     +------+------+                                   |*
+ *|   1 |     0|     0|                                   |*
+ *|     +------+------+                                   |*
+ *|   2 |     0|     0|                                   |*
+ *|     +------+------+                                   |*
  *+-------------------------------------------------------+*/
 std::ostream& operator << (std::ostream& out, const Matrix& M)
 {
+    unsigned int width = std::cout.width();
+    std::cout << std::setw(0);
+
+    if (width < 1)
+    {
+        width = 6;
+    }
+
     // Row Index
-    out << "     ";
+    out << "      ";
     for (unsigned int j = 0; j < M.rows(); j++)
     {
-        out << std::setw(8) << j << "      ";
+        out << std::setw(width) << j+1 << " ";
     }
 
     // Upper part
@@ -382,7 +443,11 @@ std::ostream& operator << (std::ostream& out, const Matrix& M)
     out << std::endl << "     +";
     for (unsigned int j = 0; j < M.rows(); j++)
     {
-        out << "-------------+";
+        for (unsigned int k = 0; k < width; k++)
+        {
+            out << "-";
+        }
+        out << "+";
     }
     out << std::endl;
 
@@ -391,17 +456,21 @@ std::ostream& operator << (std::ostream& out, const Matrix& M)
     {
         // Number part
         // |....11|....12|....13|
-        out << std::setw(4) << i << " |";
+        out << std::setw(4) << i+1 << " |";
         for (unsigned int j = 0; j < M.rows(); j++)
         {
-            out << std::setw(13) << M.get(i+1,j+1) << "|";
+            out << std::setw(width) << M.get(i+1,j+1) << "|";
         }
 
         // Lower part (same as upper part)
         out << std::endl << "     +";
         for (unsigned int j = 0; j < M.rows(); j++)
         {
-            out << "-------------+";
+            for (unsigned int k = 0; k < width; k++)
+            {
+                out << "-";
+            }
+            out << "+";
         }
         out << std::endl;
     }
