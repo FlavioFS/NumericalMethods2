@@ -547,7 +547,43 @@ void Matrix::resize(unsigned int line_count, unsigned int row_count)
                 _M[i][j] = 0;
             }
         }
-    }    
+    }
+}
+
+
+// [5.2] - Gives transpose of this matrix
+/*+-------------------------------------------------------+*
+ *|   Matrix mtx (3,3);                                   |*
+ *|   m1 >>  11;   m1 >>  12;   m1 >>  13;                |*
+ *|   m1 >>  21;   m1 >>  22;   m1 >>  23;                |*
+ *|   m1 >>  31;   m1 >>  32;   m1 >>  33;                |*
+ *|                                                       |*
+ *|   cout << "m1-t:\n" << setw(3)                        |*
+ *|        << m1.transpose() << endl;                     |*
+ *|                                                       |*
+ *|   // Result                                           |*
+ *|        1   2   3                                      |*
+ *|     +---+---+---+                                     |*
+ *|   1 | 11| 21| 31|                                     |*
+ *|     +---+---+---+                                     |*
+ *|   2 | 12| 22| 32|                                     |*
+ *|     +---+---+---+                                     |*
+ *|   3 | 13| 23| 33|                                     |*
+ *|     +---+---+---+                                     |*
+ *|                                                       |*
+ *+-------------------------------------------------------+*/
+const Matrix Matrix::transpose() const
+{
+    Matrix T (rows(), lines());
+    for (unsigned int i = 0; i < lines(); i++)
+    {
+        for (unsigned int j = 0; j < rows(); j++)
+        {
+            double aux = this->get(i+1, j+1);
+            T.put(aux, j+1, i+1);
+        }
+    }
+    return T;
 }
 
 /* ==========================================================
