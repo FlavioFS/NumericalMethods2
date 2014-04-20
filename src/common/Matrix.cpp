@@ -1,6 +1,7 @@
 #include "Matrix.h"
 
 #include <iomanip>
+#include <cmath>
 
 #define EXCEPTION_BOUNDS "Matrix: Out of bounds"
 #define EXCEPTION_ORDER  "Matrix: Incompatible orders"
@@ -619,6 +620,20 @@ const Matrix Matrix::transpose() const
         }
     }
     return T;
+}
+
+
+const double Matrix::normalize() const
+{
+    double aux = 0;
+    for (unsigned int i = 0; i < lines(); i++)
+    {
+        for (unsigned int j = 0; j < rows(); j++)
+        {
+            aux += pow(this->get(i+1, j+1), 2);
+        }
+    }
+    return sqrt(aux);
 }
 
 /* ==========================================================
