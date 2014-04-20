@@ -2,6 +2,7 @@
 #define FUNCTION_H
 
 #include "../includes/IFunction.h"
+#include <vector>
 
 class Function : public IFunction
 {
@@ -19,6 +20,8 @@ class Function : public IFunction
         ========================================================== */
         void setFunction(unsigned int option);
         void setFunction(double (*function)(double));
+        void pushBackFunction(double (*function)(double));
+        void pickFunction(unsigned int option);
 
 
         /* ==========================================================
@@ -29,11 +32,14 @@ class Function : public IFunction
 
 
     private:
-
     	// Pointer that stores the function
     	double (*function)(double);
 
+        // Dynamic list of functions
+        std::vector< double (*)(double) > _functionList;
+
         // Default Functions
+        // Deprecated - Use pushBackFunction + setFunction
         static double f1 (double x);
         static double f2 (double x);
         static double f3 (double x);
