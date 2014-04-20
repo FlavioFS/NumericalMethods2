@@ -67,6 +67,9 @@ bool SampleRegularPower::readSamplesFromFile(const char* filePath)
             samples >> element;
         }
 
+        // Reads the tolerance
+        sampleFile >> this->e;
+
         /* +-----------------------------------+ *
         * | Read the u here, for shifted power | *
         * +------------------------------------+ */
