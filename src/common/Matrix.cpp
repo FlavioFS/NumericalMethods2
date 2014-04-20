@@ -35,9 +35,9 @@ Matrix::Matrix()
 
 // [1.3] - Destructor
 /*+-------------------------------------------------------+
-    Matrix mtx (10,10);                                 
+    Matrix *pMtx = new Matrix (10,10);
     (...)                                               
-    delete mtx;                                         
+    delete pMtx;
   +-------------------------------------------------------+*/
 Matrix::~Matrix()
 {
@@ -159,7 +159,13 @@ void Matrix::move_cursor(unsigned int i, unsigned int j)
     unsigned int r = mtx.rows();  // r contains 3       
   +-------------------------------------------------------+*/
 unsigned int Matrix::lines() const { return _M.size(); }
-unsigned int Matrix::rows() const { return _M.at(0).size(); }
+unsigned int Matrix::rows() const
+{
+    if (lines() == 0)
+        { return 0; }
+
+    return _M.at(0).size();
+}
 
 
 // [3.3] - Element at position (i,j)
