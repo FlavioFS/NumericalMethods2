@@ -10,7 +10,7 @@
                         Static Methods
 ========================================================== */
 
-/* --------- Equally spaced derivatives --------- */
+/* --------- First Derivative - Equally Spaced --------- */
 // [1] - Backward Difference
 double Derivative::backDiff (Function f, double value, double spacing, bool higher_precision)
 {
@@ -58,7 +58,8 @@ double Derivative::centDiff (Function f, double value, double spacing, bool high
     return ( f.run(front1) - f.run(rear1) ) / (2*spacing);
 }
 
-/* --------- Randomly spaced derivatives --------- */
+
+/* --------- First Derivative - Randomly Spaced --------- */
 // [4] - Backward Difference
 double Derivative::backDiffRandom (std::vector<point> function)
 {
@@ -93,4 +94,36 @@ double Derivative::centDiffRandom (std::vector<point> function)
 
     std::cout << EXCEPTION_C_DIFF_SIZE;
     throw        EXCEPTION_C_DIFF_SIZE;
+}
+
+
+/* --------- Second Derivative - Equally Spaced --------- */
+// [7] - Backward Difference
+double Derivative::backDiffSecond (Function f, double value, double spacing)
+{
+    double
+        rear1 = value -   spacing,
+        rear2 = value - 2*spacing;
+
+    return ( f.run(value) - 2*f.run(rear1) + f.run(rear2) ) / (spacing*spacing);
+}
+
+// [8] - Forward Difference
+double Derivative::forwDiffSecond (Function f, double value, double spacing)
+{
+    double
+        front1 = value +   spacing,
+        front2 = value + 2*spacing;
+
+    return ( f.run(front2) - 2*f.run(front1) + f.run(value) ) / (spacing*spacing);
+}
+
+// [9] - Central Difference
+double Derivative::centDiffSecond (Function f, double value, double spacing)
+{
+    double
+        rear1  = value -   spacing,
+        front1 = value +   spacing;
+
+    return ( f.run(front1) - 2*f.run(value) + f.run(rear1) ) / (spacing*spacing);
 }
