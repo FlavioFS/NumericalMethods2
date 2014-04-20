@@ -59,46 +59,33 @@ double Derivative::centDiff (Function f, double value, double spacing, bool high
 }
 
 
-/* --------- First Derivative - Randomly Spaced --------- */
+/* --------- Lagrange Derivative - Randomly Spaced --------- */
 // [4] - Backward Difference
-double Derivative::backDiffRandom (std::vector<point> function)
-{
-    if ( function.size() >= 3 )
+double Derivative::lagrangeDiff (std::vector<point> function, double value)
+{   
+    if ( function.size() == 3 )
     {
-        return 0;
+        double lagrange = 0;
+
+        lagrange += function[0].y*(2*value - function[1].x - function[2].x) /
+                  ( (function[0].x - function[1].x)*(function[0].x - function[2].x) );
+
+        lagrange += function[1].y*(2*value - function[0].x - function[2].x) /
+                  ( (function[1].x - function[0].x)*(function[1].x - function[2].x) );
+
+        lagrange += function[2].y*(2*value - function[0].x - function[1].x) /
+                  ( (function[2].x - function[0].x)*(function[2].x - function[1].x) );
+
+        return lagrange;
     }
 
     std::cout << EXCEPTION_B_DIFF_SIZE;
     throw        EXCEPTION_B_DIFF_SIZE;
 }
 
-// [5] - Forward Difference
-double Derivative::forwDiffRandom (std::vector<point> function)
-{
-    if ( function.size() >= 3 )
-    {
-        return 0;
-    }
-
-    std::cout << EXCEPTION_F_DIFF_SIZE;
-    throw        EXCEPTION_F_DIFF_SIZE;
-}
-
-// [6] - Central Difference
-double Derivative::centDiffRandom (std::vector<point> function)
-{
-    if ( function.size() >= 3 )
-    {
-        return 0;
-    }
-
-    std::cout << EXCEPTION_C_DIFF_SIZE;
-    throw        EXCEPTION_C_DIFF_SIZE;
-}
-
 
 /* --------- Second Derivative - Equally Spaced --------- */
-// [7] - Backward Difference
+// [5] - Backward Difference
 double Derivative::backDiffSecond (Function f, double value, double spacing)
 {
     double
@@ -108,7 +95,7 @@ double Derivative::backDiffSecond (Function f, double value, double spacing)
     return ( f.run(value) - 2*f.run(rear1) + f.run(rear2) ) / (spacing*spacing);
 }
 
-// [8] - Forward Difference
+// [6] - Forward Difference
 double Derivative::forwDiffSecond (Function f, double value, double spacing)
 {
     double
@@ -118,7 +105,7 @@ double Derivative::forwDiffSecond (Function f, double value, double spacing)
     return ( f.run(front2) - 2*f.run(front1) + f.run(value) ) / (spacing*spacing);
 }
 
-// [9] - Central Difference
+// [7] - Central Difference
 double Derivative::centDiffSecond (Function f, double value, double spacing)
 {
     double

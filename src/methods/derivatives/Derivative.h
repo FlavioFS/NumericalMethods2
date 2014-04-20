@@ -43,14 +43,12 @@ class Derivative
         static double centDiff(Function f, double value, double spacing, bool higher_precision);    // [3]
 
         // First Derivative - Intervals randomly spaced
-        static double backDiffRandom(std::vector<point> function);  // [4]
-        static double forwDiffRandom(std::vector<point> function);  // [5]
-        static double centDiffRandom(std::vector<point> function);  // [6]
+        static double lagrangeDiff(std::vector<point> function, double value);  // [4]
 
         // Second Derivative - Intervals equally spaced
-        static double backDiffSecond(Function f, double value, double spacing); // [7]
-        static double forwDiffSecond(Function f, double value, double spacing); // [8]
-        static double centDiffSecond(Function f, double value, double spacing); // [9]
+        static double backDiffSecond(Function f, double value, double spacing); // [5]
+        static double forwDiffSecond(Function f, double value, double spacing); // [6]
+        static double centDiffSecond(Function f, double value, double spacing); // [7]
 };
 
 #endif // DERIVATIVE_H
