@@ -46,6 +46,7 @@ class Matrix
         ========================================================== */
         void resize(unsigned int line_count, unsigned int row_count);   // [5.1] - Resizing
         const Matrix transpose() const;                                 // [5.2] - Returns transpose of this matrix
+        const double normalize() const;                                 // [5.3] - Matrix normalization
 
 
     private:
