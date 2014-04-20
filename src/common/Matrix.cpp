@@ -9,12 +9,12 @@
                 1. Constructors & Destructors
 ========================================================== */
 // [1.1] - Constructor
-/*+-------------------------------------------------------+*
- *|   Matrix mtx (3,5);                                   |*
- *|                                                       |*
- *|   // mtx has 3 lines and 4 rows.                      |*
- *|   // Index starts at 1, not 0.                        |*
- *+-------------------------------------------------------+*/
+/*+-------------------------------------------------------+
+    Matrix mtx (3,5);                                   
+                                                        
+    // mtx has 3 lines and 4 rows.                      
+    // Index starts at 1, not 0.                        
+  +-------------------------------------------------------+*/
 Matrix::Matrix(unsigned int line_count, unsigned int row_count)
 :_line_cursor(1), _row_cursor(1)
 {
@@ -23,9 +23,9 @@ Matrix::Matrix(unsigned int line_count, unsigned int row_count)
 
 
 // [1.2] - Empty Constructor
-/*+-------------------------------------------------------+*
- *|   Matrix mtx;                                         |*
- *+-------------------------------------------------------+*/
+/*+-------------------------------------------------------+
+    Matrix mtx;                                         
+  +-------------------------------------------------------+*/
 Matrix::Matrix()
 :_line_cursor(1), _row_cursor(1)
 {
@@ -34,11 +34,11 @@ Matrix::Matrix()
 
 
 // [1.3] - Destructor
-/*+-------------------------------------------------------+*
- *|   Matrix mtx (10,10);                                 |*
- *|   (...)                                               |*
- *|   delete mtx;                                         |*
- *+-------------------------------------------------------+*/
+/*+-------------------------------------------------------+
+    Matrix mtx (10,10);                                 
+    (...)                                               
+    delete mtx;                                         
+  +-------------------------------------------------------+*/
 Matrix::~Matrix()
 {
     this->clear();
@@ -49,12 +49,12 @@ Matrix::~Matrix()
 ========================================================== */
 // [2.1] - Put (set element)
 // If i and j are invalid, nothing happens.
-/*+-------------------------------------------------------+*
- *|   Matrix mtx (2,3);                                   |*
- *|                                                       |*
- *|   // mtx's element at (1,1) receives 8000             |*
- *|   mtx.put(8000, 1, 1);                                |*
- *+-------------------------------------------------------+*/
+/*+-------------------------------------------------------+
+    Matrix mtx (2,3);                                   
+                                                        
+    // mtx's element at (1,1) receives 8000             
+    mtx.put(8000, 1, 1);                                
+  +-------------------------------------------------------+*/
 void Matrix::put(double value, unsigned int i, unsigned int j)
 {
     if (!valid_bounds(i, j))
@@ -73,22 +73,22 @@ void Matrix::put(double value, unsigned int i, unsigned int j)
 // Use "[4.6] operator >>" instead of "[2.2] put_next"
 //    When the cursor arrives at the end, it goes back to
 // the first element: (1,1);
-/*+-------------------------------------------------------+*
- *|   Matrix mtx (2,2);                                   |*
- *|   // mtx:                                             |*
- *|   //  0 0                                             |*
- *|   //  0 0                                             |*
- *|                                                       |*
- *|   mtx.put_next(7);                                    |*
- *|   // mtx:                                             |*
- *|   //  7 0                                             |*
- *|   //  0 0                                             |*
- *|                                                       |*
- *|   mtx.put_next(3);                                    |*
- *|   // mtx:                                             |*
- *|   //  7 3                                             |*
- *|   //  0 0                                             |*
- *+-------------------------------------------------------+*/
+/*+-------------------------------------------------------+
+    Matrix mtx (2,2);                                   
+    // mtx:                                             
+    //  0 0                                             
+    //  0 0                                             
+                                                        
+    mtx.put_next(7);                                    
+    // mtx:                                             
+    //  7 0                                             
+    //  0 0                                             
+                                                        
+    mtx.put_next(3);                                    
+    // mtx:                                             
+    //  7 3                                             
+    //  0 0                                             
+  +-------------------------------------------------------+*/
 void Matrix::put_next(double value)
 {
     // If cursor position is valid
@@ -123,22 +123,22 @@ void Matrix::put_next(double value)
 
 // [2.3] - Moves cursor to element (i,j)
 // If i and j are invalid, nothing happens.
-/*+-------------------------------------------------------+*
- *|   Matrix mtx (3,3);                                   |*
- *|   mtx << 7; // mtx(1,1) contains 7                    |*
- *|   mtx << 3; // mtx(1,2) contains 3                    |*
- *|   // mtx:                                             |*
- *|   //  7 3 0                                           |*
- *|   //  0 0 0                                           |*
- *|   //  0 0 0                                           |*
- *|                                                       |*
- *|   mtx.move_cursor(3,3);                               |*
- *|   mtx << 5; // mtx(3,3) contains 5                    |*
- *|   // mtx:                                             |*
- *|   //  7 3 0                                           |*
- *|   //  0 0 0                                           |*
- *|   //  0 0 5                                           |*
- *+-------------------------------------------------------+*/
+/*+-------------------------------------------------------+
+    Matrix mtx (3,3);                                   
+    mtx << 7; // mtx(1,1) contains 7                    
+    mtx << 3; // mtx(1,2) contains 3                    
+    // mtx:                                             
+    //  7 3 0                                           
+    //  0 0 0                                           
+    //  0 0 0                                           
+                                                        
+    mtx.move_cursor(3,3);                               
+    mtx << 5; // mtx(3,3) contains 5                    
+    // mtx:                                             
+    //  7 3 0                                           
+    //  0 0 0                                           
+    //  0 0 5                                           
+  +-------------------------------------------------------+*/
 void Matrix::move_cursor(unsigned int i, unsigned int j)
 {
     if (valid_bounds(i, j))
@@ -153,29 +153,29 @@ void Matrix::move_cursor(unsigned int i, unsigned int j)
 ========================================================== */
 // [3.1] - Line amount
 // [3.2] - Row  amount
-/*+-------------------------------------------------------+*
- *|   Matrix mtx(2,3);                                    |*
- *|   unsigned int l = mtx.lines(); // l contains 2       |*
- *|   unsigned int r = mtx.rows();  // r contains 3       |*
- *+-------------------------------------------------------+*/
+/*+-------------------------------------------------------+
+    Matrix mtx(2,3);                                    
+    unsigned int l = mtx.lines(); // l contains 2       
+    unsigned int r = mtx.rows();  // r contains 3       
+  +-------------------------------------------------------+*/
 unsigned int Matrix::lines() const { return _M.size(); }
 unsigned int Matrix::rows() const { return _M.at(0).size(); }
 
 
 // [3.3] - Element at position (i,j)
 // If i and j are invalid, warning and returns 0.
-/*+-------------------------------------------------------+*
- *|   Matrix mtx(2,2);                                    |*
- *|   mtx >> 11;                                          |*
- *|   mtx >> 12;                                          |*
- *|   mtx >> 21;                                          |*
- *|   mtx >> 22;                                          |*
- *|   // mtx:                                             |*
- *|   //  11 12                                           |*
- *|   //  21 22                                           |*
- *|                                                       |*
- *|   double v = mtx.get(1,2); // v contains 12           |*
- *+-------------------------------------------------------+*/
+/*+-------------------------------------------------------+
+    Matrix mtx(2,2);                                    
+    mtx >> 11;                                          
+    mtx >> 12;                                          
+    mtx >> 21;                                          
+    mtx >> 22;                                          
+    // mtx:                                             
+    //  11 12                                           
+    //  21 22                                           
+                                                        
+    double v = mtx.get(1,2); // v contains 12           
+  +-------------------------------------------------------+*/
 double Matrix::get(unsigned int i, unsigned int j) const
 {
     if (!valid_bounds(i, j))
@@ -195,25 +195,25 @@ double Matrix::get(unsigned int i, unsigned int j) const
                     4. Overloaded Operations
 ========================================================== */
 // [4.1] - Attribution
-/*+-------------------------------------------------------+*
- *|   Matrix mtx(2,2);                                    |*
- *|   mtx >> 11;                                          |*
- *|   mtx >> 12;                                          |*
- *|   mtx >> 21;                                          |*
- *|   mtx >> 22;                                          |*
- *|   // mtx:                                             |*
- *|   //  11 12                                           |*
- *|   //  21 22                                           |*
- *|                                                       |*
- *|   // Copy by value:                                   |*
- *|   Matrix copy;                                        |*
- *|   copy = mtx;                                         |*
- *|                                                       |*
- *|   // copied: elements, cursor, size                   |*
- *|   //  copy:                                           |*
- *|   //   11 12                                          |*
- *|   //   21 22                                          |*
- *+-------------------------------------------------------+*/
+/*+-------------------------------------------------------+
+    Matrix mtx(2,2);                                    
+    mtx >> 11;                                          
+    mtx >> 12;                                          
+    mtx >> 21;                                          
+    mtx >> 22;                                          
+    // mtx:                                             
+    //  11 12                                           
+    //  21 22                                           
+                                                        
+    // Copy by value:                                   
+    Matrix copy;                                        
+    copy = mtx;                                         
+                                                        
+    // copied: elements, cursor, size                   
+    //  copy:                                           
+    //   11 12                                          
+    //   21 22                                          
+  +-------------------------------------------------------+*/
 Matrix& Matrix::operator=(const Matrix A)
 {
     // Protection against self-assignment
@@ -237,36 +237,36 @@ Matrix& Matrix::operator=(const Matrix A)
 
 // [4.2] - Sum
 // If i and j are invalid, warns and throws exception.
-/*+-------------------------------------------------------+*
- *|   Matrix m1(1,2);                                     |*
- *|   m1 >> 1;    m1 >> 2;                                |*
- *|                                                       |*
- *|   Matrix m2(1,2);                                     |*
- *|   m2 >> 3;    m2 >> 5;                                |*
- *|                                                       |*
- *|   Matrix sum = m1 + m2;                               |*
- *|   Matrix *sump = new Matrix;                          |*
- *|   *sump = sum;                                        |*
- *|                                                       |*
- *|   std::cout << std::setw(3) << m1 + m2 << std::endl;  |*
- *|   std::cout << std::setw(3) << sum     << std::endl;  |*
- *|   std::cout << std::setw(3) << *sump   << std::endl;  |*
- *|   // Result:                                          |*
- *|        1   2                                          |*
- *|     +---+---+                                         |*
- *|   1 |  4|  7|                                         |*
- *|     +---+---+                                         |*
- *|                                                       |*
- *|        1   2                                          |*
- *|     +---+---+                                         |*
- *|   1 |  4|  7|                                         |*
- *|     +---+---+                                         |*
- *|                                                       |*
- *|        1   2                                          |*
- *|     +---+---+                                         |*
- *|   1 |  4|  7|                                         |*
- *|     +---+---+                                         |*
- *+-------------------------------------------------------+*/
+/*+-------------------------------------------------------+
+    Matrix m1(1,2);                                     
+    m1 >> 1;    m1 >> 2;                                
+                                                        
+    Matrix m2(1,2);                                     
+    m2 >> 3;    m2 >> 5;                                
+                                                        
+    Matrix sum = m1 + m2;                               
+    Matrix *sump = new Matrix;                          
+    *sump = sum;                                        
+                                                        
+    std::cout << std::setw(3) << m1 + m2 << std::endl;  
+    std::cout << std::setw(3) << sum     << std::endl;  
+    std::cout << std::setw(3) << *sump   << std::endl;  
+    // Result:                                          
+         1   2                                          
+      +---+---+                                         
+    1 |  4|  7|                                         
+      +---+---+                                         
+                                                        
+         1   2                                          
+      +---+---+                                         
+    1 |  4|  7|                                         
+      +---+---+                                         
+                                                        
+         1   2                                          
+      +---+---+                                         
+    1 |  4|  7|                                         
+      +---+---+                                         
+  +-------------------------------------------------------+*/
 const Matrix Matrix::operator+(const Matrix A) const
 {
     // In order to sum, the lines and rows must match each other
@@ -340,6 +340,26 @@ const Matrix Matrix::operator-(const Matrix A) const{
 
 
 // [4.4] - Product by Matrix
+/*+-------------------------------------------------------+
+    Matrix m1(2,3);                                     
+    m1 >> 1;    m1 >> 2;    m1 >> 3;
+    m1 >> 4;    m1 >> 5;    m1 >> 6;
+                                                        
+    Matrix m2(3,1);                                     
+    m2 >> 1;
+    m2 >> 2;
+    m2 >> 3;
+                                                        
+    std::cout << std::setw(3) << m1 * m2 << std::endl;  
+    
+    // Result:                                          
+            1
+         +---+
+       1 | 14|
+         +---+
+       2 | 32|
+         +---+
+  +-------------------------------------------------------+*/
 const Matrix Matrix::operator*(const Matrix A) const
 {
     // In order to multiply, first matrix row count must match second matrix line count
@@ -385,24 +405,24 @@ const Matrix Matrix::operator*(const Matrix A) const
 
 
 // [4.5] - Product by number (double)
-/*+-------------------------------------------------------+*
- *|   Matrix m1(2,2);                                     |*
- *|   m1 >> 1;    m1 >> 0;                                |*
- *|   m1 >> 0;    m1 >> 1;                                |*
- *|                                                       |*
- *|   std::cout << setw(3) << m1 * 4 << std::endl;        |*
- *|   // Result:                                          |*
- *|        1   2                                          |*
- *|     +---+---+                                         |*
- *|   1 |  4|  0|                                         |*
- *|     +---+---+                                         |*
- *|   2 |  0|  4|                                         |*
- *|     +---+---+                                         |*
- *|                                                       |*
- *|   IT IS FORBIDDEN TO WRITE THE NUMBER AT LEFT!        |*
- *|   Do not do this:  4 * m1;                            |*
- *|   Only this is allowed: m1 * 4;                       |*
- *+-------------------------------------------------------+*/
+/*+-------------------------------------------------------+
+    Matrix m1(2,2);                                     
+    m1 >> 2;    m1 >> 1;                                
+    m1 >> 1;    m1 >> 2;                                
+                                                        
+    std::cout << setw(3) << m1 * 4 << std::endl;        
+    // Result:                                          
+         1   2                                          
+      +---+---+                                         
+    1 |  8|  4|                                         
+      +---+---+                                         
+    2 |  4|  8|                                         
+      +---+---+                                         
+                                                        
+    IT IS FORBIDDEN TO WRITE THE NUMBER AT LEFT!        
+    Do not do this:  4 * m1;                            
+    Only this is allowed: m1 * 4;                       
+  +-------------------------------------------------------+*/
 const Matrix Matrix::operator*(const double alpha) const
 {
     Matrix product (lines(), rows());
@@ -422,17 +442,17 @@ const Matrix Matrix::operator*(const double alpha) const
 
 
 // [4.6] - Stream input
-/*+-------------------------------------------------------+*
- *|   Matrix mtx(2,2);                                    |*
- *|   mtx >> 11;                                          |*
- *|   mtx >> 12;                                          |*
- *|   mtx >> 21;                                          |*
- *|   mtx >> 22;                                          |*
- *|                                                       |*
- *|   // mtx:                                             |*
- *|   //  11 12                                           |*
- *|   //  21 22                                           |*
- *+-------------------------------------------------------+*/
+/*+-------------------------------------------------------+
+    Matrix mtx(2,2);                                    
+    mtx >> 11;                                          
+    mtx >> 12;                                          
+    mtx >> 21;                                          
+    mtx >> 22;                                          
+                                                        
+    // mtx:                                             
+    //  11 12                                           
+    //  21 22                                           
+  +-------------------------------------------------------+*/
 void Matrix::operator >> (const double& value)
 {
     put_next(value);
@@ -441,34 +461,34 @@ void Matrix::operator >> (const double& value)
 
 // [4.7] - Stream output
 // Editable with setw(width)
-/*+-------------------------------------------------------+*
- *|   Matrix mtx (2,2);                                   |*
- *|   std::cout << std::setw(2) << mtx << std::endl;      |*
- *|   std::cout << std::setw(6) << mtx << std::endl;      |*
- *|                                                       |*
- *|   // Result:                                          |*
- *|        1  2                                           |*
- *|     +--+--+                                           |*
- *|   1 | 0| 0|                                           |*
- *|     +--+--+                                           |*
- *|   2 | 0| 0|                                           |*
- *|     +--+--+                                           |*
- *|                                                       |*
- *|           1      2                                    |*
- *|     +------+------+                                   |*
- *|   1 |     0|     0|                                   |*
- *|     +------+------+                                   |*
- *|   2 |     0|     0|                                   |*
- *|     +------+------+                                   |*
- *+-------------------------------------------------------+*/
+/*+-------------------------------------------------------+
+    Matrix mtx (2,2);                                   
+    std::cout << std::setw(2) << mtx << std::endl;      
+    std::cout << std::setw(6) << mtx << std::endl;      
+                                                        
+    // Result:                                          
+        1  2                                            
+      +--+--+                                           
+    1 | 0| 0|                                           
+      +--+--+                                           
+    2 | 0| 0|                                           
+      +--+--+                                           
+                                                        
+            1      2                                    
+      +------+------+                                   
+    1 |     0|     0|                                   
+      +------+------+                                   
+    2 |     0|     0|                                   
+      +------+------+                                   
+  +-------------------------------------------------------+*/
 std::ostream& operator << (std::ostream& out, const Matrix& M)
 {
     // Retrieving size through std::setw;
     unsigned int width = std::cout.width();
     std::cout << std::setw(0);
 
-    // Size cannot be 0. Default size is 6.
-    if (width < 1) { width = 6; }
+    // Size cannot be 0. Default size is 13.
+    if (width < 1) { width = 13; }
 
     // Row Index
     out << "      ";
@@ -524,21 +544,21 @@ std::ostream& operator << (std::ostream& out, const Matrix& M)
 
 // [5.1] Resizing
 // If line_count or row_count is 0, does nothing.
-/*+-------------------------------------------------------+*
- *|   // mtx contains:                                    |*
- *|   //  11 12                                           |*
- *|   //  21 22                                           |*
- *|                                                       |*
- *|   mtx.resize(3,3);                                    |*
- *|   // mtx contains:                                    |*
- *|   //  11 12 0                                         |*
- *|   //  21 22 0                                         |*
- *|   //   0  0 0                                         |*
- *|                                                       |*
- *|   mtx.resize(1,1);                                    |*
- *|   // mtx contains:                                    |*
- *|   //  11                                              |*
- *+-------------------------------------------------------+*/
+/*+-------------------------------------------------------+
+    // mtx contains:                                    
+    //  11 12                                           
+    //  21 22                                           
+                                                        
+    mtx.resize(3,3);                                    
+    // mtx contains:                                    
+    //  11 12 0                                         
+    //  21 22 0                                         
+    //   0  0 0                                         
+                                                        
+    mtx.resize(1,1);                                    
+    // mtx contains:                                    
+    //  11                                              
+  +-------------------------------------------------------+*/
 void Matrix::resize(unsigned int line_count, unsigned int row_count)
 {    
     if (line_count != 0 && row_count != 0)
@@ -561,26 +581,26 @@ void Matrix::resize(unsigned int line_count, unsigned int row_count)
 
 
 // [5.2] - Returns transpose of this matrix
-/*+-------------------------------------------------------+*
- *|   Matrix mtx (3,3);                                   |*
- *|   m1 >>  11;   m1 >>  12;   m1 >>  13;                |*
- *|   m1 >>  21;   m1 >>  22;   m1 >>  23;                |*
- *|   m1 >>  31;   m1 >>  32;   m1 >>  33;                |*
- *|                                                       |*
- *|   cout << "m1-t:\n" << setw(3)                        |*
- *|        << m1.transpose() << endl;                     |*
- *|                                                       |*
- *|   // Result                                           |*
- *|        1   2   3                                      |*
- *|     +---+---+---+                                     |*
- *|   1 | 11| 21| 31|                                     |*
- *|     +---+---+---+                                     |*
- *|   2 | 12| 22| 32|                                     |*
- *|     +---+---+---+                                     |*
- *|   3 | 13| 23| 33|                                     |*
- *|     +---+---+---+                                     |*
- *|                                                       |*
- *+-------------------------------------------------------+*/
+/*+-------------------------------------------------------+
+    Matrix mtx (3,3);                                   
+    m1 >>  11;   m1 >>  12;   m1 >>  13;                
+    m1 >>  21;   m1 >>  22;   m1 >>  23;                
+    m1 >>  31;   m1 >>  32;   m1 >>  33;                
+                                                        
+    cout << "m1-t:\n" << setw(3)                        
+         << m1.transpose() << endl;                     
+                                                        
+    // Result                                           
+         1   2   3                                      
+      +---+---+---+                                     
+    1 | 11| 21| 31|                                     
+      +---+---+---+                                     
+    2 | 12| 22| 32|                                     
+      +---+---+---+                                     
+    3 | 13| 23| 33|                                     
+      +---+---+---+                                     
+                                                        
+  +-------------------------------------------------------+*/
 const Matrix Matrix::transpose() const
 {
     Matrix T (rows(), lines());
@@ -599,14 +619,14 @@ const Matrix Matrix::transpose() const
                            Private
 ========================================================== */
 // Verifies if the given bounds are valid
-/*+-------------------------------------------------------+*
- *|   Matrix mtx (2,3);                                   |*
- *|                                                       |*
- *|   mtx.valid_bounds(3,2);  // Returns false            |*
- *|   mtx.valid_bounds(0,2);  // Returns false            |*
- *|   mtx.valid_bounds(1,1);  // Returns true             |*
- *|   mtx.valid_bounds(2,3);  // Returns true             |*
- *+-------------------------------------------------------+*/
+/*+-------------------------------------------------------+
+    Matrix mtx (2,3);                                   
+                                                        
+    mtx.valid_bounds(3,2);  // Returns false            
+    mtx.valid_bounds(0,2);  // Returns false            
+    mtx.valid_bounds(1,1);  // Returns true             
+    mtx.valid_bounds(2,3);  // Returns true             
+  +-------------------------------------------------------+*/
 bool Matrix::valid_bounds(unsigned int i, unsigned int j) const
 {
     if (i == 0 || i > lines() ||

@@ -9,28 +9,28 @@ class Matrix
     public:
 
 		/* ==========================================================
-                         Constructors & Destructors
+                         1. Constructors & Destructors
         ========================================================== */
     	Matrix(unsigned int line_count, unsigned int row_count);        // [1.1] - Constructor
     	Matrix();                                                       // [1.2] - Default Constructor
         ~Matrix();                                                      // [1.3] - Destructor
 
         /* ==========================================================
-                                     Set
+                                   2. Set
         ========================================================== */
         void put(double value, unsigned int i, unsigned int j);         // [2.1] - Put (set element)
         void put_next(double value);                                    // [2.2] - Puts value at cursor
         void move_cursor(unsigned int i, unsigned int j);               // [2.3] - Moves cursor to element (i,j)
 
          /* ==========================================================
-                                     Get
+                                   3. Get
         ========================================================== */
         unsigned int lines() const;                                     // [3.1] - Line Amount
         unsigned int rows() const;                                      // [3.2] - Row Amount
         double get(unsigned int i, unsigned int j) const;               // [3.3] - Element at position (i,j)
 
         /* ==========================================================
-                            Overloaded Operations
+                           4. Overloaded Operations
         ========================================================== */
               Matrix& operator = (const Matrix);                        // [4.1] - Attribution
         const Matrix  operator + (const Matrix) const;                  // [4.2] - Sum
@@ -42,7 +42,7 @@ class Matrix
             operator << (std::ostream&, const Matrix&);
 
         /* ==========================================================
-                              Other Operations
+                            5. Other Operations
         ========================================================== */
         void resize(unsigned int line_count, unsigned int row_count);   // [5.1] - Resizing
         const Matrix transpose() const;                                 // [5.2] - Returns transpose of this matrix
