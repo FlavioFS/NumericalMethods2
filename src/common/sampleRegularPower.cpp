@@ -51,31 +51,25 @@ bool SampleRegularPower::readSamplesFromFile(const char* filePath)
     if (sampleFile.good())
     {
 
-        // Used for tolerance and matrix elements
+        // Used for matrix elements
         double element;
 
         // Reads the order
         sampleFile >> this->order;
 
-        // Create an auxiliary matrix to store elements
-        Matrix matrix (getOrder(), getOrder());
+        // Resizes the matrix to have that order.
+        this->samples.resize(getOrder(), getOrder());
 
-        // Reads order*order elements of the matrix
+        // Reads order*order elements from the matrix
         for(unsigned int n = 0; n < (getOrder()*getOrder()); n++)
         {
             sampleFile >> element;
-            matrix >> element;
+            samples >> element;
         }
 
-        sampleFile >> this->e;
-        
         /* +-----------------------------------+ *
         * | Read the u here, for shifted power | *
         * +------------------------------------+ */
-
-        // FALTA ESSA PARTE.
-        //this->samples.resize(getOrder(), getOrder());
-        //this->samples = matrix;
 
         // Feedback
         cout << endl
@@ -85,7 +79,7 @@ bool SampleRegularPower::readSamplesFromFile(const char* filePath)
              << "Input path ....... '" << filePath << "'" << endl
              << "Matrix Order ..... " << getOrder() << endl
              << "Tolerance ........ " << getE() << endl
-             << "Matrix............\n\n" << matrix << endl
+             << "Matrix............\n\n" << this->samples << endl
              << "===============================================" << endl;
 
     }
