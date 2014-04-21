@@ -9,4 +9,5 @@ all:
 	$(MAKE) -C src/methods/gaussian-quadrature
 	$(MAKE) -C src/methods/open-newton-cotes
 	$(MAKE) -C src/methods/multiple-integral
+	$(MAKE) -C src/methods/derivatives
 
