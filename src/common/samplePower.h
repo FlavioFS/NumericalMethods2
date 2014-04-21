@@ -1,5 +1,5 @@
-#ifndef SAMPLE_REGULAR_POWER_H
-#define SAMPLE_REGULAR_POWER_H
+#ifndef SAMPLE_POWER_H
+#define SAMPLE_POWER_H
 
 #include "../includes/ISample.h"
 #include "Matrix.h"
@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class SampleRegularPower : public ISample
+class SamplePower : public ISample
 {
 
 public:
@@ -15,7 +15,7 @@ public:
     /* ==========================================================
                              Constructors
     ========================================================== */
-    SampleRegularPower();
+    SamplePower();
 
     /* ==========================================================
                                  Gets
@@ -47,4 +47,4 @@ private:
 
 };
 
-#endif // SAMPLE_REGULAR_POWER_H
+#endif // SAMPLE_POWER_H

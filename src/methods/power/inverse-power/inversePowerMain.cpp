@@ -7,7 +7,7 @@
 
 #include "../../../includes/IMethod.h"
 #include "../../../common/samplePower.h"
-#include "RegularPower.h"
+#include "InversePower.h"
 
 using namespace std;
 
@@ -16,16 +16,16 @@ bool testMethod();
 int main(int argc, char *argv[])
 {
     // Read samples from file and store them
-    SamplePower *sampleRP = new SamplePower();
-    sampleRP->readSamplesFromFile(argv[1]);
+    SamplePower *sampleIP = new SamplePower();
+    sampleIP->readSamplesFromFile(argv[1]);
 
-    RegularPower regularPower ( sampleRP->getSamples(), sampleRP->getOrder(), sampleRP->getE());
-    regularPower.run();
+    InversePower inversePower ( sampleIP->getSamples(), sampleIP->getOrder(), sampleIP->getE());
+    inversePower.run();
 
     // TODO put this on the view logic
     cout << endl << "Dominant Eigenvalue"
          << endl << "____________________________"
-         << endl << " Regular Power | " << setw(10) << regularPower.getArea()
+         << endl << " Regular Power | " << setw(10) << inversePower.getArea()
          << endl << "____________________________" << endl;
 
     return 0;

@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iomanip>
 
-#include "sampleRegularPower.h"
+#include "samplePower.h"
 
 using namespace std;
 
@@ -10,7 +10,7 @@ using namespace std;
 /* ==========================================================
                          Constructors
 ========================================================== */
-SampleRegularPower::SampleRegularPower()
+SamplePower::SamplePower()
 {
    
 }
@@ -18,28 +18,28 @@ SampleRegularPower::SampleRegularPower()
 /* ==========================================================
                              Gets
 ========================================================== */
-Matrix SampleRegularPower::getSamples()
+Matrix SamplePower::getSamples()
 { return this->samples; }
 
-double SampleRegularPower::getE()
+double SamplePower::getE()
 { return this->e; }
 
-int SampleRegularPower::getOrder()
+int SamplePower::getOrder()
 { return this->order; }
 
 /* ==========================================================
                              Sets
 ========================================================== */
-void SampleRegularPower::setE(double e)
+void SamplePower::setE(double e)
 { this->e = e; }
 
-void SampleRegularPower::setOrder(int order)
+void SamplePower::setOrder(int order)
 { this->order = order; }
 
 /* ==========================================================
                              Logic
 ========================================================== */
-bool SampleRegularPower::readSamplesFromFile(const char* filePath)
+bool SamplePower::readSamplesFromFile(const char* filePath)
 {
     ifstream sampleFile (filePath);
 
@@ -77,7 +77,7 @@ bool SampleRegularPower::readSamplesFromFile(const char* filePath)
         // Feedback
         cout << endl
              << "===============================================" << endl
-             << "================ Regular Power ================" << endl
+             << "================ ==== Power ===================" << endl
              << "===============================================" << endl << endl
              << "Input path ....... '" << filePath << "'" << endl
              << "Matrix Order ..... " << getOrder() << endl
