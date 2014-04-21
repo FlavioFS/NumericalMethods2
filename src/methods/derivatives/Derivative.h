@@ -74,6 +74,11 @@ class Derivative
         static double backDiffSecond(Function f, double value, double spacing); // [5]
         static double forwDiffSecond(Function f, double value, double spacing); // [6]
         static double centDiffSecond(Function f, double value, double spacing); // [7]
+
+        // Richardson
+        static double backRichardson(Function f, double value, double spacing, bool higher_precision); // [8]
+        static double forwRichardson(Function f, double value, double spacing, bool higher_precision); // [9]
+        static double centRichardson(Function f, double value, double spacing, bool higher_precision); // [10]
 };
 
 #endif // DERIVATIVE_H

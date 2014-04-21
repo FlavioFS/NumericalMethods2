@@ -7,10 +7,8 @@
 #define EXCEPTION_C_DIFF_SIZE "Exception: Central Difference small sample exception"
 
 /* ==========================================================
-                        Static Methods
+              First Derivative - Equally Spaced
 ========================================================== */
-
-/* --------- First Derivative - Equally Spaced --------- */
 // [1] - Backward Difference
 double Derivative::backDiff (Function f, double value, double spacing, bool higher_precision)
 {
@@ -59,7 +57,9 @@ double Derivative::centDiff (Function f, double value, double spacing, bool high
 }
 
 
-/* --------- Lagrange Derivative - Randomly Spaced --------- */
+/* ==========================================================
+             Lagrange Derivative - Randomly Spaced
+========================================================== */
 // [4] - Backward Difference
 double Derivative::lagrangeDiff (std::vector<point> function, double value)
 {   
@@ -84,7 +84,9 @@ double Derivative::lagrangeDiff (std::vector<point> function, double value)
 }
 
 
-/* --------- Second Derivative - Equally Spaced --------- */
+/* ==========================================================
+             Second Derivative - Equally Spaced
+========================================================== */
 // [5] - Backward Difference
 double Derivative::backDiffSecond (Function f, double value, double spacing)
 {
@@ -113,4 +115,47 @@ double Derivative::centDiffSecond (Function f, double value, double spacing)
         front1 = value +   spacing;
 
     return ( f.run(front1) - 2*f.run(value) + f.run(rear1) ) / (spacing*spacing);
+}
+
+
+/* ==========================================================
+                 Richardson - Equally Spaced
+========================================================== */
+//[8] - Backward Richardson
+double Derivative::backRichardson(Function f, double value, double spacing, bool higher_precision)
+{
+    double
+        d1,
+        d2;
+
+    d1 = Derivative::backDiff(f, value, spacing, higher_precision);
+    d2 = Derivative::backDiff(f, value, spacing/2, higher_precision);
+
+    return (4*d2 - d1)/3;
+}
+
+//[9] - Forward Richardson
+double Derivative::forwRichardson(Function f, double value, double spacing, bool higher_precision)
+{
+    double
+        d1,
+        d2;
+
+    d1 = Derivative::forwDiff(f, value, spacing, higher_precision);
+    d2 = Derivative::forwDiff(f, value, spacing/2, higher_precision);
+
+    return (4*d2 - d1)/3;
+}
+
+//[10] - Central Richardson
+double Derivative::centRichardson(Function f, double value, double spacing, bool higher_precision)
+{
+    double
+        d1,
+        d2;
+
+    d1 = Derivative::centDiff(f, value, spacing, higher_precision);
+    d2 = Derivative::centDiff(f, value, spacing/2, higher_precision);
+
+    return (4*d2 - d1)/3;
 }
