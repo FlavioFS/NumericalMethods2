@@ -63,22 +63,61 @@ bool InversePower::run()
     }
     qk >> 1;
 
+    // Builds the A matrix to solve AX = b, using LU
+    double *A;
+    A = new double[order*order]; int count = 0;
+    for (int i = 0; i < order; ++i)
+    {   
+        for (int j = 0; j < order; ++j) {
+            A[count] = this->A.get(i+1, j+1); count++;
+        }
+
+    }
+
+    // Building the new qk vector to pass to LU. 
+    // qk represents 'b', on the system AX = b.
+    double *B1;
+    B1 = new double[order];
+    for (int i = 0; i < order; ++i)
+    {
+        B1[i] = qk.get(i+1, 1);
+    }
+ 
+    // Using LU to solve the system. This two matrix L and U
+    // won't be recalculated. We just change qk.
+    LU *lu = new LU(A, B1, order);
+    lu->calcLU();
+
+    // Used on LU. It represents x solution.
+    Matrix Zk (order, 1);
 
     // Used to store the actual lambda
-    /*Matrix aux(1,1);
+    Matrix aux(1,1);
 
     do {
-
         yk_before = yk_after;
-        Zk = (A * qk);
+       
+        // Building the new qk vector to pass to LU. 
+        // qk represents 'b', on the system AX = b.
+        double *B;
+        B = new double[order];
+        for (int i = 0; i < order; ++i)
+        {
+            B[i] = qk.get(i+1, 1);
+        }
+
+        // Change B on LU decomposition
+        lu->setB(B);
+
+        Zk = lu->applyLU();
         qk = Zk * (1/Zk.normalize());
-        aux = qk.transpose() * A * qk;
+        aux = qk.transpose() * this->A * qk;
         yk_after = aux.get(1,1);
  
       // Checks the convergence
     } while (abs((yk_after - yk_before)) > e);
 
-    setArea(yk_after);*/
+    setArea(yk_after);
 
     return true;
 }
