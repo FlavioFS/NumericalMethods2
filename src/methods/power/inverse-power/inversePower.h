@@ -1,6 +1,7 @@
 #include "../../../includes/IMethod.h"
 #include "../../../common/Matrix.h"
 #include <vector>
+#include "lu.h"
 
 class InversePower : public IMethod
 {

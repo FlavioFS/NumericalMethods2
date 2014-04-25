@@ -23,9 +23,9 @@ int main(int argc, char *argv[])
     inversePower.run();
 
     // TODO put this on the view logic
-    cout << endl << "Dominant Eigenvalue"
+    cout << endl << "Lowest Eigenvalue"
          << endl << "____________________________"
-         << endl << " Regular Power | " << setw(10) << inversePower.getArea()
+         << endl << " Inverse Power | " << setw(10) << inversePower.getArea()
          << endl << "____________________________" << endl;
 
     return 0;
