@@ -22,13 +22,10 @@ double
     value = 0,      // x value 
     spacing = 1;    // spacing between the points
 
-bool
-    higherPrecision = false;  // Higher precision enabled?
-
 int main(int argc, char *argv[])
 {
     // Read samples from file and store them
-    if ( fileRead(argv[1] )
+    if ( fileRead(argv[1]) )
     {
         Function f;
         f.pushBackFunction(f1);
@@ -37,10 +34,11 @@ int main(int argc, char *argv[])
         f.pushBackFunction(f4);
         f.pickFunction(functionChosen);
 
-        double result = Derivative::forwDiff(f, value, spacing, higherPrecision);
+        double result = Derivative::forwDiffSecond(f, value, spacing);
         
         // TODO put this on the view logic
-        cout << endl << "Derivative by Forward Difference method: " << result << endl;
+        cout << "Second Derivative by Forward Difference method: " << result       << endl
+             << "================================================================" << endl;
     }
 
     return 0;
@@ -57,25 +55,19 @@ bool fileRead(const char* filePath)
     // Yes
     if (inFile.good())
     {
-        unsigned int pointAmount;
-
         // Reads info
-        inFile >> pointAmount;
         inFile >> functionChosen;
         inFile >> spacing;
         inFile >> value;
 
         // Feedback
         cout << endl
-             << "===============================================" << endl
-             << "Input path ...... '" << filePath    << "'"       << endl
-             << "Point amount .... '" << pointAmount << "'"       << endl
-             << "Spacing ......... '" << spacing     << "'"       << endl
-             << "Value ........... '" << value       << "'"       << endl
-             << "===============================================" << endl;
-
-        if (pointAmount != 2)
-            {higherPrecision = true};
+             << "================================================================" << endl
+             << "Input path ...... '" << filePath       << "'"                     << endl
+             << "Function chosen . '" << functionChosen << "'"                     << endl
+             << "Spacing ......... '" << spacing        << "'"                     << endl
+             << "Value ........... '" << value          << "'"                     << endl
+             << "----------------------------------------------------------------" << endl;
     }
 
     // No

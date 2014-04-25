@@ -25,7 +25,7 @@ double
 int main(int argc, char *argv[])
 {
     // Read samples from file and store them
-    if ( fileRead(argv[1] )
+    if ( fileRead(argv[1]) )
     {
         Function f;
         f.pushBackFunction(f1);
@@ -62,9 +62,10 @@ bool fileRead(const char* filePath)
         // Feedback
         cout << endl
              << "===============================================" << endl
-             << "Input path ...... '" << filePath    << "'"       << endl
-             << "Spacing ......... '" << spacing     << "'"       << endl
-             << "Value ........... '" << value       << "'"       << endl
+             << "Input path ...... '" << filePath       << "'"    << endl
+             << "Spacing ......... '" << spacing        << "'"    << endl
+             << "Function chosen . '" << functionChosen << "'"    << endl
+             << "Value ........... '" << value          << "'"    << endl
              << "===============================================" << endl;
     }
 

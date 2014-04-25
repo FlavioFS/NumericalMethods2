@@ -28,7 +28,7 @@ bool
 int main(int argc, char *argv[])
 {
     // Read samples from file and store them
-    if ( fileRead(argv[1] )
+    if ( fileRead(argv[1]) )
     {
         Function f;
         f.pushBackFunction(f1);
@@ -40,7 +40,8 @@ int main(int argc, char *argv[])
         double result = Derivative::backDiff(f, value, spacing, higherPrecision);
         
         // TODO put this on the view logic
-        cout << endl << "Derivative by Backward Difference method: " << result << endl;
+        cout << "Derivative by Backward Difference method: " << result             << endl
+             << "================================================================" << endl;
     }
 
     return 0;
@@ -67,15 +68,16 @@ bool fileRead(const char* filePath)
 
         // Feedback
         cout << endl
-             << "===============================================" << endl
-             << "Input path ...... '" << filePath    << "'"       << endl
-             << "Point amount .... '" << pointAmount << "'"       << endl
-             << "Spacing ......... '" << spacing     << "'"       << endl
-             << "Value ........... '" << value       << "'"       << endl
-             << "===============================================" << endl;
+             << "================================================================" << endl
+             << "Input path ...... '" << filePath       << "'"                     << endl
+             << "Point amount .... '" << pointAmount    << "'"                     << endl
+             << "Function chosen . '" << functionChosen << "'"                     << endl
+             << "Spacing ......... '" << spacing        << "'"                     << endl
+             << "Value ........... '" << value          << "'"                     << endl
+             << "----------------------------------------------------------------" << endl;
 
         if (pointAmount != 2)
-            {higherPrecision = true};
+            {higherPrecision = true;}
     }
 
     // No

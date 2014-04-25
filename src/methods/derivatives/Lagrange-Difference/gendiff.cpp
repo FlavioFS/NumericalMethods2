@@ -15,12 +15,13 @@ double value;
 int main(int argc, char *argv[])
 {
     // Read samples from file and store them
-    if ( fileRead(argv[1] )
+    if ( fileRead(argv[1]) )
     {
         double result = Derivative::lagrangeDiff(points, value);
         
         // TODO put this on the view logic
-        cout << endl << "Derivative by Lagrange Method: " << result << endl;
+        cout << "Derivative by Lagrange method: " << result                        << endl
+             << "================================================================" << endl;
     }
 
     return 0;
@@ -37,34 +38,33 @@ bool fileRead(const char* filePath)
     // Yes
     if (inFile.good())
     {
-        unsigned int head;
+        unsigned int pointAmount;
 
         // Reads the point amount
-        inFile >> head;
+        inFile >> pointAmount;
 
         // Feedback
         cout << endl
-             << "===============================================" << endl
-             << "Input path ...... '" << filePath << "'"          << endl;
+             << "================================================================" << endl
+             << "Input path ...... '" << filePath       << "'"                     << endl
+             << "Point amount .... '" << pointAmount    << "'"                     << endl;
 
         // Reads the body (points)
-        for (int i = 0; i < head; i++)
+        for (unsigned int i = 0; i < pointAmount; i++)
         {
             if (inFile.good())
             {
                 point in;
                 inFile >> in.x >> in.y;
-                i++;
-                samples.push_back(in);
+                points.push_back(in);
 
-                cout << setw(3) << i << "| "
-                     << "("<< in.x << "," << in.y << ")" << endl;
+                cout << setw(5) << i+1 << "| " << "("<< in.x << ", " << in.y << ")"   << endl;
             }
         }
 
         inFile >> value;
-        cout << "Value ........... '" << value << "'"             << endl
-             << "===============================================" << endl;
+        cout << "Value ........... '" << value << "'"                              << endl
+             << "----------------------------------------------------------------" << endl;
     }
 
     // No
