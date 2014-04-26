@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iomanip>
 
-#include "../derivatives/Derivative.h"
+#include "../Derivative.h"
 
 using namespace std;
 

@@ -3,7 +3,7 @@
 #include <iomanip>
 #include <cmath>
 
-#include "../derivatives/Derivative.h"
+#include "../Derivative.h"
 
 using namespace std;
 
