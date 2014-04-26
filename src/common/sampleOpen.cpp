@@ -28,11 +28,6 @@ bool SampleOpen::readSamplesFromFile(const char* filePath)
 {
     ifstream sampleFile (filePath);
 
-    unsigned int
-        head,
-        i = 0;
-
-
     /* +------------------------+ *
      * | Is the sample file ok? | *
      * +------------------------+ */
