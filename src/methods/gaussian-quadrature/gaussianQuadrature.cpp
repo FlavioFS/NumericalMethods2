@@ -24,12 +24,15 @@ GaussianQuadrature::GaussianQuadrature(Function f, int n, double left, double ri
     if(n == 2) {
         t[0] = -0.57735;
         t[1] = 0.57735;
+
         A[0] = 1;
         A[1] = 1;
     }
     if(n == 3) {
         t[0] = -0.77459;
+        t[1] = 0;
         t[2] = 0.77459;
+
         A[0] = 0.55556;
         A[1] = 0.88889;
         A[2] = 0.55556;
@@ -39,6 +42,7 @@ GaussianQuadrature::GaussianQuadrature(Function f, int n, double left, double ri
         t[1] = -0.33998;
         t[2] = 0.33998;
         t[3] = 0.86113;
+
         A[0] = 0.34785;
         A[1] = 0.65214;
         A[2] = 0.65214;
@@ -47,8 +51,10 @@ GaussianQuadrature::GaussianQuadrature(Function f, int n, double left, double ri
     if(n == 5) {
         t[0] = -0.90617;
         t[1] = -0.53846;
+        t[2] = 0;
         t[3] = 0.53846;
         t[4] = 0.90617;
+
         A[0] = 0.23692;
         A[1] = 0.47862;
         A[2] = 0.56889;
