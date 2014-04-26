@@ -1,18 +1,19 @@
-#ifndef REGULAR_POWER_H
-#define REGULAR_POWER_H
+#ifndef SHIFTED_POWER_H
+#define SHIFTED_POWER_H
 
 #include "../../../includes/IMethod.h"
 #include "../../../common/Matrix.h"
+#include "../../../common/lu.h"
 #include <vector>
 
-class RegularPower : public IMethod
+class ShiftedPower : public IMethod
 {
 public:
 
     /* ==========================================================
                              Constructors
     ========================================================== */
-    RegularPower(Matrix A, int order, double e);
+    ShiftedPower(Matrix A, int order, double e, double u);
 
     /* ==========================================================
                                  Sets
@@ -20,6 +21,7 @@ public:
     void setMartrix(Matrix A);
     void setOrder(const unsigned int order);
     void setE(const double e);
+    void setU(const double u);
 
     /* ==========================================================
                                  Gets
@@ -35,10 +37,11 @@ private:
 
     void setArea(double area);
 
-    Matrix A;             // The Matrix
-    unsigned int order;  // Matrix order
-    double e;           // Tolerance
+    Matrix A;              // The Matrix
+    unsigned int order;   // Matrix order
+    double e;            // Tolerance
+    double u;           // u
     double area;       // Calculated integral
 };
 
-#endif REGULAR_POWER_H
+#endif // SHIFTED_POWER_H

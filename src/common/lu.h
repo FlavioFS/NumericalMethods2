@@ -13,7 +13,7 @@
 #define LU_H
 
 #include "EquationSystem.h"
-#include "../../../common/Matrix.h"
+#include "Matrix.h"
 
 class LU : public EquationSystem
 {

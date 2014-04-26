@@ -1,7 +1,10 @@
+#ifndef INVERSE_POWER_H
+#define INVERSE_POWER_H
+
 #include "../../../includes/IMethod.h"
 #include "../../../common/Matrix.h"
+#include "../../../common/lu.h"
 #include <vector>
-#include "lu.h"
 
 class InversePower : public IMethod
 {
@@ -38,3 +41,5 @@ private:
     double e;           // Tolerance
     double area;       // Calculated integral
 };
+
+#endif // INVERSE_POWER_H
