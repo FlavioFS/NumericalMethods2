@@ -45,10 +45,10 @@ GaussianQuadrature::GaussianQuadrature(Function f, int n, double left, double ri
         A[3] = 0.34785;
     }
     if(n == 5) {
-        t[0] = -0,90617;
-        t[1] = -0,53846;
-        t[3] = 0,53846;
-        t[4] = 0,90617;
+        t[0] = -0.90617;
+        t[1] = -0.53846;
+        t[3] = 0.53846;
+        t[4] = 0.90617;
         A[0] = 0.23692;
         A[1] = 0.47862;
         A[2] = 0.56889;
