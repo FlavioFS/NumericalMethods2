@@ -5,7 +5,6 @@
 #include <iomanip>
 #include <fstream>
 
-#include "../../../includes/IMethod.h"
 #include "../../../common/sampleShiftedPower.h"
 #include "shiftedPower.h"
 
