@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
         f.pushBackFunction(f4);
         f.pickFunction(functionChosen);
 
-        double result = Derivative::centralDiff(f, value, spacing, higherPrecision);
+        double result = Derivative::centDiff(f, value, spacing, higherPrecision);
         
         // TODO put this on the view logic
         cout << "Derivative by Central Difference method: " << result              << endl
