@@ -124,5 +124,13 @@ bool ShiftedPower::run()
 
     setArea(yk_after);
 
+    cout
+    << endl << "__________________________________"
+    << endl << "Eigenvector Approximation"
+    << endl << "__________________________________"
+    << endl <<endl << qk
+    << endl << "__________________________________"
+    <<endl << endl;
+
     return true;
 }

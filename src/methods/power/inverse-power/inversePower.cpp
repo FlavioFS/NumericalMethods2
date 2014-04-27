@@ -117,6 +117,14 @@ bool InversePower::run()
       // Checks the convergence
     } while (abs((yk_after - yk_before)) > e);
 
+
+    cout
+    << endl << "__________________________________"
+    << endl << "Lowest Eigenvector Approximation"
+    << endl << "__________________________________"
+    << endl <<endl << qk
+    << endl << "__________________________________"
+    <<endl << endl;
     setArea(yk_after);
 
     return true;
