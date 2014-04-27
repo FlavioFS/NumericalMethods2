@@ -1,3 +1,7 @@
+#ifndef ROMBERG_H
+#define ROMBERG_H
+
+
 #include "../../includes/IMethod.h"
 #include "../../common/Function.h"
 #include <vector>
@@ -36,3 +40,5 @@ private:
     double left, right; // Interval of integration
     double area;        // Calculated integral
 };
+
+#endif ROMBERG_H

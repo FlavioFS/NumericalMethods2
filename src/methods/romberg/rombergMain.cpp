@@ -5,8 +5,7 @@
 #include <iomanip>
 #include <fstream>
 
-#include "../../includes/IMethod.h"
-#include "../../common/sampleOpen.h"
+#include "sampleRomberg.h"
 #include "romberg.h"
 
 using namespace std;
@@ -16,7 +15,7 @@ bool testMethod();
 int main(int argc, char *argv[])
 {
     // Read samples from file and store them
-    SampleOpen *sampleOP = new SampleOpen();
+    SampleRomberg *sampleOP = new SampleRomberg();
     sampleOP->readSamplesFromFile(argv[1]);
 
     Romberg romberg ( sampleOP->getFunction(), sampleOP->getN(),
