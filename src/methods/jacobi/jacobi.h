@@ -1,38 +1,39 @@
-#include "../../includes/IMethod.h"
-#include "../../common/Function.h"
-#include <vector>
+#include "../../../includes/IMethod.h"
+#include "../../../common/Matrix.h"
 
-class Romberg : public IMethod
+class Jacobi : public IMethod
 {
 public:
 
     /* ==========================================================
                              Constructors
     ========================================================== */
-    Romberg(Function f, double h, double left, double right);
+    Jacobi(Matrix A, int order, double e);
 
     /* ==========================================================
                                  Sets
     ========================================================== */
-    void setFunction(Function f);
-    void setH(double h);
+    void setMartrix(Matrix A);
+    void setOrder(const unsigned int order);
+    void setE(const double e);
 
     /* ==========================================================
                                  Gets
     ========================================================== */
-    double getArea();
+    Matrix getA();
+
+    Matrix getP();
 
     /* ==========================================================
                                  Run
     ========================================================== */
     bool run();
 
+
 private:
 
-    void setArea(double area);
-
-    Function f;         // Continuous function
-    double h;     // H
-    double left, right; // Interval of integration
-    double area;        // Calculated integral
+    Matrix A;             // The Matrix
+    Matrix P;             // Matriz de autovetores
+    unsigned int order;  // Matrix order
+    double e;           // Tolerance
 };
