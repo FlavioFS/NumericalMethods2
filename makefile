@@ -35,3 +35,6 @@ all:
 
 	#Jacobi
 	$(MAKE) -C src/methods/jacobi
+
+	#Qr
+	$(MAKE) -C src/methods/qr
