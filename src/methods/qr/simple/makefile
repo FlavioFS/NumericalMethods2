@@ -1,6 +1,6 @@
-EXE		 = ../../../qr
-INCLUDES = ../../includes
-COMMON   = ../../common
+EXE		 = ../../../../qr
+INCLUDES = ../../../includes
+COMMON   = ../../../common
 
 CC = g++
 FLAGS = -g

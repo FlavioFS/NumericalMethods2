@@ -1,5 +1,5 @@
-#include "../../includes/IMethod.h"
-#include "../../common/Matrix.h"
+#include "../../../includes/IMethod.h"
+#include "../../../common/Matrix.h"
 
 class Qr : public IMethod
 {
