@@ -1,8 +1,8 @@
 #ifndef SAMPLE_ROMBERG_H
 #define SAMPLE_ROMBERG_H
 
-#include "../../includes/ISample.h"
-#include "../../common/Function.h"
+#include "../includes/ISample.h"
+#include "Function.h"
 
 class SampleRomberg : public ISample
 {

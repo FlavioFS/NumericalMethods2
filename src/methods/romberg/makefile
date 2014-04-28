@@ -5,7 +5,7 @@ COMMON   = ../../common
 CC = g++
 FLAGS = -g
 
-$(EXE) : rombergMain.o romberg.o $(COMMON)/sampleOpen.o $(COMMON)/Function.o
+$(EXE) : rombergMain.o romberg.o $(COMMON)/sampleRomberg.o $(COMMON)/Function.o
 	$(CC) $(FLAGS) -o $(EXE) rombergMain.o romberg.o $(COMMON)/sampleRomberg.o $(COMMON)/Function.o
 
 romberg.o : romberg.cpp romberg.h $(INCLUDES)/IMethod.h $(COMMON)/Function.cpp $(COMMON)/Function.h

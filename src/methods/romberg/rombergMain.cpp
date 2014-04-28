@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <fstream>
 
-#include "sampleRomberg.h"
+#include "../../common/sampleRomberg.h"
 #include "romberg.h"
 
 using namespace std;
