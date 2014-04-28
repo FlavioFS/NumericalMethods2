@@ -37,4 +37,5 @@ all:
 	$(MAKE) -C src/methods/jacobi
 
 	#Qr
-	$(MAKE) -C src/methods/qr
+	$(MAKE) -C src/methods/qr/simple
+	#$(MAKE) -C src/methods/qr/householder

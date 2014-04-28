@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <fstream>
 
-#include "../../common/sampleQr.h"
+#include "../../../common/sampleQr.h"
 #include "qr.h"
 
 using namespace std;
