@@ -47,6 +47,9 @@ class Matrix
         void resize(unsigned int line_count, unsigned int row_count);   // [5.1] - Resizing
         const Matrix transpose() const;                                 // [5.2] - Returns transpose of this matrix
         const double normalize() const;                                 // [5.3] - Matrix normalization
+        const Matrix sub_line(unsigned int i) const;                    // [5.4] - Returns subline
+        const Matrix sub_row(unsigned int j) const;                     // [5.5] - Returns subrow
+        static const Matrix identity(unsigned int order);         // [5.6] - Returns identity of given order
 
 
     private:

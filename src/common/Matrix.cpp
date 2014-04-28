@@ -622,7 +622,7 @@ const Matrix Matrix::transpose() const
     return T;
 }
 
-
+// [5.3] - Normalization
 const double Matrix::normalize() const
 {
     double aux = 0;
@@ -634,6 +634,65 @@ const double Matrix::normalize() const
         }
     }
     return sqrt(aux);
+}
+
+// [5.4] - Subline
+const Matrix Matrix::sub_line(unsigned int i) const
+{
+    if (i > lines())
+    {
+        std::cout << EXCEPTION_BOUNDS << std::endl;
+        throw        EXCEPTION_BOUNDS;
+    }
+
+    Matrix L (1, rows());
+
+    for (unsigned int j = 1; j <= rows(); j++)
+    {
+        double element = this->get(i, j);
+        L.put(element, 1, j);
+    }
+
+    return L;
+}
+
+// [5.5] - Subrow
+const Matrix Matrix::sub_row(unsigned int j) const
+{
+    if (j > rows())
+    {
+        std::cout << EXCEPTION_BOUNDS << std::endl;
+        throw        EXCEPTION_BOUNDS;
+    }
+
+    Matrix R (lines(), 1);
+
+    for (unsigned int i = 1; i <= rows(); i++)
+    {
+        double element = this->get(i, j);
+        R.put(element, i, 1);
+    }
+
+    return R;
+}
+
+// [5.6] - Identity
+const Matrix Matrix::identity(unsigned int order)
+{
+    Matrix I (order, order);
+    for (unsigned int i = 1; i <= order; i++)
+    {
+        for (unsigned int j = 1; j <= order; j++)
+        {
+            if (i == j)
+                { I.put(1, i, j); }
+            
+            else
+                { I.put(0, i, j); }
+        }
+    }
+
+    return I;
 }
 
 /* ==========================================================
