@@ -57,12 +57,13 @@ bool Qr::run()
 
 /*-----------------------Householder--------------------*/
 
-   for (int j = 1; i < order-1; i++)
+   for (int j = 1; j < order-1; j++)
    {
 	int s = 0;
 	
 	for (int i = j+1; i < order; i++)
 	{
+	   double aux;
 	   aux = A.get(i,j);
 	   s = s + aux*aux;
 	}
