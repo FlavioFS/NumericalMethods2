@@ -1,39 +1,50 @@
-#include "../../includes/IMethod.h"
-#include "../../common/Matrix.h"
+#ifndef JACOBI_H
+#define JACOBI_H
 
-class Jacobi : public IMethod
+#include "../../includes/ISample.h"
+#include "../../common/Matrix.h"
+#include <vector>
+
+using namespace std;
+
+class SampleJacobi : public ISample
 {
+
 public:
 
     /* ==========================================================
                              Constructors
     ========================================================== */
-    Jacobi(Matrix A, int order, double e);
-
-    /* ==========================================================
-                                 Sets
-    ========================================================== */
-    void setMartrix(Matrix A);
-    void setOrder(const unsigned int order);
-    void setE(const double e);
+    SampleJacobi();
 
     /* ==========================================================
                                  Gets
     ========================================================== */
-    Matrix getA();
+    Matrix getSamples();
 
-    Matrix getP();
+    double getE();
+
+    int getOrder();
 
     /* ==========================================================
-                                 Run
+                                 Sets
     ========================================================== */
-    bool run();
 
+    void setE(double e);
+
+    void setOrder(int order);
+
+    /* ==========================================================
+                                 Logic
+    ========================================================== */
+    bool readSamplesFromFile(const char* filePath);
 
 private:
 
-    Matrix A;             // The Matrix
-    Matrix P;             // Matriz de autovetores
-    unsigned int order;  // Matrix order
-    double e;           // Tolerance
+    Matrix samples; // Discrete sample of points
+    double e; // The tolerance
+    unsigned int order; // Matrix order
+
 };
+
+#endif //Jacobi_H
