@@ -679,6 +679,10 @@ const Matrix Matrix::sub_row(unsigned int j) const
 // [5.6] - Identity
 const Matrix Matrix::identity(unsigned int order)
 {
+    // Validity check
+    if (order == 0)
+        { return Matrix::identity(1); }
+
     Matrix I (order, order);
     for (unsigned int i = 1; i <= order; i++)
     {
