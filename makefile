@@ -32,3 +32,6 @@ all:
 	$(MAKE) -C src/methods/power/regular-power
 	$(MAKE) -C src/methods/power/inverse-power
 	$(MAKE) -C src/methods/power/shifted-power
+
+	#Jacobi
+	$(MAKE) -C src/methods/jacobi
