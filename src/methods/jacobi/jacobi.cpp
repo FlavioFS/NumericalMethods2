@@ -3,6 +3,8 @@
 #include <cstdio>
 #include <iostream>
 
+#define M_PI           3.14159265358979323846  /* pi */
+
 using namespace std;
 
 /* ==========================================================
@@ -45,20 +47,21 @@ bool Jacobi::run()
 {
     double teta = 0;
     double soma = 1000;
-    Matrix Pk(order, order+1);
+    P.resize(order,order);
+    Matrix Pk(order, order);
     for(int i = 0; i < order; i++)
     {
         for(int j = 0; j < order; j++)
         {
             if( i == j)
             {
-                Pk >> 1;
-                P >> 1;
+                Pk.put(1,i+1,i+1);
+                P.put(1,i+1,i+1);
             }
             else
             {
-                Pk >> 0;
-                P >> 0;
+                Pk.put(0,i+1,j+1);
+                P.put(0,i+1,j+1);
             }
         }
     }
@@ -72,19 +75,43 @@ bool Jacobi::run()
             {
                 if(j > i)
                 {
-                   if(A.get(i,i) != A.get(j,j))
+                   if(A.get(i+1,i+1) != A.get(j+1,j+1))
                    {
-                       teta = (atan(2*A.get(i,j)/(A.get(i,i) - A.get(j,j))))/2;
+                       teta = (atan(2*A.get(i+1,j+1)/(A.get(i+1,i+1) - A.get(j+1,j+1))))/2;
                    }
-                   else teta = PI/4;
+                   else teta = M_PI/4;
 
-                   Pk.put(cos(teta), i, i);
-                   Pk.put(sin(teta), j, i);
-                   Pk.put(-sin(teta), i, j);
-                   Pk.put(cos(teta), j, j);
+                   Pk.put(cos(teta), i+1, i+1);
+                   Pk.put(sin(teta), j+1, i+1);
+                   Pk.put(-sin(teta), i+1, j+1);
+                   Pk.put(cos(teta), j+1, j+1);
+
+                  // cout << "Pk: " << endl;
+                   //cout << Pk << endl;
 
                    A = Pk.transpose()*A*Pk;
                    P = P*Pk;
+
+                 //  cout << "P: " << endl;
+                  // cout << P << endl;
+                  // cout << "A: " << endl;
+                  // cout << A << endl;
+                    for(int i = 0; i < order; i++)
+                    {
+                        for(int j = 0; j < order; j++)
+                        {
+                            if( i == j)
+                            {
+                                Pk.put(1,i+1,i+1);
+                               // P.put(1,i+1,i+1);
+                            }
+                            else
+                            {
+                                Pk.put(0,i+1,j+1);
+                               // P.put(0,i+1,j+1);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -95,7 +122,7 @@ bool Jacobi::run()
             {
                 if(i != j)
                 {
-                    soma = soma + A.get(i,j);
+                    soma = soma + A.get(i+1,j+1)*A.get(i+1,j+1);
                 }
             }
         }
