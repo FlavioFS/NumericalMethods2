@@ -699,6 +699,21 @@ const Matrix Matrix::identity(unsigned int order)
     return I;
 }
 
+// [5.7] - Norm
+const double Matrix::norm() const
+{
+    double result = 0;
+    for (unsigned int i = 1; i <= lines(); i++)
+    {
+        for (unsigned int j = 1; j <= rows(); j++)
+        {
+            double aij = this->get(i, j);
+            result += aij*aij;
+        }
+    }
+    return sqrt(result);
+}
+
 /* ==========================================================
                            Private
 ========================================================== */
