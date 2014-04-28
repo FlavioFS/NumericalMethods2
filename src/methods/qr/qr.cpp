@@ -1,4 +1,4 @@
-#include "jacobi.h"
+#include "qr.h"
 #include <cmath>
 #include <cstdio>
 #include <iostream>
@@ -10,7 +10,7 @@ using namespace std;
 /* ==========================================================
                          Constructors
 ========================================================== */
-Jacobi::Jacobi(Matrix A, int order, double e)
+Qr::Qr(Matrix A, int order, double e)
     : A(A), order(order), e(e)
 {
 }
@@ -18,17 +18,17 @@ Jacobi::Jacobi(Matrix A, int order, double e)
 /* ==========================================================
                              Sets
 ========================================================== */
-void Jacobi::setMartrix(Matrix A)
+void Qr::setMartrix(Matrix A)
 {
     this->A = A;
 }
 
-void Jacobi::setOrder(const unsigned int order)
+void Qr::setOrder(const unsigned int order)
 {
     this->order = order;
 }
 
-void Jacobi::setE(const double e)
+void Qr::setE(const double e)
 {
     this->e = e;
 }
@@ -36,19 +36,22 @@ void Jacobi::setE(const double e)
 /* ==========================================================
                              Gets
 ========================================================== */
-Matrix Jacobi::getA() { return A; }
+Matrix Qr::getA() { return A; }
 
-Matrix Jacobi::getP() { return P; }
+Matrix Qr::getP() { return P; }
 
 /* ==========================================================
                              Run
 ========================================================== */
-bool Jacobi::run()
+bool Qr::run()
 {
-    double teta = 0;
+   // double teta = 0;
     double soma = 1000;
     P.resize(order,order);
     Matrix Pk(order, order);
+    Matrix R(order, order);
+    R = A;
+    Matrix Qt(order, order); // Qt = Pkt*Qt
     for(int i = 0; i < order; i++)
     {
         for(int j = 0; j < order; j++)
@@ -57,11 +60,13 @@ bool Jacobi::run()
             {
                 Pk.put(1,i+1,i+1);
                 P.put(1,i+1,i+1);
+                Qt.put(1,i+1,i+1);
             }
             else
             {
                 Pk.put(0,i+1,j+1);
                 P.put(0,i+1,j+1);
+                Qt.put(0,i+1,j+1);
             }
         }
     }
@@ -72,24 +77,26 @@ bool Jacobi::run()
         {
             for(int j = 0; j < order; j++)
             {
-                if(j > i)
+                if(i > j)
                 {
-                   if(A.get(i+1,i+1) != A.get(j+1,j+1))
-                   {
-                       teta = (atan(2*A.get(i+1,j+1)/(A.get(i+1,i+1) - A.get(j+1,j+1))))/2;
-                   }
-                   else teta = M_PI/4;
+                  // if(A.get(i+1,i+1) != A.get(j+1,j+1))
+                   //{
+                     //  teta = (atan(2*A.get(i+1,j+1)/(A.get(i+1,i+1) - A.get(j+1,j+1))))/2;
+                   //}
+                   //else teta = M_PI/4;
 
-                   Pk.put(cos(teta), i+1, i+1);
-                   Pk.put(sin(teta), j+1, i+1);
-                   Pk.put(-sin(teta), i+1, j+1);
-                   Pk.put(cos(teta), j+1, j+1);
+                   Pk.put((A.get(j+1,j+1)/(sqrt(A.get(i+1,j+1)*A.get(i+1,j+1)+A.get(j+1,j+1)*A.get(j+1,j+1)))), j+1, j+1);
+                   Pk.put((A.get(i+1,j+1)/(sqrt(A.get(i+1,j+1)*A.get(i+1,j+1)+A.get(j+1,j+1)*A.get(j+1,j+1)))), i+1, j+1);
+                   Pk.put(-(A.get(i+1,j+1)/(sqrt(A.get(i+1,j+1)*A.get(i+1,j+1)+A.get(j+1,j+1)*A.get(j+1,j+1)))), j+1, i+1);
+                   Pk.put((A.get(j+1,j+1)/(sqrt(A.get(i+1,j+1)*A.get(i+1,j+1)+A.get(j+1,j+1)*A.get(j+1,j+1)))), i+1, i+1);
 
                   // cout << "Pk: " << endl;
                    //cout << Pk << endl;
+                   Qt = Pk.transpose()*Qt;
+                   R = Pk.transpose()*R;
 
-                   A = Pk.transpose()*A*Pk;
-                   P = P*Pk;
+                   A = R*Qt.transpose();
+                   P = P*Qt.transpose();
 
                  //  cout << "P: " << endl;
                   // cout << P << endl;
