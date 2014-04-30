@@ -1,6 +1,5 @@
 #include "inversePower.h"
 #include <cmath>
-#include <cstdio>
 #include <iostream>
 
 using namespace std;
@@ -16,7 +15,7 @@ InversePower::InversePower(Matrix A, int order, double e)
 /* ==========================================================
                              Sets
 ========================================================== */
-void InversePower::setMartrix(Matrix A)
+void InversePower::setMatrix(Matrix A)
 {
     this->A = A;
 }
@@ -32,15 +31,16 @@ void InversePower::setE(const double e)
 }
 
 // Private
-void InversePower::setArea(double area)
+void InversePower::setEigenvalue(double value)
 {
-    this->area = area;
+    this->eigenvalue = value;
 }
 
 /* ==========================================================
                              Gets
 ========================================================== */
-double InversePower::getArea() { return area; }
+double InversePower::getEigenvalue() const { return eigenvalue; }
+const Matrix InversePower::getEigenvector() const { return qk; }
 
 /* ==========================================================
                              Run
@@ -56,20 +56,16 @@ bool InversePower::run()
     * | We particulary build q0 by adding zeros| *
     * | and 1 at the last position.            | *
     * +----------------------------------------+ */
-    Matrix qk(order, 1);
-    for(int i = 0; i < order-1; i++) 
-    {
-        qk >> 0;
-    }
-    qk >> 1;
+    qk.resize(order, 1);
+    qk.put(1, order,1);
 
     // Builds the A matrix to solve AX = b, using LU
     double *A;
     A = new double[order*order]; int count = 0;
-    for (int i = 0; i < order; ++i)
+    for (unsigned int i = 1; i <= order; ++i)
     {   
-        for (int j = 0; j < order; ++j) {
-            A[count] = this->A.get(i+1, j+1); count++;
+        for (unsigned int j = 1; j <= order; ++j) {
+            A[count] = this->A.get(i, j); count++;
         }
 
     }
@@ -78,11 +74,11 @@ bool InversePower::run()
     // qk represents 'b', on the system AX = b.
     double *B1;
     B1 = new double[order];
-    for (int i = 0; i < order; ++i)
+    for (unsigned int i = 0; i < order; ++i)
     {
         B1[i] = qk.get(i+1, 1);
     }
- 
+
     // Using LU to solve the system. This two matrix L and U
     // won't be recalculated. We just change qk.
     LU *lu = new LU(A, B1, order);
@@ -96,12 +92,12 @@ bool InversePower::run()
 
     do {
         yk_before = yk_after;
-       
+
         // Building the new qk vector to pass to LU. 
         // qk represents 'b', on the system AX = b.
         double *B;
         B = new double[order];
-        for (int i = 0; i < order; ++i)
+        for (unsigned int i = 0; i < order; ++i)
         {
             B[i] = qk.get(i+1, 1);
         }
@@ -113,19 +109,11 @@ bool InversePower::run()
         qk = Zk * (1/Zk.normalize());
         aux = qk.transpose() * this->A * qk;
         yk_after = aux.get(1,1);
- 
+
       // Checks the convergence
     } while (abs((yk_after - yk_before)) > e);
 
-
-    cout
-    << endl << "__________________________________"
-    << endl << "Lowest Eigenvector Approximation"
-    << endl << "__________________________________"
-    << endl <<endl << qk
-    << endl << "__________________________________"
-    <<endl << endl;
-    setArea(yk_after);
+    setEigenvalue(yk_after);
 
     return true;
 }

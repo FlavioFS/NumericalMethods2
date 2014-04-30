@@ -1,7 +1,4 @@
-#include <cstdio>
-#include <cstdlib>
 #include <iostream>
-
 #include <iomanip>
 #include <fstream>
 
@@ -24,8 +21,13 @@ int main(int argc, char *argv[])
     // TODO put this on the view logic
     cout << endl << "Lowest Eigenvalue"
          << endl << "____________________________"
-         << endl << " Inverse Power | " << setw(10) << inversePower.getArea()
-         << endl << "____________________________" << endl;
+         << endl << " Inverse Power | " << setw(10) << inversePower.getEigenvalue()
+         << endl << "____________________________" << endl
+         << endl << "Lowest Eigenvector Approximation"
+         << endl << "____________________________"
+         << endl << endl << inversePower.getEigenvector()
+         << endl << "____________________________"
+         << endl << endl;
 
     return 0;
 }

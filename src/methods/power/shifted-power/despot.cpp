@@ -24,8 +24,13 @@ int main(int argc, char *argv[])
     // TODO put this on the view logic
     cout << endl << "Eigenvalue"
          << endl << "____________________________"
-         << endl << " Shifted Power | " << setw(10) << shiftedPower.getArea()
-         << endl << "____________________________" << endl;
+         << endl << " Shifted Power | " << setw(10) << shiftedPower.getEigenvalue()
+         << endl << "____________________________" << endl
+         << endl << "Shifted Eigenvector Approximation"
+         << endl << "____________________________"
+         << endl << endl << shiftedPower.getEigenvector()
+         << endl << "____________________________"
+         << endl << endl;
 
     return 0;
 }

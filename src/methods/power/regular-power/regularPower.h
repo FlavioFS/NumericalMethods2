@@ -17,14 +17,16 @@ public:
     /* ==========================================================
                                  Sets
     ========================================================== */
-    void setMartrix(Matrix A);
+    void setMatrix(Matrix A);
     void setOrder(const unsigned int order);
     void setE(const double e);
 
     /* ==========================================================
                                  Gets
     ========================================================== */
-    double getArea();
+    double getEigenvalue() const;
+    const Matrix getEigenvector() const;
+
 
     /* ==========================================================
                                  Run
@@ -33,12 +35,13 @@ public:
 
 private:
 
-    void setArea(double area);
+    void setEigenvalue(double value);
 
-    Matrix A;             // The Matrix
-    unsigned int order;  // Matrix order
+    Matrix A;           // The Matrix
+    Matrix qk;          // Eigenvector
+    unsigned int order; // Matrix order
     double e;           // Tolerance
-    double area;       // Calculated integral
+    double eigenvalue;
 };
 
-#endif REGULAR_POWER_H
+#endif // REGULAR_POWER_H

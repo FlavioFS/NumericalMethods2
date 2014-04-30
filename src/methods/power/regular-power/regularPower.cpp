@@ -1,7 +1,5 @@
 #include "regularPower.h"
 #include <cmath>
-#include <cstdio>
-#include <iostream>
 
 using namespace std;
 
@@ -16,7 +14,7 @@ RegularPower::RegularPower(Matrix A, int order, double e)
 /* ==========================================================
                              Sets
 ========================================================== */
-void RegularPower::setMartrix(Matrix A)
+void RegularPower::setMatrix(Matrix A)
 {
     this->A = A;
 }
@@ -32,15 +30,16 @@ void RegularPower::setE(const double e)
 }
 
 // Private
-void RegularPower::setArea(double area)
+void RegularPower::setEigenvalue(double value)
 {
-    this->area = area;
+    this->eigenvalue = value;
 }
 
 /* ==========================================================
                              Gets
 ========================================================== */
-double RegularPower::getArea() { return area; }
+double RegularPower::getEigenvalue() const { return eigenvalue; }
+const Matrix RegularPower::getEigenvector() const { return qk; }
 
 /* ==========================================================
                              Run
@@ -56,8 +55,8 @@ bool RegularPower::run()
     * | We particulary build q0 by adding zeros| *
     * | and 1 at the last position.            | *
     * +----------------------------------------+ */
-    Matrix qk(order, 1);
-    for(int i = 0; i < order-1; i++) 
+    qk.resize(order, 1);
+    for(unsigned int i = 0; i < order-1; i++)
     {
         qk >> 0;
     }
@@ -80,15 +79,9 @@ bool RegularPower::run()
       // Checks the convergence
     } while (abs((yk_after - yk_before)) > e);
 
-    cout
-    << endl << "__________________________________"
-    << endl << "Dominant Eigenvector Approximation"
-    << endl << "__________________________________"
-    << endl <<endl << qk
-    << endl << "__________________________________"
-    <<endl << endl;
+    
 
-    setArea(yk_after);
+    setEigenvalue(yk_after);
 
     return true;
 }

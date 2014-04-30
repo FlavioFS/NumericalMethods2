@@ -18,7 +18,7 @@ public:
     /* ==========================================================
                                  Sets
     ========================================================== */
-    void setMartrix(Matrix A);
+    void setMatrix(Matrix A);
     void setOrder(const unsigned int order);
     void setE(const double e);
     void setU(const double u);
@@ -26,7 +26,8 @@ public:
     /* ==========================================================
                                  Gets
     ========================================================== */
-    double getArea();
+    double getEigenvalue() const;
+    const Matrix getEigenvector() const;
 
     /* ==========================================================
                                  Run
@@ -35,13 +36,14 @@ public:
 
 private:
 
-    void setArea(double area);
+    void setEigenvalue(double value);
 
-    Matrix A;              // The Matrix
-    unsigned int order;   // Matrix order
-    double e;            // Tolerance
+    Matrix A;           // The Matrix
+    Matrix qk;          // Eigenvector
+    unsigned int order; // Matrix order
+    double e;           // Tolerance
     double u;           // u
-    double area;       // Calculated integral
+    double eigenvalue;
 };
 
 #endif // SHIFTED_POWER_H

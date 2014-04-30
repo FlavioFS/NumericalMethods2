@@ -1,7 +1,4 @@
-#include <cstdio>
-#include <cstdlib>
 #include <iostream>
-
 #include <iomanip>
 #include <fstream>
 
@@ -24,8 +21,13 @@ int main(int argc, char *argv[])
     // TODO put this on the view logic
     cout << endl << "Dominant Eigenvalue"
          << endl << "____________________________"
-         << endl << " Regular Power | " << setw(10) << regularPower.getArea()
-         << endl << "____________________________" << endl;
+         << endl << " Regular Power | " << setw(10) << regularPower.getEigenvalue()
+         << endl << "____________________________" << endl
+         << endl << "Dominant Eigenvector Approximation"
+         << endl << "____________________________"
+         << endl << endl << regularPower.getEigenvector()
+         << endl << "____________________________"
+         << endl << endl;
 
     return 0;
 }
