@@ -50,7 +50,6 @@ class Matrix
         const Matrix sub_line(unsigned int i) const;                    // [5.4] - Returns subline
         const Matrix sub_row(unsigned int j) const;                     // [5.5] - Returns subrow
         static const Matrix identity(unsigned int order);               // [5.6] - Returns identity of given order
-        const double norm() const;                                      // [5.7] - Returns sqrt( Sum{Mij^2} )
 
 
     private:

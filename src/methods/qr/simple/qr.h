@@ -13,7 +13,7 @@ public:
     /* ==========================================================
                                  Sets
     ========================================================== */
-    void setMartrix(Matrix A);
+    void setMatrix(Matrix A);
     void setOrder(const unsigned int order);
     void setE(const double e);
 
@@ -30,7 +30,7 @@ public:
     bool run();
 
 
-private:
+protected:
 
     Matrix A;             // The Matrix
     Matrix P;             // Matriz de autovetores
