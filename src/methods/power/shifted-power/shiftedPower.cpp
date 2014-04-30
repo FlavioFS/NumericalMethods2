@@ -68,6 +68,14 @@ bool ShiftedPower::run()
     }
     qk >> 1;
 
+    /*+----------------------------------------+ *
+    * | Building new A.                        | *
+    * | We subtract u on the diagonal          | *
+    * +----------------------------------------+ */
+    for(int i = 0; i < order; i++) {
+        A.put(A.get(i+1, i+1)-u, i+1, i+1);    
+    }
+
     // Builds the A matrix to solve AX = b, using LU
     double *A;
     A = new double[order*order]; int count = 0;
@@ -128,9 +136,22 @@ bool ShiftedPower::run()
     << endl << "__________________________________"
     << endl << "Eigenvector Approximation"
     << endl << "__________________________________"
-    << endl <<endl << qk
-    << endl << "__________________________________"
-    <<endl << endl;
+    << endl <<endl << qk;
+    
+    cout << endl << "Vector format:" << endl << endl;
+    cout << "[" ;
+    int i;
+    for (i = 0; i < order-1; ++i)
+    {
+       cout << qk.get(i+1, 1) << ", ";
+    }
+    cout << qk.get(i+1, 1);
+    cout << "]" ;
+
+    cout << endl << "__________________________________"
+    << endl <<endl << endl;
+    
+    
 
     return true;
 }
