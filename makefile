@@ -3,7 +3,7 @@
 
 all:
 	
-######## Part I ########
+####### Part I #######
 
 	$(MAKE) -C src/methods/closed-newton-cotes/trapz
 	$(MAKE) -C src/methods/closed-newton-cotes/simpson13
@@ -14,7 +14,7 @@ all:
 	$(MAKE) -C src/methods/multiple-integral
 
 
-######## Part II #######
+####### Part II #######
 
 	# Derivatives
 	$(MAKE) -C src/methods/derivatives/Backward-Difference
@@ -28,6 +28,9 @@ all:
 	$(MAKE) -C src/methods/derivatives/Forward-Difference-Second
 	$(MAKE) -C src/methods/derivatives/Lagrange-Difference
 
+
+####### Part III #######
+
 	# Power
 	$(MAKE) -C src/methods/power/regular-power
 	$(MAKE) -C src/methods/power/inverse-power
@@ -39,3 +42,8 @@ all:
 	#Qr
 	$(MAKE) -C src/methods/qr/simple
 	#$(MAKE) -C src/methods/qr/householder
+
+
+####### Part IV #######
+
+	# TODO
