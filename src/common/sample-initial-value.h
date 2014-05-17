@@ -30,9 +30,9 @@ public:
     /* ==========================================================
                             Function List
     ========================================================== */
-    /*double f1(double v, double t);
-    double f2(double v, double t;
-    double f3(double v, double t);*/
+    double f1(std::vector<double> params);
+    double f2(std::vector<double> params);
+    double f3(std::vector<double> params);
 
 private:
 
