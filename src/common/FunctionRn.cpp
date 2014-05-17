@@ -1,4 +1,4 @@
-#include "Function.h"
+#include "FunctionRn.h"
 #include <stdlib.h>
 #include <cmath>
 
@@ -7,25 +7,25 @@
 /* ==========================================================
                          Constructors
 ========================================================== */
-Function::Function( double (*functionRn) (std::vector<double>) )
-: functionRn(functionRn)
+FunctionRn::FunctionRn( double (*functionRn) (std::vector<double>) )
+: _functionRn(functionRn)
 {}
 
 /* ==========================================================
                              Set
 ========================================================== */
-void Function::setFunction(double (*functionRn)( std::vector<double> ))
+void FunctionRn::setFunction(double (*functionRn)( std::vector<double> ))
 {
-  this->functionRn = functionRn;
+  this->_functionRn = functionRn;
 }
 
 /* ==========================================================
                              Run
 ========================================================== */
 // Runs function using 'x' as the argument and returns f(x)
-double Function::run(std::vector<double> params)
+double FunctionRn::run(std::vector<double> params)
 {
-  if (function != NULL)
-    { return function(params); }
+  if (_functionRn != NULL)
+    { return _functionRn(params); }
   throw NULL_FUNCTION;
 }

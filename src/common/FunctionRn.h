@@ -1,17 +1,16 @@
 #ifndef FUNCTION_H
 #define FUNCTION_H
 
-#include "../includes/IFunction.h"
 #include <vector>
 
-class Function : public IFunction
+class FunctionRn
 {
     public:
 
 		/* ==========================================================
                                  Constructors
         ========================================================== */
-    	Function(double (*functionRn)( std::vector<double> ));
+    	FunctionRn(double (*functionRn)( std::vector<double> ));
 
         /* ==========================================================
                                      Set
@@ -27,7 +26,7 @@ class Function : public IFunction
 
     private:
         // Multiple variable function
-        double (*) (std::vector<double>) _functionRn;
+        double (*_functionRn) (std::vector<double>);
 };
 
 #endif // FUNCTION_H
