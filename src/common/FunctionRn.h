@@ -11,11 +11,12 @@ class FunctionRn
                                  Constructors
         ========================================================== */
     	FunctionRn(double (*functionRn)( std::vector<double> ));
+        FunctionRn();
 
         /* ==========================================================
                                      Set
         ========================================================== */
-        void setFunction( double (*functionRn)(std::vector<double>) );
+        void setFunction(double (*functionRn)(std::vector<double>) );
 
         /* ==========================================================
                                       Run

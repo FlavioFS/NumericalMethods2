@@ -11,6 +11,10 @@ FunctionRn::FunctionRn( double (*functionRn) (std::vector<double>) )
 : _functionRn(functionRn)
 {}
 
+FunctionRn::FunctionRn()
+: _functionRn(NULL)
+{}
+
 /* ==========================================================
                              Set
 ========================================================== */

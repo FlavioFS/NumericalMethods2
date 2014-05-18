@@ -2,7 +2,7 @@
 #define SAMPLE_INITIAL_VALUE_H
 
 #include "../includes/ISample.h"
-#include "Function.h"
+#include "FunctionRn.h"
 
 class SampleInitialValue : public ISample
 {
@@ -17,7 +17,7 @@ public:
     /* ==========================================================
                                  Gets
     ========================================================== */
-    Function getFunction();
+    FunctionRn getFunction();
     double getV0();
     double getLeft();
     double getRight();
@@ -27,16 +27,9 @@ public:
     ========================================================== */
     bool readSamplesFromFile(const char* filePath);
 
-    /* ==========================================================
-                            Function List
-    ========================================================== */
-    double f1(std::vector<double> params);
-    double f2(std::vector<double> params);
-    double f3(std::vector<double> params);
-
 private:
 
-    Function f;         // Continuous function
+    FunctionRn f;         // Continuous function
     double v0;          // v′ = f(v, t) and v(0) = v0
     double h;           // h
     double left, right; // Interval borders
