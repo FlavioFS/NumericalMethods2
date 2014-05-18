@@ -19,6 +19,7 @@ public:
     ========================================================== */
     FunctionRn getFunction();
     double getV0();
+    double getH();
     double getLeft();
     double getRight();
 

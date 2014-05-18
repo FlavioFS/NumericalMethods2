@@ -19,6 +19,7 @@ SampleInitialValue::SampleInitialValue()
 ========================================================== */
 FunctionRn SampleInitialValue::getFunction() { return f; }
 double SampleInitialValue::getV0() { return v0; }
+double SampleInitialValue::getH() { return h; }
 double SampleInitialValue::getLeft() { return left; }
 double SampleInitialValue::getRight() { return right; }
 
@@ -29,7 +30,7 @@ double SampleInitialValue::getRight() { return right; }
 // Expecting to receive v and t as parameters, in that order.
 // Ex: f(v, t)
 // params[0] = v, and params[1] = t
-double f1(std::vector<double> params) { return (params[0]*pow(params[1], 3)) - (1.5*params[1]); }
+double f1(std::vector<double> params) { return (params[0]*pow(params[1], 3)) - (1.5*params[0]); }
 double f2(std::vector<double> params) { return (1+(4*params[1]))*sqrt(params[0]); }
 double f3(std::vector<double> params) { return (2*params[0]) + pow(params[1], 2); }
 
