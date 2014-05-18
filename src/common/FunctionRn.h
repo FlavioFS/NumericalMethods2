@@ -1,5 +1,5 @@
-#ifndef FUNCTION_H
-#define FUNCTION_H
+#ifndef FUNCTIONRN_H
+#define FUNCTIONRN_H
 
 #include <vector>
 
@@ -10,13 +10,13 @@ class FunctionRn
 		/* ==========================================================
                                  Constructors
         ========================================================== */
-    	FunctionRn(double (*functionRn)( std::vector<double> ));
+    	FunctionRn( double(*functionRn)(std::vector<double>) );
         FunctionRn();
 
         /* ==========================================================
                                      Set
         ========================================================== */
-        void setFunction(double (*functionRn)(std::vector<double>) );
+        void setFunction( double(*functionRn)(std::vector<double>) );
 
         /* ==========================================================
                                       Run
@@ -30,4 +30,4 @@ class FunctionRn
         double (*_functionRn) (std::vector<double>);
 };
 
-#endif // FUNCTION_H
+#endif // FUNCTIONRN_H

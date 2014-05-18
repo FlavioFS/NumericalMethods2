@@ -7,7 +7,7 @@
 /* ==========================================================
                          Constructors
 ========================================================== */
-FunctionRn::FunctionRn( double (*functionRn) (std::vector<double>) )
+FunctionRn::FunctionRn( double(*functionRn)(std::vector<double>) )
 : _functionRn(functionRn)
 {}
 
@@ -18,7 +18,7 @@ FunctionRn::FunctionRn()
 /* ==========================================================
                              Set
 ========================================================== */
-void FunctionRn::setFunction(double (*functionRn)( std::vector<double> ))
+void FunctionRn::setFunction( double(*functionRn)( std::vector<double>) )
 {
   this->_functionRn = functionRn;
 }
