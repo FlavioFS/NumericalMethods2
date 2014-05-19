@@ -93,4 +93,3 @@ double Adams::fourthOrder (FunctionRn f, double v0, double h, double left, doubl
     return _vi_middle;
     */
 }
-

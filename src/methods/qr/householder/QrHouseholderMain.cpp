@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     SampleQr *sampleQR = new SampleQr();
     sampleQR->readSamplesFromFile(argv[1]);
 
-    qrHouseholder qrH ( sampleQR->getSamples(), sampleQR->getOrder(), sampleQR->getE());
+    QrHouseholder qrH ( sampleQR->getSamples(), sampleQR->getOrder(), sampleQR->getE());
     qrH.run();
 
     // TODO put this on the view logic
