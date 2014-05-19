@@ -1,16 +1,11 @@
-EXE		 = ../../../adams
-INCLUDES = ../../includes
-COMMON   = ../../common
-DERIVATIVES = ../derivatives
+COMMON   = ../../../common
+ADAMS = ..
 
 CC = g++
 FLAGS = -g
 
-$(EXE) : adams.o $(DERIVATIVES)/Derivative.o $(COMMON)/Function.o
-	$(CC) $(FLAGS) -o $(EXE) adams.o $(DERIVATIVES)/Derivative.o $(COMMON)/Function.o
+Adams.o : $(ADAMS)/Adams.cpp $(ADAMS)/Adams.h $(COMMON)/FunctionRn.cpp $(COMMON)/FunctionRn.h
+	$(CC) $(CFLAGS) -c $(ADAMS)/Adams.cpp $(COMMON)/FunctionRn.cpp
 
-Derivative.o : $(DERIVATIVES)/Derivative.cpp $(DERIVATIVES)/Derivative.h $(COMMON)/Function.cpp $(COMMON)/Function.h $(INCLUDES)/point.h
-	$(CC) $(CFLAGS) -c $(DERIVATIVES)/Derivative.cpp $(COMMON)/Function.cpp
-
-Function.o : $(COMMON)/Function.cpp $(COMMON)/Function.h $(INCLUDES)/IFunction.h
-	$(CC) $(CFLAGS) -c $(COMMON)/Function.cpp
+FunctionRn.o : $(COMMON)/FunctionRn.cpp $(COMMON)/FunctionRn.h
+	$(CC) $(CFLAGS) -c $(COMMON)/FunctionRn.cpp

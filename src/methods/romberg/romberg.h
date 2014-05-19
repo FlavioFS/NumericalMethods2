@@ -41,4 +41,4 @@ private:
     double area;        // Calculated integral
 };
 
-#endif ROMBERG_H
+#endif // ROMBERG_H

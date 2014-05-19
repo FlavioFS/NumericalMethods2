@@ -47,3 +47,5 @@ all:
 ####### Part IV #######
 
 	# TODO
+	$(MAKE) -C src/methods/adams/third-order
+	$(MAKE) -C src/methods/adams/fourth-order
