@@ -7,7 +7,7 @@
 std::vector<point> Adams::thirdOrder (FunctionRn f, double v0, double h, double left, double right)
 {
 	// Calculating initial points
-	double ti = left + 2*h;
+	double ti = left + h;
 	std::vector<point> results = RungeKutta::thirdOrder(f, v0, h, left, ti);
 
 	// Only 3 points in the interval
@@ -21,11 +21,12 @@ std::vector<point> Adams::thirdOrder (FunctionRn f, double v0, double h, double 
 
 	unsigned int
 		i = 2;
-		
+
 	double
 		vi = results[i].y,
 		vi_ = 0;
 
+	ti += h;
 	while(ti <= right) {
 
 		params.clear();
@@ -63,51 +64,11 @@ std::vector<point> Adams::thirdOrder (FunctionRn f, double v0, double h, double 
 // [2] - Fourth Order Adams
 std::vector<point> Adams::fourthOrder (FunctionRn f, double v0, double h, double left, double right)
 {
-	// TODO
-    /*
-	double vi = v0, 
-		  _vi_middle = 0,
-		  _vi = 0,
-		   ti = left;
+	/* TO DO */
 
-	// Parameters vector used to calculate f(vi, ti)
-	std::vector<double> params;
-	// Parameters vector used to calculate f(vi + 1/2, ti + 1/2)
-	std::vector<double> params_middle;
-	// Parameters vector used to calculate f(vi + 1, ti + 1)
-	std::vector<double> params_;
+	// Calculating initial points
+	double ti = left + h;
+	std::vector<point> results = RungeKutta::thirdOrder(f, v0, h, left, ti);
 
-	while(ti <= right) {
-
-		params.clear();
-		params.push_back(vi);
-		params.push_back(ti);
-
-		// _vi + 1/2 = vi + h/2(f(vi, ti))
-		_vi_middle = vi + (h/2)*f.run(params);		
-
-		// ti + 1/2
-		ti = ti + (h/2);
-
-		params_middle.clear();
-		params_middle.push_back(_vi_middle);
-		params_middle.push_back(ti);
-
-		// _vi + 1 = vi + h[-f(vi, ti) + 2f(_vi + 1/2, ti + 1/2)]
-		_vi = vi + h*( -f.run(params) + 2*f.run(params_middle));
-
-		// ti + 1
-		ti = ti + (h/2);
-
-		params_.clear();
-		params_.push_back(_vi);
-		params_.push_back(ti);
-
-		// vi + 1 = vi + h/6(f(vi, ti) + 4f(_vi + 1/2, ti + 1/2) + f(_vi + 1, ti + 1))
-		vi = vi + (h/6)*((f.run(params)) + 4*f.run(params_middle) + f.run(params_));
-		
-	}
-
-    return _vi_middle;
-    */
+	return results;
 }

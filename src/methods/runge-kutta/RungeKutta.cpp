@@ -17,11 +17,15 @@ std::vector<point> RungeKutta::secondOrder (FunctionRn f, double v0, double h, d
 	std::vector<point> results;
 	results.clear();
 
-	// Parameters vector used to calculate f(vi, ti)
-	vector<double> params;
+	// Adding first result
+	std::vector<double> arg0;		// Arguments for the initial point (P0)
+	arg0.push_back(v0);				// Argument 1
+	arg0.push_back(left);			// Argument 2
+	point p0 = {left, f.run(arg0)};	// Initializing P0, and...
+	results.push_back(p0);			// ... pushing it to solution
 
-	// Parameters vector used to calculate f(vi_, ti + 1)
-	vector<double> params_;
+	vector<double> params;	// Parameters vector used to calculate f(vi, ti)
+	vector<double> params_;	// Parameters vector used to calculate f(vi_, ti + 1)
 
 	while(ti <= right) {
 
@@ -62,14 +66,16 @@ std::vector<point> RungeKutta::thirdOrder (FunctionRn f, double v0, double h, do
 	std::vector<point> results;
 	results.clear();
 
-	// Parameters vector used to calculate f(vi, ti)
-	vector<double> params;
+	// Adding first result
+	std::vector<double> arg0;		// Arguments for the initial point (P0)
+	arg0.push_back(v0);				// Argument 1
+	arg0.push_back(left);			// Argument 2
+	point p0 = {left, f.run(arg0)};	// Initializing P0, and...
+	results.push_back(p0);			// ... pushing it to solution
 
-	// Parameters vector used to calculate f(vi + 1/2, ti + 1/2)
-	vector<double> params_middle;
-
-	// Parameters vector used to calculate f(vi + 1, ti + 1)
-	vector<double> params_;
+	vector<double> params;			// Parameters vector used to calculate f(vi, ti)
+	vector<double> params_middle;	// Parameters vector used to calculate f(vi + 1/2, ti + 1/2)
+	vector<double> params_;			// Parameters vector used to calculate f(vi + 1, ti + 1)
 
 	while(ti <= right) {
 

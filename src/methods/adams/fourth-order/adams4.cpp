@@ -16,14 +16,20 @@ int main(int argc, char *argv[])
     SampleInitialValue *sampleIV = new SampleInitialValue();
     sampleIV->readSamplesFromFile(argv[1]);
 
-    double result = Adams::fourthOrder(sampleIV->getFunction(), 
-                                            sampleIV->getV0(), 
-                                            sampleIV->getH(), 
-                                            sampleIV->getLeft(), 
-                                            sampleIV->getRight());
+    vector<point> result = Adams::fourthOrder (
+        sampleIV->getFunction(), 
+        sampleIV->getV0(), 
+        sampleIV->getH(), 
+        sampleIV->getLeft(), 
+        sampleIV->getRight()
+    );
         
-    cout << "Fourth Order Adams: " <<             result                       << endl
-         << "================================================================" << endl;
+    cout << "======================= Fourth Order Adams =====================" << endl;
+    for (int i = 0; i < result.size(); i++)
+    {
+        cout <<  "(" << result[i].x << "," << result[i].y << ")"               << endl;
+    }
+    cout << "================================================================" << endl;
 
     return 0;
 }

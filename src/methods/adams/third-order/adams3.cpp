@@ -16,14 +16,22 @@ int main(int argc, char *argv[])
     SampleInitialValue *sampleIV = new SampleInitialValue();
     sampleIV->readSamplesFromFile(argv[1]);
 
-    double result = Adams::thirdOrder(sampleIV->getFunction(), 
-                                            sampleIV->getV0(), 
-                                            sampleIV->getH(), 
-                                            sampleIV->getLeft(), 
-                                            sampleIV->getRight());
+    vector<point> result = Adams::thirdOrder (
+        sampleIV->getFunction(), 
+        sampleIV->getV0(), 
+        sampleIV->getH(), 
+        sampleIV->getLeft(), 
+        sampleIV->getRight()
+    );
         
-    cout << "Third Order Adams: " <<             result                        << endl
-         << "================================================================" << endl;
+    const unsigned int width = 13;
 
+    cout << "======================== Third Order Adams =====================" << endl;
+    for (int i = 0; i < result.size(); i++)
+    {
+        cout <<  "(" << setw(width) << result[i].x << ", " << setw(width) << result[i].y << ")" << endl;
+    }
+    cout << "================================================================" << endl;
+    
     return 0;
 }
