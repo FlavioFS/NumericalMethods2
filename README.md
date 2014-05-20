@@ -21,8 +21,8 @@ Course from Federal University of Ceara
 * Gaussian Quadrature
 * Romberg
 * Multiple Integrals
-* Finite Differences for First Derivate and Equaly Spaced Intervals
-* Finite Differences for First Derivate and Non Equaly Spaced Intervals
+* Finite Differences for First Derivative and Equally Spaced Intervals
+* Finite Differences for First Derivative and Non Equally Spaced Intervals
 * Lagrange Difference
 * Richardson
 * Regular Power
@@ -101,7 +101,7 @@ Forward Difference:
 $> ./forwarddiff samples.txt
 ```
 
-Forward Difference for Second Derivate:
+Forward Difference for Second Derivative:
 
 ```
 $> ./forwarddiff2 samples.txt
@@ -113,7 +113,7 @@ Backward Difference:
 $> ./backdiff samples.txt
 ```
 
-Backward Difference for Second Derivate:
+Backward Difference for Second Derivative:
 
 ```
 $> ./backdiff2 samples.txt
@@ -124,7 +124,7 @@ Central Difference:
 $> ./centraldiff samples.txt
 ```
 
-Central Difference for Second Derivate:
+Central Difference for Second Derivative:
 
 ```
 $> ./centraldiff2 samples.txt
