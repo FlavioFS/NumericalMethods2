@@ -21,6 +21,16 @@ Course from Federal University of Ceara
 * Gaussian Quadrature
 * Romberg
 * Multiple Integrals
+* Finite Differences for First Derivative and Equally Spaced Intervals
+* Finite Differences for First Derivative and Non Equally Spaced Intervals
+* Lagrange Difference
+* Richardson
+* Regular Power
+* Inverse Power
+* Shifted Power
+* Jacobi
+* Qr
+* Qr with Householder
 
 ## How does it work?
 ISample interface describes what the read-from-file classes need to implement.
@@ -85,5 +95,98 @@ Multiple Integrals:
 $> ./int_dup samples.txt
 ```
 
+Forward Difference:
 
+```
+$> ./forwarddiff samples.txt
+```
+
+Forward Difference for Second Derivative:
+
+```
+$> ./forwarddiff2 samples.txt
+```
+
+Backward Difference:
+
+```
+$> ./backdiff samples.txt
+```
+
+Backward Difference for Second Derivative:
+
+```
+$> ./backdiff2 samples.txt
+```
+Central Difference:
+
+```
+$> ./centraldiff samples.txt
+```
+
+Central Difference for Second Derivative:
+
+```
+$> ./centraldiff2 samples.txt
+```
+
+Richardson (Forward):
+
+```
+$> ./richardson_forward samples.txt
+```
+
+Richardson (Backward):
+
+```
+$> ./richardson_back samples.txt
+```
+
+Richardson (Central):
+
+```
+$> ./richardson_central samples.txt
+```
+
+Lagrange Difference:
+
+```
+$> ./gendiff samples.txt
+```
+
+Regular Power:
+
+```
+$> ./regpot samples.txt
+```
+
+Inverse Power:
+
+```
+$> ./invpot samples.txt
+```
+
+Shifted Power:
+
+```
+$> ./despot samples.txt
+```
+
+Jacobi:
+
+```
+$> ./jacobi samples.txt
+```
+
+Qr:
+
+```
+$> ./qr samples.txt
+```
+
+Qr with Householder:
+
+```
+$> ./qrHouseholder samples.txt
+```
 
