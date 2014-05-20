@@ -10,9 +10,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-
     // Read samples from file and store them
-
     SampleInitialValue *sampleIV = new SampleInitialValue();
     sampleIV->readSamplesFromFile(argv[1]);
 
@@ -25,7 +23,6 @@ int main(int argc, char *argv[])
     );
         
     const unsigned int width = 13;
-
     cout << "======================== Third Order Adams =====================" << endl;
     for (int i = 0; i < result.size(); i++)
     {
