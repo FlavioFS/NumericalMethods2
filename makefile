@@ -3,7 +3,7 @@
 
 all:
 	
-####### Part I #######
+	####### Part I #######
 
 	$(MAKE) -C src/methods/closed-newton-cotes/trapz
 	$(MAKE) -C src/methods/closed-newton-cotes/simpson13
@@ -12,9 +12,11 @@ all:
 	$(MAKE) -C src/methods/gaussian-quadrature
 	$(MAKE) -C src/methods/open-newton-cotes
 	$(MAKE) -C src/methods/multiple-integral
+	#
+	#
 
 
-####### Part II #######
+	####### Part II #######
 
 	# Derivatives
 	$(MAKE) -C src/methods/derivatives/Backward-Difference
@@ -27,25 +29,31 @@ all:
 	$(MAKE) -C src/methods/derivatives/Forward-Difference-Richardson
 	$(MAKE) -C src/methods/derivatives/Forward-Difference-Second
 	$(MAKE) -C src/methods/derivatives/Lagrange-Difference
+	#
+	#
 
 
-####### Part III #######
+	####### Part III #######
 
 	# Power
 	$(MAKE) -C src/methods/power/regular-power
 	$(MAKE) -C src/methods/power/inverse-power
 	$(MAKE) -C src/methods/power/shifted-power
+	#
 
 	#Jacobi
 	$(MAKE) -C src/methods/jacobi
+	#
 
 	#Qr
 	$(MAKE) -C src/methods/qr/simple
 	$(MAKE) -C src/methods/qr/householder
+	#
+	#
 
 
-####### Part IV #######
+	####### Part IV #######
 
-	# TODO
+	# Adams
 	$(MAKE) -C src/methods/adams/third-order
 	$(MAKE) -C src/methods/adams/fourth-order

@@ -6,40 +6,58 @@
 // [1] - Third Order Adams
 std::vector<point> Adams::thirdOrder (FunctionRn f, double v0, double h, double left, double right)
 {
-	// TODO
-    /*
-	double vi = v0, 
-		  _vi = 0,
-		   ti = left;
+	// Calculating initial points
+	double ti = left + 2*h;
+	std::vector<point> results = RungeKutta::thirdOrder(f, v0, h, left, ti);
 
-	// Parameters vector used to calculate f(vi, ti)
-	std::vector<double> params;
-	// Parameters vector used to calculate f(vi_, ti + 1)
-	std::vector<double> params_;
+	// Only 3 points in the interval
+	if (ti >= right)
+		return results;
+	
+	std::vector<double> params;		// Parameters vector used to calculate f(vi, ti)
+	std::vector<double> params_1;	// Parameters vector used to calculate f(vi-1, ti - h)
+	std::vector<double> params_2;	// Parameters vector used to calculate f(vi-2, ti - 2h)
+	std::vector<double> params_;	// Parameters vector used to calculate f(vi_, ti + 1)
+
+	unsigned int
+		i = 2;
+		
+	double
+		vi = results[i].y,
+		vi_ = 0;
 
 	while(ti <= right) {
 
 		params.clear();
-		params.push_back(vi);
-		params.push_back(ti);
+		params.push_back(results[i].x);
+		params.push_back(results[i].y);
 
-		// vi_ + 1 = vi + h(f(vi, ti))
-		_vi = vi + h*f.run(params);		
+		params_1.clear();
+		params_1.push_back(results[i-1].x);
+		params_1.push_back(results[i-1].y);
+
+		params_2.clear();
+		params_2.push_back(results[i-2].x);
+		params_2.push_back(results[i-2].y);
+
+		// Estimating vi+1
+		vi_ = vi + (h/12) * (23*f.run(params) - 16*f.run(params_1) + 5*f.run(params_2));
 
 		// ti + 1
 		ti = ti + h;
 
 		params_.clear();
-		params_.push_back(_vi);
+		params_.push_back(vi_);
 		params_.push_back(ti);
 
-		// vi+1 = vi + h/2[f(vi, ti) + f(vi_ + 1, ti + 1)]
-		vi = vi + (h/2)*( f.run(params) + f.run(params_));
+		// Calculating vi+1
+		vi = vi + (h/12) * (5*f.run(params_) + 8*f.run(params) - f.run(params_1));
 
+		point latest_result = {ti, vi};
+		results.push_back(latest_result);
 	}
 
-    return _vi;
-    */
+    return results;
 }
 
 // [2] - Fourth Order Adams
