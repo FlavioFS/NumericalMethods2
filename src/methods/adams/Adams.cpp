@@ -4,7 +4,7 @@
 #include <iostream>
 
 // [1] - Third Order Adams
-double Adams::thirdOrder (FunctionRn f, double v0, double h, double left, double right)
+std::vector<point> Adams::thirdOrder (FunctionRn f, double v0, double h, double left, double right)
 {
 	// TODO
     /*
@@ -43,7 +43,7 @@ double Adams::thirdOrder (FunctionRn f, double v0, double h, double left, double
 }
 
 // [2] - Fourth Order Adams
-double Adams::fourthOrder (FunctionRn f, double v0, double h, double left, double right)
+std::vector<point> Adams::fourthOrder (FunctionRn f, double v0, double h, double left, double right)
 {
 	// TODO
     /*
