@@ -27,7 +27,7 @@ std::vector<point> RungeKutta::secondOrder (FunctionRn f, double v0, double h, d
 	vector<double> params;	// Parameters vector used to calculate f(vi, ti)
 	vector<double> params_;	// Parameters vector used to calculate f(vi_, ti + 1)
 
-	while(ti <= right) {
+	while(ti < right) {
 
 		params.clear();
 		params.push_back(vi);
@@ -77,7 +77,7 @@ std::vector<point> RungeKutta::thirdOrder (FunctionRn f, double v0, double h, do
 	vector<double> params_middle;	// Parameters vector used to calculate f(vi + 1/2, ti + 1/2)
 	vector<double> params_;			// Parameters vector used to calculate f(vi + 1, ti + 1)
 
-	while(ti <= right) {
+	while(ti < right) {
 
 		params.clear();
 		params.push_back(vi);

@@ -27,7 +27,7 @@ std::vector<point> Adams::thirdOrder (FunctionRn f, double v0, double h, double 
 		vi_ = 0;
 
 	ti += h;
-	while(ti <= right) {
+	while(ti < right) {
 
 		params.clear();
 		params.push_back(results[i].x);

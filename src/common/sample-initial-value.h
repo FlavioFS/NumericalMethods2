@@ -18,6 +18,7 @@ public:
                                  Gets
     ========================================================== */
     FunctionRn getFunction();
+    int getFunctionID();
     double getV0();
     double getH();
     double getLeft();
@@ -31,6 +32,7 @@ public:
 private:
 
     FunctionRn f;         // Continuous function
+    int functionID;     // Function ID
     double v0;          // v′ = f(v, t) and v(0) = v0
     double h;           // h
     double left, right; // Interval borders

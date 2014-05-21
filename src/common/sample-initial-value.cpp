@@ -18,6 +18,7 @@ SampleInitialValue::SampleInitialValue()
                              Gets
 ========================================================== */
 FunctionRn SampleInitialValue::getFunction() { return f; }
+int SampleInitialValue::getFunctionID() {return functionID;}
 double SampleInitialValue::getV0() { return v0; }
 double SampleInitialValue::getH() { return h; }
 double SampleInitialValue::getLeft() { return left; }
@@ -55,6 +56,7 @@ bool SampleInitialValue::readSamplesFromFile(const char* filePath)
 
         // Function selection
         sampleFile >> functionNumber;
+        functionID = functionNumber;
         if (functionNumber == 1) {
             f.setFunction(f1);
         } else if(functionNumber == 2) {
