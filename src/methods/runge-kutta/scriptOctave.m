@@ -24,4 +24,9 @@ tad3 = [0,0.5,1.5,2]
 yad3 = [-1.5,0.471537,0.210727,-2.49212]
 ad3 = plot(tad3, yad3, "g-")
 set(ad3,"linewidth",2)
-legend('solucao analitica','Forward Euler', 'RK2', 'RK3');
+hold on
+tad4 = [0,0.5,1.5,2]
+yad4 = [-1.5,0.378323,2.67805e+258,nan]
+ad4 = plot(tad4, yad4, "p-")
+set(ad4,"linewidth",2)
+legend('solucao analitica', 'RK2', 'RK3', 'RK4', 'Adams3', 'Adams4');

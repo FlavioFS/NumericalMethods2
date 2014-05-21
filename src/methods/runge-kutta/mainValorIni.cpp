@@ -235,7 +235,54 @@ int main(int argc, char *argv[])
 
     script << "ad3 = plot(tad3, yad3, \"g-\")\n"
            << "set(ad3,\"linewidth\",2)\n"
-           << "legend('solucao analitica','Forward Euler', 'RK2', 'RK3');";
+           << "hold on\n";
+
+
+    //Fourth Order Adams, showing results and writing octave script 
+    results.clear();
+    results = Adams::fourthOrder(sampleIV->getFunction(), 
+                                            sampleIV->getV0(), 
+                                            sampleIV->getH(), 
+                                            sampleIV->getLeft(), 
+                                            sampleIV->getRight());
+
+    script << "tad4 = [";
+
+    for (int i = 0; i < results.size(); i++)
+    {
+        if(results[i].x != sampleIV->getRight())
+        {
+            script << results[i].x << ",";
+        }
+        else
+        {
+            script << results[i].x << "]\n";
+        }
+    }
+
+    script << "yad4 = [";
+
+    cout << "Fourth Order Adams: " << endl
+         << "================================================================" << endl;
+    for (int i = 0; i < results.size(); i++)
+    {
+        cout <<  "f(" << setw(4) << results[i].x << ") = " << setw(13) << results[i].y << endl;
+
+        if(results[i].x != sampleIV->getRight())
+        {
+            script << results[i].y << ",";
+        }
+        else
+        {
+            script << results[i].y << "]\n";
+        }
+
+    }
+    cout << "================================================================" << endl << endl;
+
+    script << "ad4 = plot(tad4, yad4, \"p-\")\n"
+           << "set(ad4,\"linewidth\",2)\n"
+           << "legend('solucao analitica', 'RK2', 'RK3', 'RK4', 'Adams3', 'Adams4');";
     script.close();
 
     return 0;
