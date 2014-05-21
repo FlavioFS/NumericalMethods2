@@ -1,0 +1,86 @@
+#include <QCoreApplication>
+
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+void forward_euler(double half_step, char choice);
+
+//Inputs
+double Vzero = 1;   // Starting speed
+double Ti    = 0;    // Time Interval Start
+double Tf    = 2;   // Time interval Finish
+double delta_tempo=0.5; //half-step
+
+//First Function(v,t)
+double f1(double v, double t)
+{
+    return (v*(pow(t,3)) - 1.5*v);
+}
+
+//Second Function (v,t)
+double f2(double v, double t)
+{
+    cout << endl << ((1+4*t)*sqrt(v)) << endl;
+    return ((1+4*t)*sqrt(v));
+}
+
+//Third Function (v,t)
+double f3(double v, double t)
+{
+    cout << (-2*v +pow(t,2)) <<endl;
+    return (-2*v +pow(t,2));
+}
+
+
+//Forward Euler:
+void forward_euler(double half_step, char choice)
+{
+    double Vant=Vzero;
+    double Vactual=Vzero;
+
+    // Half-step interval loop:
+    for (double i=Ti ; i<=Tf ; i+=half_step)
+    {
+      if(choice == '1')
+      {
+        //Printing time and speed
+        cout << i << "      " << Vactual << endl;
+        Vactual = Vant + half_step*f1(Vant,i+half_step);
+        Vant = Vactual;
+      }
+      if(choice == '2')
+      {
+        cout << i << "      " << Vactual << endl;
+        Vactual = Vant + half_step*f2(Vant,i+half_step);
+        Vant = Vactual;
+      }
+      if (choice == '3')
+      {
+        cout << i << "      " << Vactual << endl;
+        Vactual = Vant + half_step*f3(Vant,i+half_step);
+        Vant = Vactual;
+      }
+    }
+    cout << endl;
+}
+
+int main(void)
+{
+    char escolha = '\0';
+
+    do{
+
+        cout <<"> Half-step: "<<delta_tempo<<" seconds."<<endl;
+        cout <<"> Set:"<<endl;
+        cout <<"  Apply Forward Euler for function (1)"<<endl;
+        cout <<"  Apply Forward Euler for function (2)"<<endl;
+        cout <<"  Apply Forward Euler for function (3)"<<endl;
+        cout <<"   E(X)it"<<endl;
+        cin >> escolha;
+        forward_euler(delta_tempo, escolha);
+
+
+      }while(escolha!='X');
+    return(0);
+}
