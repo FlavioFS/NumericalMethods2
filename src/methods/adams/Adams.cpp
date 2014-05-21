@@ -7,7 +7,7 @@
 std::vector<point> Adams::thirdOrder (FunctionRn f, double v0, double h, double left, double right)
 {
 	// Calculating initial points
-	double ti = left + h;
+	double ti = left + 2*h;
 	std::vector<point> results = RungeKutta::thirdOrder(f, v0, h, left, ti);
 
 	// Only 3 points in the interval
@@ -26,7 +26,7 @@ std::vector<point> Adams::thirdOrder (FunctionRn f, double v0, double h, double 
 		vi = results[i].y,
 		vi_ = 0;
 
-	ti += h;
+	//ti += h;
 	while(ti < right) {
 
 		params.clear();
@@ -67,7 +67,7 @@ std::vector<point> Adams::fourthOrder (FunctionRn f, double v0, double h, double
 	/* TO DO */
 
 	// Calculating initial points
-	double ti = left + h;
+	double ti = left + 3*h;
 	std::vector<point> results = RungeKutta::fourthOrder(f, v0, h, left, ti);
 
 	if (ti >= right)
@@ -80,13 +80,13 @@ std::vector<point> Adams::fourthOrder (FunctionRn f, double v0, double h, double
 	std::vector<double> params_;	// Parameters vector used to calculate f(vi_, ti + 1)
 
 	unsigned int
-		i = 2;
+		i = 3;
 
 	double
 		vi = results[i].y,
 		vi_ = 0;
 
-	ti += h;
+	//ti += h;
 	while(ti < right) {
 
 		params.clear();

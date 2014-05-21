@@ -29,6 +29,6 @@ int main(int argc, char *argv[])
         cout <<  "(" << setw(width) << result[i].x << ", " << setw(width) << result[i].y << ")" << endl;
     }
     cout << "================================================================" << endl;
-    
+
     return 0;
 }

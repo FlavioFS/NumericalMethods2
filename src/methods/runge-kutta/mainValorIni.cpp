@@ -186,7 +186,7 @@ int main(int argc, char *argv[])
     }
     cout << "================================================================" << endl << endl;
 
-    script << "rk4 = plot(trk4, yrk4, \"y-\")\n"
+    script << "rk4 = plot(trk4, yrk4, \"m-\")\n"
            << "set(rk4,\"linewidth\",2)\n"
            << "hold on\n";
 
@@ -280,7 +280,7 @@ int main(int argc, char *argv[])
     }
     cout << "================================================================" << endl << endl;
 
-    script << "ad4 = plot(tad4, yad4, \"p-\")\n"
+    script << "ad4 = plot(tad4, yad4, \"c-\")\n"
            << "set(ad4,\"linewidth\",2)\n"
            << "legend('solucao analitica', 'RK2', 'RK3', 'RK4', 'Adams3', 'Adams4');";
     script.close();
