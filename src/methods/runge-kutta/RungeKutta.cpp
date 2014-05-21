@@ -19,9 +19,7 @@ std::vector<point> RungeKutta::secondOrder (FunctionRn f, double v0, double h, d
 
 	// Adding first result
 	std::vector<double> arg0;		// Arguments for the initial point (P0)
-	arg0.push_back(v0);				// Argument 1
-	arg0.push_back(left);			// Argument 2
-	point p0 = {left, f.run(arg0)};	// Initializing P0, and...
+	point p0 = {left, v0};			// Initializing P0, and...
 	results.push_back(p0);			// ... pushing it to solution
 
 	vector<double> params;	// Parameters vector used to calculate f(vi, ti)
