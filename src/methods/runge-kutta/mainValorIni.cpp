@@ -144,6 +144,53 @@ int main(int argc, char *argv[])
            << "set(rk3,\"linewidth\",2)\n"
            << "hold on\n";
 
+    //Forth Order Runge Kutta, showing results and writing octave script
+    results.clear();
+    results = RungeKutta::fourthOrder(sampleIV->getFunction(), 
+                                            sampleIV->getV0(), 
+                                            sampleIV->getH(), 
+                                            sampleIV->getLeft(), 
+                                            sampleIV->getRight());
+
+    script << "trk4 = [";
+
+    for (int i = 0; i < results.size(); i++)
+    {
+        if(results[i].x != sampleIV->getRight())
+        {
+            script << results[i].x << ",";
+        }
+        else
+        {
+            script << results[i].x << "]\n";
+        }
+    }
+
+    script << "yrk4 = [";
+
+    cout << "Fourth Order Runge Kutta: " << endl
+         << "================================================================" << endl;
+    for (int i = 0; i < results.size(); i++)
+    {
+        cout <<  "f(" << setw(4) << results[i].x << ") = " << setw(13) << results[i].y << endl;
+
+        if(results[i].x != sampleIV->getRight())
+        {
+            script << results[i].y << ",";
+        }
+        else
+        {
+            script << results[i].y << "]\n";
+        }
+
+    }
+    cout << "================================================================" << endl << endl;
+
+    script << "rk4 = plot(trk4, yrk4, \"y-\")\n"
+           << "set(rk4,\"linewidth\",2)\n"
+           << "hold on\n";
+
+
     //Third Order Adams, showing results and writing octave script 
     results.clear();
     results = Adams::thirdOrder(sampleIV->getFunction(), 

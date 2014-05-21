@@ -15,6 +15,9 @@ class RungeKutta
         // [2] - Third Order Runge Kutta
 		static std::vector<point> thirdOrder (FunctionRn f, double v0, double h, double left, double right);
 
+		// [3] - Fourth Order Runge Kutta
+		static std::vector<point> fourthOrder (FunctionRn f, double v0, double h, double left, double right);
+
 };
 
 #endif // RUNGE_KUTTA_H

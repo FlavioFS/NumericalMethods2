@@ -68,7 +68,7 @@ std::vector<point> Adams::fourthOrder (FunctionRn f, double v0, double h, double
 
 	// Calculating initial points
 	double ti = left + h;
-	std::vector<point> results = RungeKutta::thirdOrder(f, v0, h, left, ti);
+	std::vector<point> results = RungeKutta::fourthOrder(f, v0, h, left, ti);
 
 	return results;
 }
