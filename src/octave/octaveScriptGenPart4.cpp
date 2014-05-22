@@ -63,38 +63,25 @@ int main(int argc, char *argv[])
 
     script << "trk2 = [";
 
-    for (int i = 0; i < results.size(); i++)
+    for (int i = 0; i < results.size() - 1; i++)
     {
-        if(results[i].x != sampleIV->getRight())
-        {
-            script << results[i].x << ", ";
-        }
-        else
-        {
-            script << results[i].x << "]\n";
-        }
+        script << results[i].x << ", ";
     }
+    script << results.back().x << "]\n";
         
     script << "yrk2 = [";
 
     cout << "\nSecond Order Runge Kutta: " << endl
          << "================================================================" << endl;
-    for (int i = 0; i < results.size(); i++)
+    for (int i = 0; i < results.size() - 1; i++)
     {
         //Printing on screen
         cout <<  "f(" << setw(4) << results[i].x << ") = " << setw(13) << results[i].y << endl;
         //Writing on script
-
-        if(results[i].x != sampleIV->getRight())
-        {
-            script << results[i].y << ", ";
-        }
-        else
-        {
-            script << results[i].y << "]\n";
-        }
-
+        script << results[i].y << ", ";
     }
+    cout <<  "f(" << setw(4) << results.back().x << ") = " << setw(13) << results.back().y << endl;
+    script << results.back().y << "]\n";
     cout << "================================================================" << endl << endl;
 
     script << "rk2 = plot(trk2, yrk2)\n"
@@ -115,36 +102,25 @@ int main(int argc, char *argv[])
 
     script << "trk3 = [";
 
-    for (int i = 0; i < results.size(); i++)
+    for (int i = 0; i < results.size() - 1; i++)
     {
-        if(results[i].x != sampleIV->getRight())
-        {
-            script << results[i].x << ", ";
-        }
-        else
-        {
-            script << results[i].x << "]\n";
-        }
+        script << results[i].x << ", ";
     }
+    script << results.back().x << "]\n";
 
     script << "yrk3 = [";
 
     cout << "Third Order Runge Kutta: " << endl
          << "================================================================" << endl;
-    for (int i = 0; i < results.size(); i++)
+    for (int i = 0; i < results.size() - 1; i++)
     {
+        //Printing on screen
         cout <<  "f(" << setw(4) << results[i].x << ") = " << setw(13) << results[i].y << endl;
-
-        if(results[i].x != sampleIV->getRight())
-        {
-            script << results[i].y << ", ";
-        }
-        else
-        {
-            script << results[i].y << "]\n";
-        }
-
+        //Writing on script
+        script << results[i].y << ", ";
     }
+    cout <<  "f(" << setw(4) << results.back().x << ") = " << setw(13) << results.back().y << endl;
+    script << results.back().y << "]\n";
     cout << "================================================================" << endl << endl;
 
     script << "rk3 = plot(trk3, yrk3, \"r-\")\n"
@@ -164,36 +140,25 @@ int main(int argc, char *argv[])
 
     script << "trk4 = [";
 
-    for (int i = 0; i < results.size(); i++)
+    for (int i = 0; i < results.size() - 1; i++)
     {
-        if(results[i].x != sampleIV->getRight())
-        {
-            script << results[i].x << ", ";
-        }
-        else
-        {
-            script << results[i].x << "]\n";
-        }
+        script << results[i].x << ", ";
     }
+    script << results.back().x << "]\n";
 
     script << "yrk4 = [";
 
     cout << "Fourth Order Runge Kutta: " << endl
          << "================================================================" << endl;
-    for (int i = 0; i < results.size(); i++)
+    for (int i = 0; i < results.size() - 1; i++)
     {
+        //Printing on screen
         cout <<  "f(" << setw(4) << results[i].x << ") = " << setw(13) << results[i].y << endl;
-
-        if(results[i].x != sampleIV->getRight())
-        {
-            script << results[i].y << ", ";
-        }
-        else
-        {
-            script << results[i].y << "]\n";
-        }
-
+        //Writing on script
+        script << results[i].y << ", ";
     }
+    cout <<  "f(" << setw(4) << results.back().x << ") = " << setw(13) << results.back().y << endl;
+    script << results.back().y << "]\n";
     cout << "================================================================" << endl << endl;
 
     script << "rk4 = plot(trk4, yrk4, \"m-\")\n"
@@ -213,36 +178,25 @@ int main(int argc, char *argv[])
 
     script << "tad3 = [";
 
-    for (int i = 0; i < results.size(); i++)
+    for (int i = 0; i < results.size() - 1; i++)
     {
-        if(results[i].x != sampleIV->getRight())
-        {
-            script << results[i].x << ", ";
-        }
-        else
-        {
-            script << results[i].x << "]\n";
-        }
+        script << results[i].x << ", ";
     }
+    script << results.back().x << "]\n";
 
     script << "yad3 = [";
 
     cout << "Third Order Adams: " << endl
          << "================================================================" << endl;
-    for (int i = 0; i < results.size(); i++)
+    for (int i = 0; i < results.size() - 1; i++)
     {
+        //Printing on screen
         cout <<  "f(" << setw(4) << results[i].x << ") = " << setw(13) << results[i].y << endl;
-
-        if(results[i].x != sampleIV->getRight())
-        {
-            script << results[i].y << ", ";
-        }
-        else
-        {
-            script << results[i].y << "]\n";
-        }
-
+        //Writing on script
+        script << results[i].y << ", ";
     }
+    cout <<  "f(" << setw(4) << results.back().x << ") = " << setw(13) << results.back().y << endl;
+    script << results.back().y << "]\n";
     cout << "================================================================" << endl << endl;
 
     script << "ad3 = plot(tad3, yad3, \"g-\")\n"
@@ -262,36 +216,25 @@ int main(int argc, char *argv[])
 
     script << "tad4 = [";
 
-    for (int i = 0; i < results.size(); i++)
+    for (int i = 0; i < results.size() - 1; i++)
     {
-        if(results[i].x != sampleIV->getRight())
-        {
-            script << results[i].x << ", ";
-        }
-        else
-        {
-            script << results[i].x << "]\n";
-        }
+        script << results[i].x << ", ";
     }
+    script << results.back().x << "]\n";
 
     script << "yad4 = [";
 
     cout << "Fourth Order Adams: " << endl
          << "================================================================" << endl;
-    for (int i = 0; i < results.size(); i++)
+    for (int i = 0; i < results.size() - 1; i++)
     {
+        //Printing on screen
         cout <<  "f(" << setw(4) << results[i].x << ") = " << setw(13) << results[i].y << endl;
-
-        if(results[i].x != sampleIV->getRight())
-        {
-            script << results[i].y << ", ";
-        }
-        else
-        {
-            script << results[i].y << "]\n";
-        }
-
+        //Writing on script
+        script << results[i].y << ", ";
     }
+    cout <<  "f(" << setw(4) << results.back().x << ") = " << setw(13) << results.back().y << endl;
+    script << results.back().y << "]\n";
     cout << "================================================================" << endl << endl;
 
     script << "ad4 = plot(tad4, yad4, \"c-\")\n"
