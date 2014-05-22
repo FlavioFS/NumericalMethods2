@@ -1,5 +1,5 @@
 figure;
-a = ezplot("e^(0.25*x^4-1.5*x)",[0,2])
+a = ezplot("e^(0.25*x^4 - 1.5*x)",[0,2])
 set(a,"linewidth",2)
 set(a,"color","k")
 grid on
@@ -21,12 +21,12 @@ rk4 = plot(trk4, yrk4, "m-")
 set(rk4,"linewidth",2)
 hold on
 tad3 = [0,0.5,1,1.5,2]
-yad3 = [1,0.471537,0.287046,-0.434887,-2.77301]
+yad3 = [1,0.471537,0.287046,0.434887,2.77301]
 ad3 = plot(tad3, yad3, "g-")
 set(ad3,"linewidth",2)
 hold on
 tad4 = [0,0.5,1,1.5,2]
-yad4 = [1,0.378323,0.217643,0.288345,-1.63591]
+yad4 = [1,0.378323,0.217643,0.288345,1.63591]
 ad4 = plot(tad4, yad4, "c-")
 set(ad4,"linewidth",2)
 legend('solucao analitica', 'RK2', 'RK3', 'RK4', 'Adams3', 'Adams4');

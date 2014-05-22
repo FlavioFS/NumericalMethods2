@@ -17,8 +17,8 @@ std::vector<point> RungeKutta::secondOrder (FunctionRn f, double v0, double h, d
 	std::vector<point> results;
 	results.clear();
 
-	point p0 = {left, v0};			// Initializing P0, and...
-	results.push_back(p0);			// ... pushing it to solution
+	point p0 = {left, v0};	// Initializing P0, and...
+	results.push_back(p0);	// ... pushing it to solution
 
 	vector<double> params;	// Parameters vector used to calculate f(vi, ti)
 	vector<double> params_;	// Parameters vector used to calculate f(vi_, ti + 1)
@@ -67,7 +67,7 @@ std::vector<point> RungeKutta::thirdOrder (FunctionRn f, double v0, double h, do
 	results.push_back(p0);			// ... pushing it to solution
 
 	vector<double> params;			// Parameters vector used to calculate f(vi, ti)
-	vector<double> params_middle;		// Parameters vector used to calculate f(vi + 1/2, ti + 1/2)
+	vector<double> params_middle;	// Parameters vector used to calculate f(vi + 1/2, ti + 1/2)
 	vector<double> params_;			// Parameters vector used to calculate f(vi + 1, ti + 1)
 
 	while(ti < right) {
@@ -120,13 +120,13 @@ std::vector<point> RungeKutta::fourthOrder (FunctionRn f, double v0, double h, d
 	results.clear();
 
 	// Adding first result
-	point p0 = {left, v0};			// Initializing P0, and...
-	results.push_back(p0);			// ... pushing it to solution
+	point p0 = {left, v0};		// Initializing P0, and...
+	results.push_back(p0);		// ... pushing it to solution
 
-	vector<double> params;			// Parameters vector used to calculate f(vi, ti)
+	vector<double> params;		// Parameters vector used to calculate f(vi, ti)
 	vector<double> params_13;	// Parameters vector used to calculate f(vi + 1/3, ti + 1/3)
 	vector<double> params_23;	// Parameters vector used to calculate f(vi + 2/3, ti + 2/3)
-	vector<double> params_;			// Parameters vector used to calculate f(vi + 1, ti + 1)
+	vector<double> params_;		// Parameters vector used to calculate f(vi + 1, ti + 1)
 
 	while(ti < right) {
 
@@ -173,4 +173,3 @@ std::vector<point> RungeKutta::fourthOrder (FunctionRn f, double v0, double h, d
 
     return results;
 }
-
