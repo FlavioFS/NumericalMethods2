@@ -6,7 +6,7 @@ QR		 = ../simple
 CC = g++
 FLAGS = -g
 
-$(EXE) : qrHouseholderMain.o qr.o qrHouseholder.o $(COMMON)/sampleQr.o $(COMMON)/Matrix.o
+$(EXE) : QrHouseholderMain.o qr.o qrHouseholder.o $(COMMON)/sampleQr.o $(COMMON)/Matrix.o
 	$(CC) $(FLAGS) -o $(EXE) qrHouseholderMain.o qr.o qrHouseholder.o $(COMMON)/sampleQr.o $(COMMON)/Matrix.o
 
 qr.o : $(QR)/qr.h $(QR)/qr.cpp $(INCLUDES)/IMethod.h $(COMMON)/Matrix.cpp $(COMMON)/Matrix.h

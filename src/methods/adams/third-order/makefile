@@ -7,8 +7,8 @@ ADAMS = ..
 CC = g++
 FLAGS = -g
 
-$(EXE) : Adams3.o $(ADAMS)/Adams.o $(COMMON)/FunctionRn.o $(COMMON)/sample-initial-value.o $(RK)/RungeKutta.o
-	$(CC) $(FLAGS) -o $(EXE) Adams3.o $(ADAMS)/Adams.o $(COMMON)/FunctionRn.o $(COMMON)/sample-initial-value.o $(RK)/RungeKutta.o
+$(EXE) : adams3.o $(ADAMS)/Adams.o $(COMMON)/FunctionRn.o $(COMMON)/sample-initial-value.o $(RK)/RungeKutta.o
+	$(CC) $(FLAGS) -o $(EXE) adams3.o $(ADAMS)/Adams.o $(COMMON)/FunctionRn.o $(COMMON)/sample-initial-value.o $(RK)/RungeKutta.o
 
 RungeKutta.o : $(RK)/RungeKutta.cpp $(RK)/RungeKutta.h $(COMMON)/FunctionRn.cpp $(COMMON)/FunctionRn.h $(INCLUDES)/point.h
 	$(CC) $(FLAGS) -c $(RK)/RungeKutta.cpp $(RK)/FunctionRn.cpp
