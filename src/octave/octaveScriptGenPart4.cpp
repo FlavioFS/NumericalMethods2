@@ -53,11 +53,13 @@ int main(int argc, char *argv[])
 
     // Second Order Runge Kutta, showing results and writing octave script 
     results.clear();
-    results = RungeKutta::secondOrder(sampleIV->getFunction(), 
-                                            sampleIV->getV0(), 
-                                            sampleIV->getH(), 
-                                            sampleIV->getLeft(), 
-                                            sampleIV->getRight());
+    results = RungeKutta::secondOrder (
+        sampleIV->getFunction(), 
+        sampleIV->getV0(), 
+        sampleIV->getH(), 
+        sampleIV->getLeft(), 
+        sampleIV->getRight()
+    );
 
     script << "trk2 = [";
 
@@ -75,7 +77,7 @@ int main(int argc, char *argv[])
         
     script << "yrk2 = [";
 
-    cout << "Second Order Runge Kutta: " << endl
+    cout << "\nSecond Order Runge Kutta: " << endl
          << "================================================================" << endl;
     for (int i = 0; i < results.size(); i++)
     {
@@ -103,11 +105,13 @@ int main(int argc, char *argv[])
 
     // Third Order Runge Kutta, showing results and writing octave script
     results.clear();
-    results = RungeKutta::thirdOrder(sampleIV->getFunction(), 
-                                            sampleIV->getV0(), 
-                                            sampleIV->getH(), 
-                                            sampleIV->getLeft(), 
-                                            sampleIV->getRight());
+    results = RungeKutta::thirdOrder (
+        sampleIV->getFunction(), 
+        sampleIV->getV0(), 
+        sampleIV->getH(), 
+        sampleIV->getLeft(), 
+        sampleIV->getRight()
+    );
 
     script << "trk3 = [";
 
@@ -150,11 +154,13 @@ int main(int argc, char *argv[])
 
     // Fourth Order Runge Kutta, showing results and writing octave script
     results.clear();
-    results = RungeKutta::fourthOrder(sampleIV->getFunction(), 
-                                            sampleIV->getV0(), 
-                                            sampleIV->getH(), 
-                                            sampleIV->getLeft(), 
-                                            sampleIV->getRight());
+    results = RungeKutta::fourthOrder (
+        sampleIV->getFunction(), 
+        sampleIV->getV0(), 
+        sampleIV->getH(), 
+        sampleIV->getLeft(), 
+        sampleIV->getRight()
+    );
 
     script << "trk4 = [";
 
@@ -197,11 +203,13 @@ int main(int argc, char *argv[])
 
     // Third Order Adams, showing results and writing octave script 
     results.clear();
-    results = Adams::thirdOrder(sampleIV->getFunction(), 
-                                            sampleIV->getV0(), 
-                                            sampleIV->getH(), 
-                                            sampleIV->getLeft(), 
-                                            sampleIV->getRight());
+    results = Adams::thirdOrder (
+        sampleIV->getFunction(), 
+        sampleIV->getV0(), 
+        sampleIV->getH(), 
+        sampleIV->getLeft(), 
+        sampleIV->getRight()
+    );
 
     script << "tad3 = [";
 
@@ -244,11 +252,13 @@ int main(int argc, char *argv[])
 
     // Fourth Order Adams, showing results and writing octave script 
     results.clear();
-    results = Adams::fourthOrder(sampleIV->getFunction(), 
-                                            sampleIV->getV0(), 
-                                            sampleIV->getH(), 
-                                            sampleIV->getLeft(), 
-                                            sampleIV->getRight());
+    results = Adams::fourthOrder(
+        sampleIV->getFunction(), 
+        sampleIV->getV0(), 
+        sampleIV->getH(), 
+        sampleIV->getLeft(), 
+        sampleIV->getRight()
+    );
 
     script << "tad4 = [";
 
