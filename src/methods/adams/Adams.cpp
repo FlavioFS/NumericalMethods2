@@ -56,6 +56,7 @@ std::vector<point> Adams::thirdOrder (FunctionRn f, double v0, double h, double 
 
 		point latest_result = {ti, vi};
 		results.push_back(latest_result);
+		i++;
 	}
 
     return results;
@@ -106,7 +107,7 @@ std::vector<point> Adams::fourthOrder (FunctionRn f, double v0, double h, double
 		params_3.push_back(results[i-3].x);
 
 		// Predictor
-		vi_ = vi + (h/24) * (55*f.run(params) - 59*f.run(params_1) + 37*f.run(params_2) - 9*f.run(params_3)); //Talves esteja errado aqui OLHA ESSA LINHA
+		vi_ = vi + (h/24) * (55*f.run(params) - 59*f.run(params_1) + 37*f.run(params_2) - 9*f.run(params_3));
 
 		// ti + 1
 		ti = ti + h;
@@ -120,6 +121,7 @@ std::vector<point> Adams::fourthOrder (FunctionRn f, double v0, double h, double
 
 		point latest_result = {ti, vi};
 		results.push_back(latest_result);
+		i++;
 	}
 
     return results;
