@@ -137,28 +137,22 @@ std::vector<point> RungeKutta::fourthOrder (FunctionRn f, double v0, double h, d
 		// _vi + 1/3 = vi + h/3(f(vi, ti))
 		_vi_13 = vi + (h/3)*f.run(params);
 
-		// ti + 1/3
-		ti = ti + (h/3);
-
 		params_13.clear();
 		params_13.push_back(_vi_13);
-		params_13.push_back(ti);
+		params_13.push_back(ti + h/3);
 
 		// _vi + 2/3 = _vi+1/3 + h/3(f(_vi+1/3,ti+h3))
 		_vi_23 = _vi_13  + (h/3)*f.run(params_13);
 
-		// ti + 2/3
-		ti = ti + (h/3);
-
 		params_23.clear();
 		params_23.push_back(_vi_23);
-		params_23.push_back(ti);
+		params_23.push_back(ti + 2*h/3);
 
 		// _vi + 1 = vi + h[-f(vi, ti) - f(_vi + 1/3, ti + 1/3) + f(_vi + 2/3, ti + 2/3)]
 		_vi = vi + h*( f.run(params) - f.run(params_13) + f.run(params_23) );
 
 		// ti + 1
-		ti = ti + (h/3);
+		ti = ti + h;
 
 		params_.clear();
 		params_.push_back(_vi);
