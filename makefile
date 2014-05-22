@@ -57,6 +57,7 @@ all:
 	# Adams
 	$(MAKE) -C src/methods/runge-kutta/second-order
 	$(MAKE) -C src/methods/runge-kutta/third-order
-	#$(MAKE) -C src/methods/runge-kutta/fourth-order
+	$(MAKE) -C src/methods/runge-kutta/fourth-order
 	$(MAKE) -C src/methods/adams/third-order
 	$(MAKE) -C src/methods/adams/fourth-order
+	$(MAKE) -C src/octave

@@ -44,13 +44,6 @@ std::vector<point> Adams::thirdOrder (FunctionRn f, double v0, double h, double 
 		// Predictor
 		vi_ = vi + (h/12) * (23*f.run(params) - 16*f.run(params_1) + 5*f.run(params_2));
 
-		std::cout << "vi0      " << vi  << std::endl
-				  << "params2  " << params_2[0] << ", " << params_2[1] << std::endl
-				  << "params1  " << params_1[0] << ", " << params_1[1] << std::endl
-				  << "params   " << params  [0] << ", " << params  [1] << std::endl
-		          << "vi_      " << vi_ << std::endl
-		          << "ti       " << ti << std::endl;
-
 		// ti + 1
 		ti = ti + h;
 
@@ -60,8 +53,6 @@ std::vector<point> Adams::thirdOrder (FunctionRn f, double v0, double h, double 
 
 		// Corrector
 		vi = vi + (h/12) * (5*f.run(params_) + 8*f.run(params) - f.run(params_1));
-
-		std::cout << "vi:      " << vi << "\n\n";
 
 		point latest_result = {ti, vi};
 		results.push_back(latest_result);
@@ -77,7 +68,7 @@ std::vector<point> Adams::fourthOrder (FunctionRn f, double v0, double h, double
 
 	// Calculating initial points
 	double ti = left + 3*h;
-	std::vector<point> results = RungeKutta::thirdOrder(f, v0, h, left, ti);
+	std::vector<point> results = RungeKutta::fourthOrder(f, v0, h, left, ti);
 
 	if (ti >= right)
 		return results;

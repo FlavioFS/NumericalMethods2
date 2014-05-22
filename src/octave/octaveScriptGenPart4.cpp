@@ -3,9 +3,9 @@
 #include <iomanip>
 #include <cmath>
 
-#include "RungeKutta.h"
-#include "../adams/Adams.h"
-#include "../../common/sample-initial-value.h"
+#include "../methods/runge-kutta/RungeKutta.h"
+#include "../methods/adams/Adams.h"
+#include "../common/sample-initial-value.h"
 
 using namespace std;
 
@@ -17,14 +17,15 @@ int main(int argc, char *argv[])
     SampleInitialValue *sampleIV = new SampleInitialValue();
     sampleIV->readSamplesFromFile(argv[1]);
     std::vector<point> results;
-    ofstream script;
+    ofstream script ("src/octave/scriptOctave.m"); //Starting Octave Script
 
-    //Starting Octave Script
-    script.open ("scriptOctave.m");
+
     script << "figure;\n";
+
+    // ------------------ Function name ------------------
     if(sampleIV->getFunctionID() == 1)
     {
-        script << "a = ezplot(\"e^(0.25*x^4-1.5*x)\",[" << sampleIV->getLeft() << "," << sampleIV->getRight() << "])\n"
+        script << "a = ezplot(\"e^(0.25*x^4 - 1.5*x)\",[" << sampleIV->getLeft() << "," << sampleIV->getRight() << "])\n"
                << "set(a,\"linewidth\",2)\n"
                << "set(a,\"color\",\"k\")\n"
                << "grid on\n"
@@ -33,7 +34,7 @@ int main(int argc, char *argv[])
 
     else if(sampleIV->getFunctionID() == 2)
     {
-        script << "a = ezplot(\"((2*x^2+x+2)^2)/4\",[" << sampleIV->getLeft() << "," << sampleIV->getRight() << "])\n"
+        script << "a = ezplot(\"((2*x^2 + x + 2)^2)/4\",[" << sampleIV->getLeft() << "," << sampleIV->getRight() << "])\n"
                << "set(a,\"linewidth\",2)\n"
                << "set(a,\"color\",\"k\")\n"
                << "grid on\n"
@@ -42,14 +43,15 @@ int main(int argc, char *argv[])
 
     else if(sampleIV->getFunctionID() == 3)
     {
-        script << "a = ezplot(\"(2*x^2-2*x+3*e^(-2*x)+1)/4\",[" << sampleIV->getLeft() << "," << sampleIV->getRight() << "])\n"
+        script << "a = ezplot(\"(2*x^2 - 2*x + 3*e^(-2*x) + 1)/4\",[" << sampleIV->getLeft() << "," << sampleIV->getRight() << "])\n"
                << "set(a,\"linewidth\",2)\n"
                << "set(a,\"color\",\"k\")\n"
                << "grid on\n"
                << "hold on\n";        
     }
+    // ---------------------------------------------------
 
-    //Second Order Runge Kutta, showing results and writing octave script 
+    // Second Order Runge Kutta, showing results and writing octave script 
     results.clear();
     results = RungeKutta::secondOrder(sampleIV->getFunction(), 
                                             sampleIV->getV0(), 
@@ -63,7 +65,7 @@ int main(int argc, char *argv[])
     {
         if(results[i].x != sampleIV->getRight())
         {
-            script << results[i].x << ",";
+            script << results[i].x << ", ";
         }
         else
         {
@@ -83,7 +85,7 @@ int main(int argc, char *argv[])
 
         if(results[i].x != sampleIV->getRight())
         {
-            script << results[i].y << ",";
+            script << results[i].y << ", ";
         }
         else
         {
@@ -97,8 +99,9 @@ int main(int argc, char *argv[])
            << "set(rk2,\"linewidth\",2)\n"
            << "set(rk2,\"color\",\"b\")\n"
            << "hold on\n";
+    // ---------------------------------------------------
 
-    //Third Order Runge Kutta, showing results and writing octave script
+    // Third Order Runge Kutta, showing results and writing octave script
     results.clear();
     results = RungeKutta::thirdOrder(sampleIV->getFunction(), 
                                             sampleIV->getV0(), 
@@ -112,7 +115,7 @@ int main(int argc, char *argv[])
     {
         if(results[i].x != sampleIV->getRight())
         {
-            script << results[i].x << ",";
+            script << results[i].x << ", ";
         }
         else
         {
@@ -130,7 +133,7 @@ int main(int argc, char *argv[])
 
         if(results[i].x != sampleIV->getRight())
         {
-            script << results[i].y << ",";
+            script << results[i].y << ", ";
         }
         else
         {
@@ -143,8 +146,9 @@ int main(int argc, char *argv[])
     script << "rk3 = plot(trk3, yrk3, \"r-\")\n"
            << "set(rk3,\"linewidth\",2)\n"
            << "hold on\n";
+    // ---------------------------------------------------
 
-    //Forth Order Runge Kutta, showing results and writing octave script
+    // Fourth Order Runge Kutta, showing results and writing octave script
     results.clear();
     results = RungeKutta::fourthOrder(sampleIV->getFunction(), 
                                             sampleIV->getV0(), 
@@ -158,7 +162,7 @@ int main(int argc, char *argv[])
     {
         if(results[i].x != sampleIV->getRight())
         {
-            script << results[i].x << ",";
+            script << results[i].x << ", ";
         }
         else
         {
@@ -176,7 +180,7 @@ int main(int argc, char *argv[])
 
         if(results[i].x != sampleIV->getRight())
         {
-            script << results[i].y << ",";
+            script << results[i].y << ", ";
         }
         else
         {
@@ -189,9 +193,9 @@ int main(int argc, char *argv[])
     script << "rk4 = plot(trk4, yrk4, \"m-\")\n"
            << "set(rk4,\"linewidth\",2)\n"
            << "hold on\n";
+    // ---------------------------------------------------
 
-
-    //Third Order Adams, showing results and writing octave script 
+    // Third Order Adams, showing results and writing octave script 
     results.clear();
     results = Adams::thirdOrder(sampleIV->getFunction(), 
                                             sampleIV->getV0(), 
@@ -205,7 +209,7 @@ int main(int argc, char *argv[])
     {
         if(results[i].x != sampleIV->getRight())
         {
-            script << results[i].x << ",";
+            script << results[i].x << ", ";
         }
         else
         {
@@ -223,7 +227,7 @@ int main(int argc, char *argv[])
 
         if(results[i].x != sampleIV->getRight())
         {
-            script << results[i].y << ",";
+            script << results[i].y << ", ";
         }
         else
         {
@@ -236,9 +240,9 @@ int main(int argc, char *argv[])
     script << "ad3 = plot(tad3, yad3, \"g-\")\n"
            << "set(ad3,\"linewidth\",2)\n"
            << "hold on\n";
+    // ---------------------------------------------------
 
-
-    //Fourth Order Adams, showing results and writing octave script 
+    // Fourth Order Adams, showing results and writing octave script 
     results.clear();
     results = Adams::fourthOrder(sampleIV->getFunction(), 
                                             sampleIV->getV0(), 
@@ -252,7 +256,7 @@ int main(int argc, char *argv[])
     {
         if(results[i].x != sampleIV->getRight())
         {
-            script << results[i].x << ",";
+            script << results[i].x << ", ";
         }
         else
         {
@@ -270,7 +274,7 @@ int main(int argc, char *argv[])
 
         if(results[i].x != sampleIV->getRight())
         {
-            script << results[i].y << ",";
+            script << results[i].y << ", ";
         }
         else
         {

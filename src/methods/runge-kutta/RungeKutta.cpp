@@ -109,11 +109,11 @@ std::vector<point> RungeKutta::thirdOrder (FunctionRn f, double v0, double h, do
 std::vector<point> RungeKutta::fourthOrder (FunctionRn f, double v0, double h, double left, double right)
 {
     
-	double vi = v0, 
-		  _vi_13 = 0,
-		  _vi_23 = 0,
-		  _vi = 0,
-		   ti = left;
+	double vi     = v0,
+		   _vi_13 = 0,
+		   _vi_23 = 0,
+		   _vi    = 0,
+		   ti     = left;
 
 	// List of 'point' that will be returned
 	std::vector<point> results;
@@ -135,7 +135,7 @@ std::vector<point> RungeKutta::fourthOrder (FunctionRn f, double v0, double h, d
 		params.push_back(ti);
 
 		// _vi + 1/3 = vi + h/3(f(vi, ti))
-		_vi_13 = vi + (h/3)*f.run(params);		
+		_vi_13 = vi + (h/3)*f.run(params);
 
 		// ti + 1/3
 		ti = ti + (h/3);
@@ -152,10 +152,10 @@ std::vector<point> RungeKutta::fourthOrder (FunctionRn f, double v0, double h, d
 
 		params_23.clear();
 		params_23.push_back(_vi_23);
-		params_23.push_back(ti);		
+		params_23.push_back(ti);
 
 		// _vi + 1 = vi + h[-f(vi, ti) - f(_vi + 1/3, ti + 1/3) + f(_vi + 2/3, ti + 2/3)]
-		_vi = vi + h*( -f.run(params) - f.run(params_13) + f.run(params_23) );
+		_vi = vi + h*( f.run(params) - f.run(params_13) + f.run(params_23) );
 
 		// ti + 1
 		ti = ti + (h/3);
