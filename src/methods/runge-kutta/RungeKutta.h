@@ -8,7 +8,9 @@
 class RungeKutta
 {
     public:
-    	   
+    	  
+        static std::vector<point> firstOrder (FunctionRn f, double v0, double h, double left, double right);
+
         // [1] - Second Order Runge Kutta
         static std::vector<point> secondOrder (FunctionRn f, double v0, double h, double left, double right);
 

@@ -51,6 +51,44 @@ int main(int argc, char *argv[])
     }
     // ---------------------------------------------------
 
+    // Forward Euler, showing results and writing octave script 
+    results.clear();
+    results = RungeKutta::firstOrder (
+        sampleIV->getFunction(), 
+        sampleIV->getV0(), 
+        sampleIV->getH(), 
+        sampleIV->getLeft(), 
+        sampleIV->getRight()
+    );
+
+    script << "teuler = [";
+
+    for (int i = 0; i < results.size() - 1; i++)
+    {
+        script << results[i].x << ", ";
+    }
+    script << results.back().x << "]\n";
+        
+    script << "yeuler = [";
+
+    cout << "\nForward Euler: " << endl
+         << "================================================================" << endl;
+    for (int i = 0; i < results.size() - 1; i++)
+    {
+        //Printing on screen
+        cout <<  "f(" << setw(4) << results[i].x << ") = " << setw(13) << results[i].y << endl;
+        //Writing on script
+        script << results[i].y << ", ";
+    }
+    cout <<  "f(" << setw(4) << results.back().x << ") = " << setw(13) << results.back().y << endl;
+    script << results.back().y << "]\n";
+    cout << "================================================================" << endl << endl;
+
+    script << "euler = plot(teuler, yeuler, \"b--\")\n"
+           << "set(euler,\"linewidth\",2)\n"
+           << "hold on\n";
+    // ---------------------------------------------------
+
     // Second Order Runge Kutta, showing results and writing octave script 
     results.clear();
     results = RungeKutta::secondOrder (
@@ -84,9 +122,8 @@ int main(int argc, char *argv[])
     script << results.back().y << "]\n";
     cout << "================================================================" << endl << endl;
 
-    script << "rk2 = plot(trk2, yrk2)\n"
+    script << "rk2 = plot(trk2, yrk2, \"b-\")\n"
            << "set(rk2,\"linewidth\",2)\n"
-           << "set(rk2,\"color\",\"b\")\n"
            << "hold on\n";
     // ---------------------------------------------------
 
@@ -239,7 +276,7 @@ int main(int argc, char *argv[])
 
     script << "ad4 = plot(tad4, yad4, \"c-\")\n"
            << "set(ad4,\"linewidth\",2)\n"
-           << "legend('solucao analitica', 'RK2', 'RK3', 'RK4', 'Adams3', 'Adams4');";
+           << "legend('solucao analitica', 'Euler', 'RK2', 'RK3', 'RK4', 'Adams3', 'Adams4');";
     script.close();
 
     return 0;

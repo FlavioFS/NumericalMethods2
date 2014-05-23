@@ -5,6 +5,43 @@
 
 using namespace std;
 
+
+std::vector<point> RungeKutta::firstOrder (FunctionRn f, double v0, double h, double left, double right) // Na verdade é o Euler :P
+{
+    
+	double vi = v0, 
+		  _vi = 0,
+		   ti = left;
+
+	// List of 'point' that will be returned
+	std::vector<point> results;
+	results.clear();
+
+	point p0 = {left, v0};	// Initializing P0, and...
+	results.push_back(p0);	// ... pushing it to solution
+
+	vector<double> params;	// Parameters vector used to calculate f(vi, ti)
+
+	int n = (right - left)/h; //ATENÇÃO: right - left deve ser divisível por h
+	for(int i = 0; i < n; i++) {
+
+		params.clear();
+		params.push_back(vi);
+		params.push_back(ti);
+
+		// vi + 1 = vi + h(f(vi, ti))
+		vi = vi + h*f.run(params);		
+
+		// ti + 1
+		ti = ti + h;
+
+		point latest_result = {ti, vi};
+		results.push_back(latest_result);
+	}
+
+    return results;
+}
+
 // [1] - Second Order Runge Kutta
 std::vector<point> RungeKutta::secondOrder (FunctionRn f, double v0, double h, double left, double right)
 {
@@ -23,7 +60,9 @@ std::vector<point> RungeKutta::secondOrder (FunctionRn f, double v0, double h, d
 	vector<double> params;	// Parameters vector used to calculate f(vi, ti)
 	vector<double> params_;	// Parameters vector used to calculate f(vi_, ti + 1)
 
-	while(ti < right) {
+
+	int n = (right - left)/h; //ATENÇÃO: right - left deve ser divisível por h
+	for(int i = 0; i < n; i++) {
 
 		params.clear();
 		params.push_back(vi);
@@ -70,7 +109,8 @@ std::vector<point> RungeKutta::thirdOrder (FunctionRn f, double v0, double h, do
 	vector<double> params_middle;	// Parameters vector used to calculate f(vi + 1/2, ti + 1/2)
 	vector<double> params_;			// Parameters vector used to calculate f(vi + 1, ti + 1)
 
-	while(ti < right) {
+	int n = (right - left)/h; //ATENÇÃO: right - left deve ser divisível por h
+	for(int i = 0; i < n; i++) {
 
 		params.clear();
 		params.push_back(vi);
@@ -128,7 +168,9 @@ std::vector<point> RungeKutta::fourthOrder (FunctionRn f, double v0, double h, d
 	vector<double> params_23;	// Parameters vector used to calculate f(vi + 2/3, ti + 2/3)
 	vector<double> params_;		// Parameters vector used to calculate f(vi + 1, ti + 1)
 
-	while(ti < right) {
+
+	int n = (right - left)/h; //ATENÇÃO: right - left deve ser divisível por h
+	for(int i = 0; i < n; i++) {
 
 		params.clear();
 		params.push_back(vi);

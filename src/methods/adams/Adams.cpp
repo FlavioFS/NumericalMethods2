@@ -26,8 +26,8 @@ std::vector<point> Adams::thirdOrder (FunctionRn f, double v0, double h, double 
 		vi = results[i].y,
 		vi_ = 0;
 
-	//ti += h;
-	while(ti < right) {
+	int n = (right - left)/h; //ATENÇÃO: right - left deve ser divisível por h
+	for(int j = 0; j < n - 2; j++) {
 
 		params.clear();
 		params.push_back(results[i].y);
@@ -87,8 +87,8 @@ std::vector<point> Adams::fourthOrder (FunctionRn f, double v0, double h, double
 		vi = results[i].y,
 		vi_ = 0;
 
-	//ti += h;
-	while(ti < right) {
+	int n = (right - left)/h; //ATENÇÃO: right - left deve ser divisível por h
+	for(int j = 0; j < n - 3; j++) {
 
 		params.clear();
 		params.push_back(results[i].y);
