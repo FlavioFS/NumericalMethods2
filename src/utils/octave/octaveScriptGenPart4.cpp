@@ -3,9 +3,9 @@
 #include <iomanip>
 #include <cmath>
 
-#include "../methods/runge-kutta/RungeKutta.h"
-#include "../methods/adams/Adams.h"
-#include "../common/sample-initial-value.h"
+#include "../../methods/runge-kutta/RungeKutta.h"
+#include "../../methods/adams/Adams.h"
+#include "../../common/sample-initial-value.h"
 
 using namespace std;
 
@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     SampleInitialValue *sampleIV = new SampleInitialValue();
     sampleIV->readSamplesFromFile(argv[1]);
     std::vector<point> results;
-    ofstream script ("src/octave/scriptOctave.m"); //Starting Octave Script
+    ofstream script ("src/utils/octave/scriptOctave.m"); //Starting Octave Script
 
 
     script << "figure;\n";

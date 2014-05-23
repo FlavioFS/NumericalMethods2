@@ -1,8 +1,8 @@
-EXE		 = ../../octaveScriptGenPart4
-INCLUDES = ../includes
-COMMON   = ../common
-RK		 = ../methods/runge-kutta
-ADAMS    = ../methods/adams
+EXE		 = ../../../octaveScriptGenPart4
+INCLUDES = ../../includes
+COMMON   = ../../common
+RK		 = ../../methods/runge-kutta
+ADAMS    = ../../methods/adams
 
 CC = g++
 FLAGS = -g
