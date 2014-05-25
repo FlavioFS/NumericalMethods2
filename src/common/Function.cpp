@@ -47,7 +47,7 @@ void Function::setFunction(unsigned int option)
 // Index goes from 1 to n
 void Function::pickFunction(unsigned int option)
 {  
-  if (option < _functionList.size())
+  if (option <= _functionList.size())
     { setFunction(_functionList[option-1]); }
 }
 
